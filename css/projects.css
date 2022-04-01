@@ -1,0 +1,45 @@
+*{
+    margin: 0;
+    padding: 0;
+  }
+  .hovers:hover{
+    background-color: rgb(151, 64, 233);
+    border-radius: 10px 15px;
+  }
+  /* Font Imports  */
+  @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,700&display=swap');
+  main p{
+    text-align: center;
+    padding-top: 3vh;
+    color: rgb(40, 48, 48);
+    font-size:xx-large;
+    font-weight: bolder;
+    font-family:'Ubuntu', sans-serif;
+  }
+  main{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('/images/Desktop.jpg');
+  }
+  footer{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-image: url('/images/Desktop.jpg');
+  }
+
+  @media (max-width:700px) {
+    main{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-image: url('/images/Mobile.jpg');
+    }
+    footer{
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: fixed;
+      background-image: url('/images/Mobile.jpg');
+    }
+  }
