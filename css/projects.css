@@ -2,44 +2,50 @@
     margin: 0;
     padding: 0;
   }
-  .hovers:hover{
-    background-color: rgb(151, 64, 233);
+  #navtag{
+    padding-left: 1%;
+    padding-right: 1%;
+    border: 2px dotted rgb(85, 146, 85);
     border-radius: 10px 15px;
+  }
+  #navtag:hover{
+    background-color: rgb(6, 138, 6);
+    color: aliceblue;
   }
   /* Font Imports  */
   @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@1,700&display=swap');
-  main p{
-    text-align: center;
-    padding-top: 3vh;
-    color: rgb(40, 48, 48);
-    font-size:xx-large;
-    font-weight: bolder;
-    font-family:'Ubuntu', sans-serif;
-  }
-  main{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: url('/images/Desktop.jpg');
-  }
-  footer{
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-attachment: fixed;
-    background-image: url('/images/Desktop.jpg');
-  }
 
-  @media (max-width:700px) {
-    main{
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-      background-image: url('/images/Mobile.jpg');
-    }
-    footer{
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: fixed;
-      background-image: url('/images/Mobile.jpg');
-    }
-  }
+#AccessCode{
+  text-align: center;
+  border-radius: 10px 15px;
+}
+#signins{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-top: 6%;
+  margin-left: 10%;
+  flex-direction: column;
+  height: auto;
+  border-radius: 15px;
+  background-color: rgb(230, 132, 67);
+}
+#signins h2{
+  margin-top: 5vh;
+  margin-bottom: 20vh;
+  color: rgb(34, 24, 32);
+  font-family:'Ubuntu', sans-serif;
+}
+#signins button{
+  margin-top: 10vh;
+}
+#AutoLogins{
+  margin-bottom: 10vh;
+}
+#projects{
+  display: none;
+}
+#Loginbtn{
+  margin-bottom: 5vh;
+}
