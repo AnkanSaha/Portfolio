@@ -79,23 +79,3 @@ document.getElementById('AutoLogins').addEventListener('click', ()=>{
     }
 })
 
-// Auto Saved Login Button Shower 
-function AutoLoginsShoower(){
-    let temporarykeyfatch = localStorage.getItem("Access Code");
-    if(temporarykeyfatch == null){
-        document.getElementById("AutoLogins").style.display = "none"
-    }
-    else if(temporarykeyfatch == ""){
-        document.getElementById("AutoLogins").style.display = "none"
-    }
-    else if(temporarykeyfatch != null){
-        document.getElementById("AutoLogins").style.display = ""
-    }
-    else if(temporarykeyfatch != ""){
-        document.getElementById("AutoLogins").style.display = ""
-    }
-}
-
-// Run Auto Saved Login Button Shower function 
-AutoLoginsShoower()
-

@@ -1,8 +1,3 @@
-// Right Click Blocker 
-// document.addEventListener('contextmenu', (AnkanSaha)=>{
-//     AnkanSaha.preventDefault();
-// })
-
 // Interval Settings 
 setInterval(DateGenerator(), 100)
 
