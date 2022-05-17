@@ -145,3 +145,75 @@ document.getElementById('projectauthenticator6').addEventListener('click', ()=>{
         })
     }
 })
+
+// Free Love Calculator site project in project file 
+document.getElementById('projectauthenticator7').addEventListener('click', ()=>{
+    console.log('button clicked and authenticator activated');
+    var tempkey = prompt("Enter Authenticator Code To Download");
+    console.log(tempkey);
+    if(tempkey == null){
+        document.getElementById('projectauthenticator7').href = '/index.html'
+    }
+    else if(tempkey == ''){
+        document.getElementById('projectauthenticator7').href = '/index.html'
+    }
+    else if(tempkey != null){
+        authkeys.forEach((foreachkeys)=>{
+            if(foreachkeys == tempkey){
+                console.log("authenticated")
+                alert("You are eligible to download this certificate. press ok to download")
+            }
+            else if(foreachkeys != tempkey){
+                document.getElementById('projectauthenticator7').href = '/index.html'
+            }
+        })
+    }
+})
+
+// Indian Pincode Validator project in project file 
+document.getElementById('projectauthenticator8').addEventListener('click', ()=>{
+    console.log('button clicked and authenticator activated');
+    var tempkey = prompt("Enter Authenticator Code To Download");
+    console.log(tempkey);
+    if(tempkey == null){
+        document.getElementById('projectauthenticator8').href = '/index.html'
+    }
+    else if(tempkey == ''){
+        document.getElementById('projectauthenticator8').href = '/index.html'
+    }
+    else if(tempkey != null){
+        authkeys.forEach((foreachkeys)=>{
+            if(foreachkeys == tempkey){
+                console.log("authenticated")
+                alert("You are eligible to download this certificate. press ok to download")
+            }
+            else if(foreachkeys != tempkey){
+                document.getElementById('projectauthenticator8').href = '/index.html'
+            }
+        })
+    }
+})
+
+// Antivirus Python Project 
+document.getElementById('projectauthenticator9').addEventListener('click', ()=>{
+    console.log('button clicked and authenticator activated');
+    var tempkey = prompt("Enter Authenticator Code To Download");
+    console.log(tempkey);
+    if(tempkey == null){
+        document.getElementById('projectauthenticator9').href = '/index.html'
+    }
+    else if(tempkey == ''){
+        document.getElementById('projectauthenticator9').href = '/index.html'
+    }
+    else if(tempkey != null){
+        authkeys.forEach((foreachkeys)=>{
+            if(foreachkeys == tempkey){
+                console.log("authenticated")
+                alert("You are eligible to download this certificate. press ok to download")
+            }
+            else if(foreachkeys != tempkey){
+                document.getElementById('projectauthenticator9').href = '/index.html'
+            }
+        })
+    }
+})

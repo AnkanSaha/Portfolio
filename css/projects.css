@@ -49,3 +49,21 @@
 #Loginbtn{
   margin-bottom: 5vh;
 }
+
+#callbtn{
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 7%;
+  cursor: pointer;
+}
+
+@media (max-width:400px) {
+  #callbtn{
+    position: fixed;
+    right: 8%;
+    bottom: 3%;
+    width: 15%;
+    cursor: pointer;
+  }
+}

@@ -57,6 +57,14 @@
 .boardeducationpartner{
   margin: 2%;
   width: 5%;
+  animation: partneranimate 4s linear alternate-reverse;
+}
+#callbtn{
+  position: fixed;
+  right: 2%;
+  bottom: 2%;
+  width: 7%;
+  cursor: pointer;
 }
 
 
@@ -71,6 +79,14 @@
     font-weight: bolder;
   }
 }
+@keyframes partneranimate {
+  From{
+    width: 0%;
+  }
+  To{
+    width: 100%;
+  }
+}
 
 /* Media Quires */
 @media (max-width:1023px) {
@@ -81,5 +97,14 @@
 @media (max-width:991px) {
   .buttonstyle{
     margin-bottom: 4vh;
+  }
+}
+@media (max-width:400px) {
+  #callbtn{
+    position: fixed;
+    right: 8%;
+    bottom: 3%;
+    width: 15%;
+    cursor: pointer;
   }
 }

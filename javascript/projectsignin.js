@@ -8,12 +8,12 @@ document.getElementById('Loginbtn').addEventListener('click', ()=>{
         Keys.forEach((e)=>{
             if(tempuserkey == e){
                 alert("User Authenticated");
-                let fgre = document.getElementById("signins")
+                let tempbuttons = document.getElementById("signins")
                 let projectWindow = document.getElementById("projects")
                 projectWindow.style.display = "block"
-                console.log(fgre)
+                console.log(tempbuttons)
                 localStorage.setItem('Access Code', e)
-                fgre.style.display = "none"
+                tempbuttons.style.display = "none"
             }
         })
     }
@@ -40,10 +40,10 @@ document.getElementById('AutoLogins').addEventListener('click', ()=>{
             Keys.forEach((e)=>{
                 if(tempsavedkey == e){
                     alert("User Authenticated");
-                    let fgre = document.getElementById("signins")
-                    console.log(fgre)
+                    let tempbuttons = document.getElementById("signins")
+                    console.log(tempbuttons)
                     localStorage.setItem('Access Code', e)
-                    fgre.style.display = "none"
+                    tempbuttons.style.display = "none"
                     let projectWindow = document.getElementById("projects")
                     projectWindow.style.display = "block"
                 }
@@ -61,10 +61,10 @@ document.getElementById('AutoLogins').addEventListener('click', ()=>{
             Keys.forEach((e)=>{
                 if(tempsavedkey == e){
                     alert("User Authenticated");
-                    let fgre = document.getElementById("signins")
-                    console.log(fgre)
+                    let tempbuttons = document.getElementById("signins")
+                    console.log(tempbuttons)
                     localStorage.setItem('Access Code', e)
-                    fgre.style.display = "none"
+                    tempbuttons.style.display = "none"
                     let projectWindow = document.getElementById("projects")
                     projectWindow.style.display = "block"
                 }
