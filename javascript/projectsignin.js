@@ -10,10 +10,10 @@ document.getElementById('Loginbtn').addEventListener('click', ()=>{
                 alert("User Authenticated");
                 let tempbuttons = document.getElementById("signins")
                 let projectWindow = document.getElementById("projects")
+                tempbuttons.style.display = "none"
                 projectWindow.style.display = "block"
                 console.log(tempbuttons)
                 localStorage.setItem('Access Code', e)
-                tempbuttons.style.display = "none"
             }
         })
     }

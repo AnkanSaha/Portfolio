@@ -16,7 +16,7 @@ function DateGenerator() {
 }
 
 // wellcome massage  s
-function welcomemsg(){
-    let welcome = new Audio('/audio/wellcome.mp3')
-    welcome.play()
-}
+// function welcomemsg(){
+//     let welcome = new Audio('/audio/wellcome.mp3')
+//     welcome.play()
+// }
