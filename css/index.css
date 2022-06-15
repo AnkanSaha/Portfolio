@@ -66,6 +66,9 @@
   width: 7%;
   cursor: pointer;
 }
+.slide{
+  height: 45vh;
+}
 
 
 /* Animation Keyframes  */
@@ -92,6 +95,9 @@
 @media (max-width:1023px) {
   #education{
     display: none;
+  }
+  .slide{
+    height: 20vh;
   }
 }
 @media (max-width:991px) {

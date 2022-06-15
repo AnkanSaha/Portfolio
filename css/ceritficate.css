@@ -19,6 +19,10 @@
     background-color: rgb(6, 138, 6);
     color: aliceblue;
   }
+
+.downloadbtn{
+  cursor: pointer;
+}
 @media (max-width:400px) {
     #callbtn{
       position: fixed;
