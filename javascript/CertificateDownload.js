@@ -9,11 +9,11 @@ document.getElementById('certificatedownload1').addEventListener('click', ()=>{
   authenticator(tempkey, DefaultKey, id1, successfilepath, failurepath)
 })
 
-// Google IT Support Fundamentals Certificate
+// Google IT Support Proffesional Certificate Course
 document.getElementById('certificatedownload2').addEventListener('click', ()=>{
   tempkey = prompt('Enter Authenticator Code To Download')
   id2 = 'certificatedownload2'
-  successfilepath = '/CertificatePDFcopy/Google IT Support Fundamentals Certificate.pdf'
+  successfilepath = '/CertificatePDFcopy/Google IT Support Proffesional Certificate.pdf'
   failurepath = '/index.html'
   authenticator(tempkey, DefaultKey, id2, successfilepath, failurepath)
 })
@@ -22,16 +22,16 @@ document.getElementById('certificatedownload2').addEventListener('click', ()=>{
 document.getElementById('certificatedownload3').addEventListener('click', ()=>{
   tempkey = prompt('Enter Authenticator Code To Download')
   id2 = 'certificatedownload3'
-  successfilepath = '//CertificatePDFcopy/Diploma in Information technology certificate.pdf'
+  successfilepath = '/CertificatePDFcopy/Diploma in Information technology certificate.pdf'
   failurepath = '/index.html'
   authenticator(tempkey, DefaultKey, id2, successfilepath, failurepath)
 })
 
-// Web Application Technologies & Django Certificate
+// Building Web Application with django Certificate Course
 document.getElementById('certificatedownload4').addEventListener('click', ()=>{
   tempkey = prompt('Enter Authenticator Code To Download')
   id2 = 'certificatedownload4'
-  successfilepath = '/CertificatePDFcopy/Coursera (University of Michigan) Web Application Technologies & Django.pdf'
+  successfilepath = '/CertificatePDFcopy/Coursera (University of Michigan)Building Web Application with django.pdf'
   failurepath = '/index.html'
   authenticator(tempkey, DefaultKey, id2, successfilepath, failurepath)
 })
@@ -53,11 +53,22 @@ document.getElementById('certificatedownload5').addEventListener('click', ()=>{
 
 // Default Function
 function authenticator(userKey, systemkey, docid, sfilepath, fpath){
-  if (userKey != DefaultKey) {
-    alert("You Entered a worng Key ! Please Try Again");
-    document.getElementById(docid).href = fpath
+  if(userKey ==''){
+    alert("405: You Can't Send it Blank")
   }
-  else if (userKey == systemkey) {
-    document.getElementById(docid).href = sfilepath
+  else if(userKey !=''){
+    if (userKey != DefaultKey) {
+      alert("402: You Entered a worng Key ! Please Try Again");
+      document.getElementById(docid).href = fpath
+    }
+    else if (userKey == systemkey) {
+      document.getElementById(docid).href = sfilepath
+    }
   }
 }
+
+
+// Prevant Right Click 
+document.addEventListener('contextmenu', (e)=>{
+  e.preventDefault()
+})

@@ -1,0 +1,7 @@
+Social Bar Ads code :
+            <!-- Adsterra Social Bar Ads Code -->
+<script type='text/javascript' src='//torchestanreason.com/94/87/ea/9487eac7b9222ff34473d42e4c48cb41.js'></script>
+
+Popunder Ads Code :
+            <!-- Adsterra Popunder Ads Code -->
+    <script type='text/javascript' src='//torchestanreason.com/8d/3a/fc/8d3afc392dbc030438b97384bae639cc.js'></script>
