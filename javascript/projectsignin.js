@@ -1,5 +1,6 @@
 // Access Key Array 
 let Keys = ["458756328", "457845124", "784515364", "784512365", "789562354", "451235647","784535267", "986532154", "999944441", "244466666", "784697164", "253689459", "736745982"]
+let unlocksound = new Audio('/audio/unlocked(projectFile).mp3')
 
 // Manual Signin Methods 
 document.getElementById('Loginbtn').addEventListener('click', ()=>{
@@ -12,7 +13,6 @@ document.getElementById('Loginbtn').addEventListener('click', ()=>{
                 let projectWindow = document.getElementById("projects")
                 tempbuttons.style.display = "none"
                 projectWindow.style.display = "block"
-                var unlocksound = new Audio('/audio/unlocked(projectFile).mp3')
                 unlocksound.play()
                 console.log(tempbuttons)
                 localStorage.setItem('Access Code', e)
@@ -48,7 +48,6 @@ document.getElementById('AutoLogins').addEventListener('click', ()=>{
                     tempbuttons.style.display = "none"
                     let projectWindow = document.getElementById("projects")
                     projectWindow.style.display = "block"
-                    var unlocksound = new Audio('/audio/unlocked(projectFile).mp3')
                     unlocksound.play()
                 }
             })
@@ -71,7 +70,6 @@ document.getElementById('AutoLogins').addEventListener('click', ()=>{
                     tempbuttons.style.display = "none"
                     let projectWindow = document.getElementById("projects")
                     projectWindow.style.display = "block"
-                    var unlocksound = new Audio('/audio/unlocked(projectFile).mp3')
                     unlocksound.play()
                 }
             })

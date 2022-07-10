@@ -1,4 +1,7 @@
 // Contact us prompt in buyaccesskey.html page Controller Function
+let failuresound = new Audio('/audio/msgsentfailure.mp3')
+let successsound = new Audio('/audio/msgsentsuccess.mp3')
+let successsounds = new Audio('/audio/FreeCoderevealed.mp3')
 function contactusvalidator(){
     var name = document.getElementById('name').value
     var email = document.getElementById('email').value
@@ -6,19 +9,16 @@ function contactusvalidator(){
     // validator by if else 
     if(email == "" || massage == ""){
         alert("You can't send it as blank")
-        var failuresound = new Audio('/audio/msgsentfailure.mp3')
         failuresound.play()
     }
     else{
         if(massage.length < 24){
             if(name == ""){
                 alert('Hey user , please describe your problem atlast 25 words or upper')
-                var failuresound = new Audio('/audio/msgsentfailure.mp3')
                 failuresound.play()
             }
             else if(name != ""){
                 alert('Hey '+name+' please describe your problem atlast 25 words or upper')
-                var failuresound = new Audio('/audio/msgsentfailure.mp3')
                 failuresound.play()
             }
         }
@@ -28,7 +28,6 @@ function contactusvalidator(){
                 const toastelement = document.getElementById('liveToast')
                 const toast = new bootstrap.Toast(toastelement)
                 document.getElementById('usernameforsuccessprompt').innerText = 'user'
-                var successsound = new Audio('/audio/msgsentsuccess.mp3')
                 successsound.play()
                 toast.show()
             }
@@ -36,7 +35,6 @@ function contactusvalidator(){
                 const toastelement = document.getElementById('liveToast')
                 const toast = new bootstrap.Toast(toastelement)
                 document.getElementById('usernameforsuccessprompt').innerText = name
-                var successsound = new Audio('/audio/msgsentsuccess.mp3')
                 successsound.play()
                 toast.show()
             }
@@ -58,8 +56,7 @@ document.getElementById('finalbuyaccesskeyprompt').addEventListener('click', ()=
 function freecodegenerator(){
         document.getElementById('finalpagebuy').style.display = 'none'
         document.getElementById('freeprojectsignincode').style.display = 'block'
-        var successsound = new Audio('/audio/FreeCoderevealed.mp3')
-        successsound.play()
+        successsounds.play()
 }
 
 // Prevant Right Click 
