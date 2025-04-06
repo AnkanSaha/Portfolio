@@ -36,7 +36,7 @@ export default defineConfig({
   build: {
     outDir: 'Portfolio',
     emptyOutDir: true,
-    sourcemap: true,
+    sourcemap: false,
     minify: true,
     ssrManifest: true,
     modulePreload: true,
