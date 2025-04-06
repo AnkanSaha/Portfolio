@@ -41,6 +41,27 @@ jobs:
           command: |
             cd server/ && yarn install --force && npm run build && yarn add pm2 && npm run test
 
+
+  Push_To_Gitlab:
+    docker:
+      - image: node:latest
+    steps:
+      - checkout
+      - run:
+          name: Add Gitlab Remote URL
+          command: git remote add gitlab ${GITLAB_REPO_URL}
+      - run:
+          name: Configure GitLab Credentials
+          command: |
+            git config --global credential.helper store
+            echo "https://oauth2:${GITLAB_PERMANENT_ACCESS_TOKEN}@gitlab.com" > ~/.git-credentials
+            git config --global user.email "${OWNER_EMAIL}"
+            git config --global user.name "${OWNER_NAME}"
+      - run:
+          name: Push to Gitlab
+          command: |
+            git push gitlab
+
   Send_client_To_Server:
     docker:
       - image: node:latest
@@ -161,7 +182,7 @@ workflows:
       - Send_client_To_Server:
           name: Send client to server
           requires:
-            - Publish to Gitlab
+            - Test client Side
           filters:
             branches:
               only: main
