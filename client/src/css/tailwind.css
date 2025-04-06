@@ -3,17 +3,17 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-        scroll-behavior: smooth;
-    }
+  html {
+    scroll-behavior: smooth;
+  }
 
-    body {
-        @apply bg-gray-900;
-    }
+  body {
+    @apply bg-gray-900;
+  }
 }
 
 @layer components {
-    .container {
-        @apply max-w-7xl mx-auto;
-    }
+  .container {
+    @apply max-w-7xl mx-auto;
+  }
 }
