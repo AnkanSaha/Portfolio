@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        @apply bg-gray-900;
+    }
+}
+
+@layer components {
+    .container {
+        @apply max-w-7xl mx-auto;
+    }
+}

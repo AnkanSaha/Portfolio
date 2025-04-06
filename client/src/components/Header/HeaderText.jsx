@@ -1,18 +1,49 @@
-/* eslint-disable no-unused-vars */
-import React from 'react' // Import React
+import React from 'react';
+import { Menu, X, Code2 } from 'lucide-react';
 
-// Main Component
-export default function MainText (Props) {
+const Header = () => {
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
   return (
-    <h1 className='my-[3.25rem] lg:my-[4.25rem] text-center text-3xl font-extrabold text-gray-900 dark:text-white md:text-5xl lg:text-6xl'>
-      <span className=' text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400'>
-        {Props.Text}
-      </span>{' '}
-    </h1>
-  )
-}
+    <header className="fixed w-full bg-black/90 backdrop-blur-sm text-white z-50">
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Code2 className="w-8 h-8 text-blue-500" />
+            <span className="text-xl font-bold">DevPortfolio</span>
+          </div>
 
-// Default Props
-MainText.defaultProps = {
-  Text: 'This is HeaderText'
-}
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            <a href="#home" className="hover:text-blue-500 transition-colors">Home</a>
+            <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a>
+            <a href="#about" className="hover:text-blue-500 transition-colors">About</a>
+            <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+          >
+            {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        {isMenuOpen && (
+          <div className="md:hidden pt-4 pb-3">
+            <div className="flex flex-col space-y-3">
+              <a href="#home" className="hover:text-blue-500 transition-colors">Home</a>
+              <a href="#projects" className="hover:text-blue-500 transition-colors">Projects</a>
+              <a href="#about" className="hover:text-blue-500 transition-colors">About</a>
+              <a href="#contact" className="hover:text-blue-500 transition-colors">Contact</a>
+            </div>
+          </div>
+        )}
+      </nav>
+    </header>
+  );
+};
+
+export default Header;

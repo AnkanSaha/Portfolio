@@ -12,6 +12,9 @@ import MainText from '../components/Home/Main Text' // Import the MainText compo
 import Skill from '../components/Home/Skill' // Import the MainText component
 import Education from '../components/Home/Education' // Import the Education component
 import Certification from '../components/Home/Certification' // Import the Certification component
+import Header from '../components/Header/HeaderText'
+import Hero from '../components/Sections/Hero'
+import Projects from '../components/Sections/Projects'
 
 export default function HomePage () {
   // Change the title of the page
@@ -22,15 +25,13 @@ export default function HomePage () {
 
   return (
     <>
-      <Navbar />
-      <div className='justify-between space-x-0 lg:flex'>
-        <OwnerPictureShower />
-        <MainText />
+      <div className="bg-gray-900 text-white">
+        <Header />
+        <main>
+          <Hero />
+          <Projects />
+        </main>
       </div>
-      <Skill />
-      <Education />
-      <Certification />
-      <Footer />
     </>
   )
 }
