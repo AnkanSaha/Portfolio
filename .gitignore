@@ -9,3 +9,6 @@
 
 #backend
 /backend/node_modules
+
+# application
+/application/node_modules
