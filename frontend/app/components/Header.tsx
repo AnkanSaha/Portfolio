@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Header() {
 return (
-    <header className="flex justify-between items-center p-4 bg-gray-900 rounded-b-xl text-white shadow-md">
+    <header className="flex justify-between items-center p-4 bg-gray-900 text-white shadow-md">
         <div className="flex items-center">
             <Image src="/logo.png" alt="Logo" width={50} height={50} className="mr-4" />
             <h1 className="text-xl font-bold">Dev Portfolio</h1>
