@@ -1,0 +1,11 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Install Nx plugins for Expo, Next.js, and NestJS",
+			"command": "npm install --save-dev @nx/expo @nx/next @nx/nest @nx/eslint @nx/jest",
+			"group": "build"
+		}
+	]
+}

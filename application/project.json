@@ -1,0 +1,26 @@
+{
+    "name": "application",
+    "projectType": "application",
+    "root": "application",
+    "sourceRoot": "application/app",
+    "targets": {
+        "start": {
+            "executor": "@nx/expo:start",
+            "options": {}
+        },
+        "build": {
+            "executor": "@nx/expo:build",
+            "options": {}
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "options": {
+                "lintFilePatterns": [
+                    "application/**/*.ts",
+                    "application/**/*.tsx"
+                ]
+            }
+        }
+    },
+    "tags": []
+}

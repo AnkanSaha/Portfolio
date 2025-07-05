@@ -12,3 +12,10 @@
 
 # application
 /application/node_modules
+.nx/installation
+.nx/cache
+.nx/workspace-data
+
+
+.cursor/rules/nx-rules.mdc
+.github/instructions/nx.instructions.md
