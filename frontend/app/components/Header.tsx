@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Header() {
 return (
@@ -9,9 +10,9 @@ return (
         </div>
         <nav>
             <ul className="flex space-x-4">
-                <li><a href="/" className="text-white hover:text-blue-600 transition-colors">Home</a></li>
-                <li><a href="/about" className="text-white hover:text-blue-600 transition-colors">About</a></li>
-                <li><a href="/contact" className="text-white hover:text-blue-600 transition-colors">Contact</a></li>
+                <li><Link href="/" className="text-white hover:text-blue-600 transition-colors">Home</Link></li>
+                <li><Link href="/about" className="text-white hover:text-blue-600 transition-colors">About</Link></li>
+                <li><Link href="/contact" className="text-white hover:text-blue-600 transition-colors">Contact</Link></li>
             </ul>
         </nav>
     </header>

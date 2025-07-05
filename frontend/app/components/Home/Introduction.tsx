@@ -1,5 +1,7 @@
-"use client";
-import React, { useState, useEffect } from "react";
+"use client"; // Add this directive at the top to mark as client component
+
+/* eslint-disable react/no-unescaped-entities */
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
