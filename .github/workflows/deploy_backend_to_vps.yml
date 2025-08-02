@@ -15,106 +15,66 @@ jobs:
           fetch-depth: 2
 
       - name: Check for backend changes
+        uses: dorny/paths-filter@v2
         id: check_changes
+        with:
+          filters: |
+            backend:
+              - 'backend/**'
+
+      - name: Setup Node.js
+        if: steps.check_changes.outputs.backend == 'true'
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+          cache-dependency-path: backend/package-lock.json
+
+      - name: Build backend project
+        if: steps.check_changes.outputs.backend == 'true'
+        working-directory: backend
         run: |
-          if git diff --name-only HEAD~1 HEAD | grep -q "^backend/"; then
-            echo "Backend changes detected"
-            echo "backend_changed=true" >> $GITHUB_OUTPUT
-          else
-            echo "No backend changes detected"
-            echo "backend_changed=false" >> $GITHUB_OUTPUT
-          fi
+          npm ci
+          npm run build
 
-      - name: Navigate to backend and build
-        if: steps.check_changes.outputs.backend_changed == 'true'
+      - name: Create deployment package
+        if: steps.check_changes.outputs.backend == 'true'
         run: |
-          echo "Building backend project..."
-          cd backend
-
-          # Install dependencies if package.json exists
-          if [ -f "package.json" ]; then
-            echo "Installing Node.js dependencies..."
-            npm install
-          fi
-
-          # Build the project if build script exists
-          if grep -q '"build"' package.json 2>/dev/null; then
-            echo "Running build command..."
-            npm run build
-          fi
-
-          # Show build completion
-          echo "Backend build completed successfully"
-          ls -la
-
-      - name: Prepare deployment files
-        if: steps.check_changes.outputs.backend_changed == 'true'
-        run: |
-          echo "Preparing deployment files..."
           mkdir -p ${{ secrets.PROJECT_NAME }}
+          cp -r backend/dist ${{ secrets.PROJECT_NAME }}
+          cp backend/package*.json ${{ secrets.PROJECT_NAME }}/
 
-          # Copy dist folder and package.json to Portfolio folder
-          if [ -d "backend/dist" ]; then
-            cp -r backend/dist ${{ secrets.PROJECT_NAME }}/
-            echo "Copied dist folder to ${{ secrets.PROJECT_NAME }}/"
-          else
-            echo "Warning: dist folder not found"
-          fi
-
-          if [ -f "backend/package.json" ]; then
-            cp backend/package.json ${{ secrets.PROJECT_NAME }}/
-            echo "Copied package.json to ${{ secrets.PROJECT_NAME }}/"
-          else
-            echo "Warning: package.json not found"
-          fi
-
-          # Show ${{ secrets.PROJECT_NAME }} folder contents
-          echo "${{ secrets.PROJECT_NAME }} folder contents:"
-          ls -la ${{ secrets.PROJECT_NAME }}/
+      - name: Create .env file
+        if: steps.check_changes.outputs.backend == 'true'
+        run: |
+          echo '${{ secrets.ENV_VARIABLES }}' > ${{ secrets.PROJECT_NAME }}/.env
 
       - name: Cleanup server before deployment
-        if: steps.check_changes.outputs.backend_changed == 'true'
+        if: steps.check_changes.outputs.backend == 'true'
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            # Stop and delete PM2 process if it exists
-            if pm2 list | grep -q "${{ secrets.PROCESS_NAME }}"; then
-              echo "Stopping ${{ secrets.PROCESS_NAME }} PM2 process..."
-              pm2 stop ${{ secrets.PROCESS_NAME }}
-              pm2 delete ${{ secrets.PROCESS_NAME }}
-              echo "${{ secrets.PROCESS_NAME }} PM2 process removed"
-            else
-              echo "No ${{ secrets.PROCESS_NAME }} PM2 process found"
-            fi
-
-            # Remove existing folder if it exists
-            if [ -d "/home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}" ]; then
-              echo "Removing existing ${{ secrets.PROJECT_NAME }} folder..."
-              rm -rf /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
-              echo "Existing ${{ secrets.PROJECT_NAME }} folder removed"
-            else
-              echo "No existing ${{ secrets.PROJECT_NAME }} folder found"
-            fi
-
-            # Ensure the parent directory exists
+            pm2 stop ${{ secrets.PROCESS_NAME }} || true
+            pm2 delete ${{ secrets.PROCESS_NAME }} || true
+            rm -rf /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
             mkdir -p /home/ubuntu/${{ secrets.SERVER_USER }}
-            echo "Server cleanup completed"
 
-      - name: Deploy to server
-        if: steps.check_changes.outputs.backend_changed == 'true'
+      - name: Deploy files to server
+        if: steps.check_changes.outputs.backend == 'true'
         uses: appleboy/scp-action@v0.1.7
         with:
           host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "${{ secrets.PROJECT_NAME }}/"
+          source: "${{ secrets.PROJECT_NAME }}"
           target: "/home/ubuntu/${{ secrets.SERVER_USER }}/"
+          strip_components: 1
 
-      - name: Setup and start application on server
-        if: steps.check_changes.outputs.backend_changed == 'true'
+      - name: Start application
+        if: steps.check_changes.outputs.backend == 'true'
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SERVER_HOST }}
@@ -122,23 +82,10 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
-
-            echo "Creating .env file with environment variables..."
-            echo "${{ secrets.ENV_VARIABLES }}" > .env
-
-            echo "Installing dependencies..."
             npm install --force
-
-            echo "Starting application with PM2..."
-            pm2 start npm --name "${{ secrets.PROCESS_NAME }}" -- run start:prod
-
-            echo "Saving PM2 configuration..."
+            npm run start:prod
             pm2 save
 
-            echo "Application setup completed successfully"
-            pm2 status
-
-      - name: Skip deployment
-        if: steps.check_changes.outputs.backend_changed == 'false'
-        run: |
-          echo "No backend changes detected. Skipping deployment."
+      - name: Skip deployment notification
+        if: steps.check_changes.outputs.backend == 'false'
+        run: echo "No backend changes detected. Skipping deployment."
