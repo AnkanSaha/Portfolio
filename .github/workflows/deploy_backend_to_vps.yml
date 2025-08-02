@@ -74,27 +74,22 @@ jobs:
 
       - name: Cleanup server before deployment
         if: steps.check_changes.outputs.backend_changed == 'true'
-        run: |
-          echo "Cleaning up server before deployment..."
-
-          # Setup SSH key
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
-
-          # Check and cleanup server
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             # Stop and delete PM2 process if it exists
-            if pm2 list | grep -q "${{secrets.PROCESS_NAME}}"; then
-              echo "Stopping ${{secrets.PROCESS_NAME}} PM2 process..."
-              pm2 stop ${{secrets.PROCESS_NAME}}
-              pm2 delete ${{secrets.PROCESS_NAME}}
-              echo "${{secrets.PROCESS_NAME}} PM2 process removed"
+            if pm2 list | grep -q "${{ secrets.PROCESS_NAME }}"; then
+              echo "Stopping ${{ secrets.PROCESS_NAME }} PM2 process..."
+              pm2 stop ${{ secrets.PROCESS_NAME }}
+              pm2 delete ${{ secrets.PROCESS_NAME }}
+              echo "${{ secrets.PROCESS_NAME }} PM2 process removed"
             else
-              echo "No ${{secrets.PROCESS_NAME}} PM2 process found"
+              echo "No ${{ secrets.PROCESS_NAME }} PM2 process found"
             fi
-            
+
             # Remove existing folder if it exists
             if [ -d "/home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}" ]; then
               echo "Removing existing ${{ secrets.PROJECT_NAME }} folder..."
@@ -103,47 +98,45 @@ jobs:
             else
               echo "No existing ${{ secrets.PROJECT_NAME }} folder found"
             fi
-            
+
             # Ensure the parent directory exists
             mkdir -p /home/ubuntu/${{ secrets.SERVER_USER }}
             echo "Server cleanup completed"
-          EOL
 
       - name: Deploy to server
         if: steps.check_changes.outputs.backend_changed == 'true'
-        run: |
-          echo "Deploying Portfolio folder to server..."
-
-          # Transfer Portfolio folder to server using scp
-          scp -r Portfolio/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/${{ secrets.SERVER_USER }}/
-
-          echo "Files transferred successfully"
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: "${{ secrets.PROJECT_NAME }}/"
+          target: "/home/ubuntu/${{ secrets.SERVER_USER }}/"
 
       - name: Setup and start application on server
         if: steps.check_changes.outputs.backend_changed == 'true'
-        run: |
-          echo "Setting up and starting application on server..."
-
-          # Connect to server and setup application
-          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
             cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
 
-            echo "Creating .env file... & add environment variables"
-            echo ${{
-              secrets.ENV_VARIABLES
-            }} > .env
+            echo "Creating .env file with environment variables..."
+            echo "${{ secrets.ENV_VARIABLES }}" > .env
 
             echo "Installing dependencies..."
             npm install --force
-            
+
             echo "Starting application with PM2..."
-            npm run start:prod
+            pm2 start npm --name "${{ secrets.PROCESS_NAME }}" -- run start:prod
 
             echo "Saving PM2 configuration..."
             pm2 save
-          EOL
 
-          echo "Deployment completed successfully"
+            echo "Application setup completed successfully"
+            pm2 status
 
       - name: Skip deployment
         if: steps.check_changes.outputs.backend_changed == 'false'
