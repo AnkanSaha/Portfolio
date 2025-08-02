@@ -5,17 +5,22 @@
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
+    "build:cf": "npx @opennextjs/cloudflare build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "login:cf": "wrangler login",
+    "deploy:cf": "wrangler deploy --env=\"\""
   },
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.6.3",
     "@vercel/analytics": "^1.5.0",
     "framer-motion": "^12.23.0",
     "next": "15.3.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
-    "typewriter-effect": "^2.22.0"
+    "typewriter-effect": "^2.22.0",
+    "wrangler": "^4.27.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

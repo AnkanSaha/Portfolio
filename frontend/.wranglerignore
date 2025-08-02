@@ -1,0 +1,58 @@
+# Ignore source files - only deploy compiled output
+app/
+libs/
+components/
+hooks/
+stores/
+utils/
+assets/styles/
+@types/
+messages/
+
+# Ignore configuration files
+*.config.js
+*.config.ts
+*.config.json
+tsconfig*.json
+next-env.d.ts
+globals.d.ts
+index.d.ts
+reset.d.ts
+i18n.ts
+navigation.ts
+middleware.ts
+mock-data.ts
+mdx-components.tsx
+mdx-styles.css.ts
+
+# Ignore development files
+node_modules/
+.next/
+.git/
+.vscode/
+.husky/
+*.md
+*.stories.*
+*.test.*
+*.spec.*
+*.css.ts
+.eslintrc.json
+.eslintignore
+.prettierrc
+.prettierignore
+.gitignore
+.npmrc
+.deepsource.toml
+.sonarcloud.properties
+sonar-project.properties
+*.toml
+pnpm-lock.yaml
+
+# Ignore build artifacts except .open-next
+bundled/
+.build/
+
+# Include these essential files for deployment:
+# .open-next/ (compiled Next.js output)
+# public/ (static assets)
+# package.json (for dependencies info)

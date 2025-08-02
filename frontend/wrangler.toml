@@ -1,0 +1,42 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "portfolio"
+main = ".open-next/worker.js"
+compatibility_date = "2025-05-05"
+compatibility_flags = ["nodejs_compat"]
+keep_vars = true
+
+[build]
+command = "npm run build:cf"
+
+# Asset handling for CSS, JS, and other static files
+[[rules]]
+type = "ESModule"
+globs = ["**/*.js", "**/*.mjs"]
+
+# Static assets configuration
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+# wrangler.toml (wrangler v3.88.0^) 
+[observability.logs]
+enabled = true
+
+[vars]
+
+# KV Namespaces (uncomment if needed)
+# [[kv_namespaces]]
+# binding = "CACHE"
+# id = "your-kv-namespace-id"
+# preview_id = "your-preview-kv-namespace-id"
+
+# D1 Database (uncomment if needed)
+# [[d1_databases]]
+# binding = "DB"
+# database_name = "portfolio-db"
+# database_id = "your-database-id"
+
+# R2 Buckets (uncomment if needed)
+# [[r2_buckets]]
+# binding = "ASSETS"
+# bucket_name = "hoichoi-assets"
