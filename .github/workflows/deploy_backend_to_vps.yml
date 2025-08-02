@@ -45,7 +45,6 @@ jobs:
 
           if [ -f "backend/package.json" ]; then
             cp backend/package.json ${{ secrets.PROJECT_NAME }}/
-            cp -r backend/node_modules ${{ secrets.PROJECT_NAME }}/
           fi
 
       - name: Save private key
@@ -71,6 +70,8 @@ jobs:
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && echo '${{ secrets.ENV_VARIABLES }}' > .env"
+
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm install --force"
 
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm run start:prod && pm2 save"
 
