@@ -71,7 +71,7 @@ jobs:
         run: |
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && echo '${{ secrets.ENV_VARIABLES }}' > .env"
 
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm install --force"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm install --omit=dev"
 
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm run start:prod && pm2 save"
 
