@@ -82,15 +82,15 @@ jobs:
           chmod 400 server-key.pem
 
           # Check and cleanup server
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
             # Stop and delete PM2 process if it exists
-            if pm2 list | grep -q "${{secrets.PROCESS_NAME}}"; then
-              echo "Stopping ${{secrets.PROCESS_NAME}} PM2 process..."
-              pm2 stop ${{secrets.PROCESS_NAME}}
-              pm2 delete ${{secrets.PROCESS_NAME}}
-              echo "${{secrets.PROCESS_NAME}} PM2 process removed"
+            if pm2 list | grep -q "${{ secrets.PROCESS_NAME }}"; then
+              echo "Stopping ${{ secrets.PROCESS_NAME }} PM2 process..."
+              pm2 stop ${{ secrets.PROCESS_NAME }}
+              pm2 delete ${{ secrets.PROCESS_NAME }}
+              echo "${{ secrets.PROCESS_NAME }} PM2 process removed"
             else
-              echo "No ${{secrets.PROCESS_NAME}} PM2 process found"
+              echo "No ${{ secrets.PROCESS_NAME }} PM2 process found"
             fi
             
             # Remove existing folder if it exists
@@ -113,7 +113,7 @@ jobs:
           echo "Deploying Portfolio folder to server..."
 
           # Transfer Portfolio folder to server using scp with .pem file
-          scp -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -r ${{ secrets.PROJECT_NAME }}/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/${{ secrets.SERVER_USER }}/
+          scp -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 -r ${{ secrets.PROJECT_NAME }}/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/${{ secrets.SERVER_USER }}/
 
           echo "Files transferred successfully"
 
@@ -123,7 +123,7 @@ jobs:
           echo "Setting up and starting application on server..."
 
           # Connect to server and setup application
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
             cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
 
             echo "Creating .env file... & add environment variables"
