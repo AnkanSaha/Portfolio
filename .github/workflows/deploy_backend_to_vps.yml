@@ -3,8 +3,6 @@ name: Deploy Backend to VPS
 on:
   push:
     branches: [main]
-  pull_request:
-    branches: [main]
 
 jobs:
   check-and-deploy:
@@ -129,6 +127,11 @@ jobs:
           # Connect to server and setup application
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
             cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
+
+            echo "Creating .env file... & add environment variables"
+            echo ${{
+              secrets.ENV_VARIABLES
+            }} > .env
 
             echo "Installing dependencies..."
             npm install --force
