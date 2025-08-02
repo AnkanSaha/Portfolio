@@ -53,26 +53,26 @@ jobs:
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
           echo "Preparing deployment files..."
-          mkdir -p Portfolio
+          mkdir -p ${{ secrets.PROJECT_NAME }}
 
           # Copy dist folder and package.json to Portfolio folder
           if [ -d "backend/dist" ]; then
-            cp -r backend/dist Portfolio/
-            echo "Copied dist folder to Portfolio/"
+            cp -r backend/dist ${{ secrets.PROJECT_NAME }}/
+            echo "Copied dist folder to ${{ secrets.PROJECT_NAME }}/"
           else
             echo "Warning: dist folder not found"
           fi
 
           if [ -f "backend/package.json" ]; then
-            cp backend/package.json Portfolio/
-            echo "Copied package.json to Portfolio/"
+            cp backend/package.json ${{ secrets.PROJECT_NAME }}/
+            echo "Copied package.json to ${{ secrets.PROJECT_NAME }}/"
           else
             echo "Warning: package.json not found"
           fi
 
-          # Show Portfolio folder contents
-          echo "Portfolio folder contents:"
-          ls -la Portfolio/
+          # Show ${{ secrets.PROJECT_NAME }} folder contents
+          echo "${{ secrets.PROJECT_NAME }} folder contents:"
+          ls -la ${{ secrets.PROJECT_NAME }}/
 
       - name: Cleanup server before deployment
         if: steps.check_changes.outputs.backend_changed == 'true'
@@ -88,26 +88,26 @@ jobs:
           # Check and cleanup server
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
             # Stop and delete PM2 process if it exists
-            if pm2 list | grep -q "Portfolio-Backend"; then
-              echo "Stopping Portfolio-Backend PM2 process..."
-              pm2 stop Portfolio-Backend
-              pm2 delete Portfolio-Backend
-              echo "Portfolio-Backend PM2 process removed"
+            if pm2 list | grep -q "${{secrets.PROCESS_NAME}}"; then
+              echo "Stopping ${{secrets.PROCESS_NAME}} PM2 process..."
+              pm2 stop ${{secrets.PROCESS_NAME}}
+              pm2 delete ${{secrets.PROCESS_NAME}}
+              echo "${{secrets.PROCESS_NAME}} PM2 process removed"
             else
-              echo "No Portfolio-Backend PM2 process found"
+              echo "No ${{secrets.PROCESS_NAME}} PM2 process found"
             fi
             
             # Remove existing folder if it exists
-            if [ -d "/home/ubuntu/ankan/Portfolio" ]; then
-              echo "Removing existing Portfolio folder..."
-              rm -rf /home/ubuntu/ankan/Portfolio
-              echo "Existing Portfolio folder removed"
+            if [ -d "/home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}" ]; then
+              echo "Removing existing ${{ secrets.PROJECT_NAME }} folder..."
+              rm -rf /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
+              echo "Existing ${{ secrets.PROJECT_NAME }} folder removed"
             else
-              echo "No existing Portfolio folder found"
+              echo "No existing ${{ secrets.PROJECT_NAME }} folder found"
             fi
             
             # Ensure the parent directory exists
-            mkdir -p /home/ubuntu/ankan
+            mkdir -p /home/ubuntu/${{ secrets.SERVER_USER }}
             echo "Server cleanup completed"
           EOL
 
@@ -117,7 +117,7 @@ jobs:
           echo "Deploying Portfolio folder to server..."
 
           # Transfer Portfolio folder to server using scp
-          scp -r Portfolio/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/ankan/
+          scp -r Portfolio/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/${{ secrets.SERVER_USER }}/
 
           echo "Files transferred successfully"
 
@@ -128,19 +128,16 @@ jobs:
 
           # Connect to server and setup application
           ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
-            cd /home/ubuntu/ankan/Portfolio
-            
+            cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
+
             echo "Installing dependencies..."
-            npm install --production
+            npm install --force
             
             echo "Starting application with PM2..."
-            pm2 start npm --name "Portfolio-Backend" -- run start:prod
-            
+            npm run start:prod
+
             echo "Saving PM2 configuration..."
             pm2 save
-            
-            echo "Application setup completed successfully"
-            pm2 status
           EOL
 
           echo "Deployment completed successfully"
