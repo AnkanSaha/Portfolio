@@ -18,134 +18,72 @@ jobs:
         id: check_changes
         run: |
           if git diff --name-only HEAD~1 HEAD | grep -q "^backend/"; then
-            echo "Backend changes detected"
             echo "backend_changed=true" >> $GITHUB_OUTPUT
           else
-            echo "No backend changes detected"
             echo "backend_changed=false" >> $GITHUB_OUTPUT
           fi
 
-      - name: Navigate to backend and build
+      - name: Build backend
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          echo "Building backend project..."
           cd backend
-
-          # Install dependencies if package.json exists
           if [ -f "package.json" ]; then
-            echo "Installing Node.js dependencies..."
             npm install
+            if grep -q '"build"' package.json; then
+              npm run build
+            fi
           fi
-
-          # Build the project if build script exists
-          if grep -q '"build"' package.json 2>/dev/null; then
-            echo "Running build command..."
-            npm run build
-          fi
-
-          # Show build completion
-          echo "Backend build completed successfully"
-          ls -la
 
       - name: Prepare deployment files
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          echo "Preparing deployment files..."
           mkdir -p ${{ secrets.PROJECT_NAME }}
 
-          # Copy dist folder and package.json to Portfolio folder
           if [ -d "backend/dist" ]; then
             cp -r backend/dist ${{ secrets.PROJECT_NAME }}/
-            echo "Copied dist folder to ${{ secrets.PROJECT_NAME }}/"
-          else
-            echo "Warning: dist folder not found"
           fi
 
           if [ -f "backend/package.json" ]; then
             cp backend/package.json ${{ secrets.PROJECT_NAME }}/
-            echo "Copied package.json to ${{ secrets.PROJECT_NAME }}/"
-          else
-            echo "Warning: package.json not found"
           fi
 
-          # Show ${{ secrets.PROJECT_NAME }} folder contents
-          echo "${{ secrets.PROJECT_NAME }} folder contents:"
-          ls -la ${{ secrets.PROJECT_NAME }}/
-
-      - name: Cleanup server before deployment
+      - name: Save private key
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          echo "Cleaning up server before deployment..."
-
-          # Setup SSH key as .pem file
           echo "${{ secrets.SSH_PRIVATE_KEY }}" | sed 's/\\n/\n/g' > server-key.pem
           chmod 400 server-key.pem
+          head -n 2 server-key.pem  # Debug check (can be removed)
 
-          # Check and cleanup server
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
-            # Stop and delete PM2 process if it exists
+      - name: Cleanup server
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
             if pm2 list | grep -q "${{ secrets.PROCESS_NAME }}"; then
-              echo "Stopping ${{ secrets.PROCESS_NAME }} PM2 process..."
-              pm2 stop ${{ secrets.PROCESS_NAME }}
-              pm2 delete ${{ secrets.PROCESS_NAME }}
-              echo "${{ secrets.PROCESS_NAME }} PM2 process removed"
-            else
-              echo "No ${{ secrets.PROCESS_NAME }} PM2 process found"
+              pm2 stop "${{ secrets.PROCESS_NAME }}"
+              pm2 delete "${{ secrets.PROCESS_NAME }}"
             fi
-            
-            # Remove existing folder if it exists
-            if [ -d "/home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}" ]; then
-              echo "Removing existing ${{ secrets.PROJECT_NAME }} folder..."
-              rm -rf /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
-              echo "Existing ${{ secrets.PROJECT_NAME }} folder removed"
-            else
-              echo "No existing ${{ secrets.PROJECT_NAME }} folder found"
-            fi
-            
-            # Ensure the parent directory exists
-            mkdir -p /home/ubuntu/${{ secrets.SERVER_USER }}
-            echo "Server cleanup completed"
-          EOL
+
+            rm -rf /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
+            mkdir -p /home/${{ secrets.SERVER_USER }}
+          EOF
 
       - name: Deploy to server
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          echo "Deploying Portfolio folder to server..."
+          scp -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes -r ${{ secrets.PROJECT_NAME }}/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/
 
-          # Transfer Portfolio folder to server using scp with .pem file
-          scp -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 -r ${{ secrets.PROJECT_NAME }}/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/${{ secrets.SERVER_USER }}/
-
-          echo "Files transferred successfully"
-
-      - name: Setup and start application on server
+      - name: Start app with PM2
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          echo "Setting up and starting application on server..."
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
+            cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
 
-          # Connect to server and setup application
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o BatchMode=yes -o ConnectTimeout=10 ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
-            cd /home/ubuntu/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
-
-            echo "Creating .env file... & add environment variables"
             echo '${{ secrets.ENV_VARIABLES }}' > .env
-
-            echo "Installing dependencies..."
             npm install --force
-            
-            echo "Starting application with PM2..."
             npm run start:prod
-
-            echo "Saving PM2 configuration..."
             pm2 save
-          EOL
-
-          echo "Deployment completed successfully"
+          EOF
 
       - name: Skip deployment
         if: steps.check_changes.outputs.backend_changed == 'false'
-        run: |
-          echo "No backend changes detected. Skipping deployment."
-      - name: Skip deployment
-        if: steps.check_changes.outputs.backend_changed == 'false'
-        run: |
-          echo "No backend changes detected. Skipping deployment."
+        run: echo "No backend changes detected. Skipping deployment."
