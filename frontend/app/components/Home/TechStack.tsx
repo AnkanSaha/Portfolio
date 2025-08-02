@@ -8,8 +8,10 @@ const TechStack = () => {
         { name: "JavaScript" },
         { name: "TypeScript" },
         { name: "Go" },
-        { name: "Rust" },
         { name: "Java" },
+        { name: "HTML5" },
+        { name: "CSS3" },
+        { name: "Bash" },
       ]
     },
     {
@@ -17,6 +19,8 @@ const TechStack = () => {
       items: [
         { name: "React.js" },
         { name: "EJS" },
+        { name: "Bootstrap" },
+        { name: "Tailwind CSS" },
       ]
     },
     {
@@ -24,6 +28,8 @@ const TechStack = () => {
       items: [
         { name: "Node.js" },
         { name: "Express.js" },
+        { name: "GraphQL" },
+        { name: "Nginx" },
       ]
     },
     {
@@ -31,7 +37,7 @@ const TechStack = () => {
       items: [
         { name: "MongoDB" },
         { name: "MySQL" },
-        { name: "Supabase" },
+        { name: "Redis" },
       ]
     },
     {
@@ -43,6 +49,16 @@ const TechStack = () => {
         { name: "Traefik" },
         { name: "VS Code" },
         { name: "Terminal" },
+        { name: "Postman" },
+        { name: "CircleCI" },
+      ]
+    },
+    {
+      title: "Cloud & Infrastructure",
+      items: [
+        { name: "AWS" },
+        { name: "Azure" },
+        { name: "Linux" },
       ]
     },
   ];

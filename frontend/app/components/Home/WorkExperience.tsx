@@ -9,7 +9,7 @@ const WorkExperience = () => {
       startDate: "2025-07-10",
       endDate: "Present",
       status: "current",
-      location: "Remote",
+      location: "On-site",
       description: "Currently working on streaming platform development with React.js and Node.js",
       technologies: ["React.js", "Node.js", "MongoDB", "AWS"]
     },
@@ -19,7 +19,7 @@ const WorkExperience = () => {
       startDate: "2024-09-24",
       endDate: "2025-07-09",
       status: "previous",
-      location: "Remote",
+      location: "On-site",
       description: "Developed web applications and contributed to various client projects",
       technologies: ["JavaScript", "Express.js", "MySQL", "Docker"]
     },
@@ -29,7 +29,7 @@ const WorkExperience = () => {
       startDate: "2024-04-01",
       endDate: "2024-09-23",
       status: "previous",
-      location: "Hybrid",
+      location: "On-site",
       description: "Started my professional journey, learned industry best practices and teamwork",
       technologies: ["React.js", "Node.js", "MongoDB", "Git"]
     }

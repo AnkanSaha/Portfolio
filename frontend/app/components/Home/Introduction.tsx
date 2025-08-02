@@ -2,7 +2,7 @@
 
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import { FaGithub, FaLinkedin, FaCode, FaTerminal } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCode, FaTerminal, FaFacebook, FaInstagram, FaEnvelope, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 const Introduction: React.FC = () => {
   return (
@@ -19,13 +19,24 @@ const Introduction: React.FC = () => {
         <div className="text-center">
           {/* Main Title */}
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent">
-            Ankan Saha
+            Hi 👋, I'm Ankan
           </h1>
 
           {/* Subtitle with typing effect */}
           <div className="text-2xl md:text-3xl mb-8 font-light">
+            <span className="text-gray-300">A Software Engineer from India ❤️</span>
+          </div>
+
+          <div className="text-xl md:text-2xl mb-8 font-light">
             <span className="text-gray-300">Full-Stack Developer</span>
-            <span className="text-blue-400 ml-2">@Hoichoi</span>
+            <a
+              href="https://hoichoi.tv"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 ml-2 hover:text-blue-300 transition-colors duration-200"
+            >
+              @Hoichoi
+            </a>
           </div>
 
           {/* Experience Badge */}
@@ -36,8 +47,8 @@ const Introduction: React.FC = () => {
 
           {/* Bio */}
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            🚀 MERN Stack Developer | Node.js Enthusiast 💻 | Passionate about mastering new technologies
-            and crafting innovative solutions 🌟 Let's create the future together! 🤝
+            Passionate about solving problems and creating solutions 🚀 Currently working on AxioDB & Portfolio 💻
+            Ask me about NodeJS, MongoDB, Javascript, Typescript 🌟
           </p>
 
           {/* Current Status */}
@@ -48,12 +59,19 @@ const Introduction: React.FC = () => {
             </div>
             <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
               <FaTerminal className="text-blue-400 mr-2" />
-              <span className="text-blue-300 text-sm">Building with Rust & Go</span>
+              <span className="text-blue-300 text-sm">Currently learning Golang</span>
             </div>
           </div>
 
+          {/* Fun Fact */}
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 max-w-4xl mx-auto mb-12">
+            <p className="text-lg text-gray-300 italic">
+              ⚡ Fun fact: "Programmers' favorite error message: There are only 10 types of people in the world: those who understand binary and those who don't."
+            </p>
+          </div>
+
           {/* Social Links */}
-          <div className="flex justify-center space-x-6">
+          <div className="flex justify-center flex-wrap gap-4">
             <a
               href="https://github.com/AnkanSaha"
               className="p-4 bg-gray-800/50 hover:bg-gray-700/50 border border-gray-700 hover:border-gray-600 rounded-full transition-all duration-300 hover:scale-110"
@@ -63,12 +81,50 @@ const Introduction: React.FC = () => {
               <FaGithub className="text-2xl text-gray-300 hover:text-white" />
             </a>
             <a
-              href="https://linkedin.com/in/ankan-saha"
+              href="https://linkedin.com/in/theankansaha"
               className="p-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-600/30 hover:border-blue-600/50 rounded-full transition-all duration-300 hover:scale-110"
               target="_blank"
               rel="noopener noreferrer"
             >
               <FaLinkedin className="text-2xl text-blue-400 hover:text-blue-300" />
+            </a>
+            <a
+              href="https://twitter.com/theankansaha"
+              className="p-4 bg-sky-600/20 hover:bg-sky-600/30 border border-sky-600/30 hover:border-sky-600/50 rounded-full transition-all duration-300 hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaTwitter className="text-2xl text-sky-400 hover:text-sky-300" />
+            </a>
+            <a
+              href="https://fb.com/theankansaha"
+              className="p-4 bg-blue-800/20 hover:bg-blue-800/30 border border-blue-800/30 hover:border-blue-800/50 rounded-full transition-all duration-300 hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaFacebook className="text-2xl text-blue-500 hover:text-blue-400" />
+            </a>
+            <a
+              href="https://instagram.com/theankansaha"
+              className="p-4 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-600/30 hover:border-pink-600/50 rounded-full transition-all duration-300 hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaInstagram className="text-2xl text-pink-400 hover:text-pink-300" />
+            </a>
+            <a
+              href="https://www.youtube.com/c/@javascriptalks"
+              className="p-4 bg-red-600/20 hover:bg-red-600/30 border border-red-600/30 hover:border-red-600/50 rounded-full transition-all duration-300 hover:scale-110"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaYoutube className="text-2xl text-red-400 hover:text-red-300" />
+            </a>
+            <a
+              href="mailto:help@ankanweb.site"
+              className="p-4 bg-green-600/20 hover:bg-green-600/30 border border-green-600/30 hover:border-green-600/50 rounded-full transition-all duration-300 hover:scale-110"
+            >
+              <FaEnvelope className="text-2xl text-green-400 hover:text-green-300" />
             </a>
           </div>
 
