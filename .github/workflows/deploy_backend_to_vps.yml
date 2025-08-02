@@ -78,7 +78,7 @@ jobs:
           echo "Cleaning up server before deployment..."
 
           # Setup SSH key as .pem file
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > server-key.pem
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | sed 's/\\n/\n/g' > server-key.pem
           chmod 400 server-key.pem
 
           # Check and cleanup server
