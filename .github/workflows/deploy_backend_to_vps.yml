@@ -57,15 +57,9 @@ jobs:
       - name: Cleanup server
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-            if pm2 list | grep -q "${{ secrets.PROCESS_NAME }}"; then
-              pm2 stop "${{ secrets.PROCESS_NAME }}"
-              pm2 delete "${{ secrets.PROCESS_NAME }}"
-            fi
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "if pm2 list | grep -q '${{ secrets.PROCESS_NAME }}'; then pm2 stop '${{ secrets.PROCESS_NAME }}' && pm2 delete '${{ secrets.PROCESS_NAME }}'; else echo 'Process not found'; fi"
 
-            rm -rf /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
-            mkdir -p /home/${{ secrets.SERVER_USER }}
-          EOF
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && mkdir -p /home/${{ secrets.SERVER_USER }}"
 
       - name: Deploy to server
         if: steps.check_changes.outputs.backend_changed == 'true'
@@ -75,13 +69,18 @@ jobs:
       - name: Start app with PM2
         if: steps.check_changes.outputs.backend_changed == 'true'
         run: |
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << EOF
-            cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }}
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && echo '${{ secrets.ENV_VARIABLES }}' > .env"
 
-            echo '${{ secrets.ENV_VARIABLES }}' > .env
-            npm install --force
-            npm run start:prod
-            pm2 save
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm install --force"
+
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && pm2 start npm --name '${{ secrets.PROCESS_NAME }}' -- run start:prod && pm2 save"
+
+      - name: Skip deployment
+        if: steps.check_changes.outputs.backend_changed == 'false'
+        run: echo "No backend changes detected. Skipping deployment."
+          echo '${{ secrets.ENV_VARIABLES }}' > .env
+          npm install --force
+          npm run start:prod
           EOF
 
       - name: Skip deployment
