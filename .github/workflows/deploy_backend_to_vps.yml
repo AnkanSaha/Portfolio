@@ -1,0 +1,151 @@
+name: Deploy Backend to VPS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  check-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check for backend changes
+        id: check_changes
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "^backend/"; then
+            echo "Backend changes detected"
+            echo "backend_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "No backend changes detected"
+            echo "backend_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Navigate to backend and build
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          echo "Building backend project..."
+          cd backend
+
+          # Install dependencies if package.json exists
+          if [ -f "package.json" ]; then
+            echo "Installing Node.js dependencies..."
+            npm install
+          fi
+
+          # Build the project if build script exists
+          if grep -q '"build"' package.json 2>/dev/null; then
+            echo "Running build command..."
+            npm run build
+          fi
+
+          # Show build completion
+          echo "Backend build completed successfully"
+          ls -la
+
+      - name: Prepare deployment files
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          echo "Preparing deployment files..."
+          mkdir -p Portfolio
+
+          # Copy dist folder and package.json to Portfolio folder
+          if [ -d "backend/dist" ]; then
+            cp -r backend/dist Portfolio/
+            echo "Copied dist folder to Portfolio/"
+          else
+            echo "Warning: dist folder not found"
+          fi
+
+          if [ -f "backend/package.json" ]; then
+            cp backend/package.json Portfolio/
+            echo "Copied package.json to Portfolio/"
+          else
+            echo "Warning: package.json not found"
+          fi
+
+          # Show Portfolio folder contents
+          echo "Portfolio folder contents:"
+          ls -la Portfolio/
+
+      - name: Cleanup server before deployment
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          echo "Cleaning up server before deployment..."
+
+          # Setup SSH key
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+
+          # Check and cleanup server
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+            # Stop and delete PM2 process if it exists
+            if pm2 list | grep -q "Portfolio-Backend"; then
+              echo "Stopping Portfolio-Backend PM2 process..."
+              pm2 stop Portfolio-Backend
+              pm2 delete Portfolio-Backend
+              echo "Portfolio-Backend PM2 process removed"
+            else
+              echo "No Portfolio-Backend PM2 process found"
+            fi
+            
+            # Remove existing folder if it exists
+            if [ -d "/home/ubuntu/ankan/Portfolio" ]; then
+              echo "Removing existing Portfolio folder..."
+              rm -rf /home/ubuntu/ankan/Portfolio
+              echo "Existing Portfolio folder removed"
+            else
+              echo "No existing Portfolio folder found"
+            fi
+            
+            # Ensure the parent directory exists
+            mkdir -p /home/ubuntu/ankan
+            echo "Server cleanup completed"
+          EOL
+
+      - name: Deploy to server
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          echo "Deploying Portfolio folder to server..."
+
+          # Transfer Portfolio folder to server using scp
+          scp -r Portfolio/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/ubuntu/ankan/
+
+          echo "Files transferred successfully"
+
+      - name: Setup and start application on server
+        if: steps.check_changes.outputs.backend_changed == 'true'
+        run: |
+          echo "Setting up and starting application on server..."
+
+          # Connect to server and setup application
+          ssh ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOL'
+            cd /home/ubuntu/ankan/Portfolio
+            
+            echo "Installing dependencies..."
+            npm install --production
+            
+            echo "Starting application with PM2..."
+            pm2 start npm --name "Portfolio-Backend" -- run start:prod
+            
+            echo "Saving PM2 configuration..."
+            pm2 save
+            
+            echo "Application setup completed successfully"
+            pm2 status
+          EOL
+
+          echo "Deployment completed successfully"
+
+      - name: Skip deployment
+        if: steps.check_changes.outputs.backend_changed == 'false'
+        run: |
+          echo "No backend changes detected. Skipping deployment."
