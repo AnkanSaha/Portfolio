@@ -1,0 +1,124 @@
+name: Deploy All to VPS
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      config_changed: ${{ steps.check_config.outputs.config_changed }}
+      backend_changed: ${{ steps.check_backend.outputs.backend_changed }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check for config changes
+        id: check_config
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "^config/"; then
+            echo "config_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "config_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check for backend changes
+        id: check_backend
+        run: |
+          if git diff --name-only HEAD~1 HEAD | grep -q "^backend/"; then
+            echo "backend_changed=true" >> $GITHUB_OUTPUT
+          else
+            echo "backend_changed=false" >> $GITHUB_OUTPUT
+          fi
+
+  deploy-nginx:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: needs.check-changes.outputs.config_changed == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Save private key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | sed 's/\\n/\n/g' > server-key.pem
+          chmod 400 server-key.pem
+          head -n 2 server-key.pem  # Debug check (can be removed)
+
+      - name: Deploy Nginx Configuration
+        run: |
+          scp -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes config/ankanweb.conf ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/tmp/ankanweb.conf
+
+      - name: Update Nginx Configuration
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo mv /tmp/ankanweb.conf /etc/nginx/conf.d/ankanweb.conf && sudo chown root:root /etc/nginx/conf.d/ankanweb.conf && sudo chmod 644 /etc/nginx/conf.d/ankanweb.conf && sudo nginx -t && sudo systemctl reload nginx && echo 'Nginx configuration deployed and reloaded successfully'"
+
+      - name: Generate SSL Certificate
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "command -v certbot > /dev/null || (sudo apt update && sudo apt install -y certbot python3-certbot-nginx)"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "DOMAINS=\$(sudo grep -h 'server_name' /etc/nginx/conf.d/ankanweb.conf | sed 's/.*server_name\s*//g' | sed 's/;//g' | tr -s ' ' | tr ' ' '\n' | grep -v '^$' | sort -u | tr '\n' ' ') && echo 'Found domains: '\$DOMAINS && CERTBOT_DOMAINS='' && for domain in \$DOMAINS; do if [ \"\$domain\" != \"_\" ]; then CERTBOT_DOMAINS=\"\$CERTBOT_DOMAINS -d \$domain\"; fi; done && echo 'Generating SSL certificate for domains: '\$CERTBOT_DOMAINS && sudo certbot --nginx --non-interactive --agree-tos --force-renewal --redirect -m ${{ secrets.SSL_EMAIL }} \$CERTBOT_DOMAINS && sudo systemctl enable certbot.timer && sudo systemctl start certbot.timer && sudo certbot renew --dry-run && echo 'SSL certificate generated and configured successfully'"
+
+  deploy-backend:
+    needs: [check-changes, deploy-nginx]
+    runs-on: ubuntu-latest
+    if: always() && needs.check-changes.outputs.backend_changed == 'true'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build backend
+        run: |
+          cd backend
+          if [ -f "package.json" ]; then
+            npm install
+            if grep -q '"build"' package.json; then
+              npm run build
+            fi
+          fi
+
+      - name: Prepare deployment files
+        run: |
+          mkdir -p ${{ secrets.PROJECT_NAME }}
+
+          if [ -d "backend/dist" ]; then
+            cp -r backend/dist ${{ secrets.PROJECT_NAME }}/
+          fi
+
+          if [ -f "backend/package.json" ]; then
+            cp backend/package.json ${{ secrets.PROJECT_NAME }}/
+          fi
+
+      - name: Save private key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | sed 's/\\n/\n/g' > server-key.pem
+          chmod 400 server-key.pem
+          head -n 2 server-key.pem  # Debug check (can be removed)
+
+      - name: Cleanup server
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "if pm2 list | grep -q '${{ secrets.PROCESS_NAME }}'; then pm2 stop '${{ secrets.PROCESS_NAME }}' && pm2 delete '${{ secrets.PROCESS_NAME }}'; else echo 'Process not found'; fi"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "rm -rf /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && mkdir -p /home/${{ secrets.SERVER_USER }}"
+
+      - name: Deploy to server
+        run: |
+          scp -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes -r ${{ secrets.PROJECT_NAME }}/ ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }}:/home/${{ secrets.SERVER_USER }}/
+
+      - name: Start app with PM2
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && echo '${{ secrets.ENV_VARIABLES }}' > .env"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm install --omit=dev"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "cd /home/${{ secrets.SERVER_USER }}/${{ secrets.PROJECT_NAME }} && npm run start:prod && pm2 save"
+
+  skip-deployment:
+    needs: check-changes
+    runs-on: ubuntu-latest
+    if: needs.check-changes.outputs.config_changed == 'false' && needs.check-changes.outputs.backend_changed == 'false'
+
+    steps:
+      - name: Skip all deployments
+        run: echo "No config or backend changes detected. Skipping all deployments."
