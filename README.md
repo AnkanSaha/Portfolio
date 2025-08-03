@@ -1,242 +1,301 @@
-# Portfolio Project
+# Portfolio Website
 
-A full-stack portfolio application built as a monorepo containing three main components: a Next.js frontend, a NestJS backend, and an Expo mobile admin application.
+A comprehensive full-stack portfolio website built as a monorepo containing three main components: a Next.js frontend, a Fastify backend, and an Expo React Native mobile admin application.
 
 ## Project Overview
 
-This portfolio project is a comprehensive showcase of full-stack development capabilities, featuring a modern web application with dynamic content management. The system is designed as a monorepo housing three distinct applications:
+This portfolio website is a professional showcase of full-stack development capabilities, featuring a modern web application with comprehensive content management. The system is designed as a monorepo housing three distinct applications:
 
-1. **Frontend (Next.js)**: A responsive, server-side rendered website hosted on Vercel (ankanweb.site)
-2. **Backend (NestJS)**: A robust API service with Prisma ORM and local file storage deployed on Azure VPS (api.ankanweb.site)
-3. **Mobile Admin (Expo)**: A native mobile application for real-time content control and system management
+1. **Frontend (Next.js)**: A responsive, server-side rendered website hosted on Cloudflare Workers
+2. **Backend (Fastify)**: A high-performance API service with robust data management deployed on Azure VPS
+3. **Mobile Admin (Expo React Native)**: A native mobile application for real-time content control and live chat management
 
-The project demonstrates advanced concepts including real-time communication, dynamic content management, AI integration, and multi-platform deployment strategies.
+The project demonstrates advanced concepts including real-time communication, dynamic content management, license management system, and multi-platform deployment strategies.
 
 ## Key Features
 
-- **Dynamic Content Management**: Admin panel built into the frontend for controlling:
-  - Navigation bar tabs
-  - Hero section text and images
-  - Project listings with detailed markdown documentation
-  - Download and source code links
-  - Media gallery with image management
-  
-- **Intelligent Chat System**: Dual-mode chat functionality:
-  - Manual mode for direct communication with visitors
-  - AI-powered chatbot mode for automated responses
-  
-- **Admin Controls**:
-  - Web-based admin dashboard for content management
-  - Mobile app for real-time content and chat control
-  - Role-based authentication and authorization
-  
-- **Responsive Design**:
-  - Mobile-first approach ensuring compatibility across devices
-  - Optimized layout for varying screen sizes and orientations
-  
-- **Modern Infrastructure**:
-  - CI/CD pipelines via GitHub Actions
-  - Cloud hosting with Vercel and Azure
-  - DNS and domain management through Cloudflare
+### Professional Portfolio Content
+- **Work Experience**: Detailed employment history with roles, responsibilities, and achievements
+- **Skills & Technologies**: Comprehensive listing of technical skills with proficiency levels
+- **Current Learning Status**: Real-time updates on technologies and skills being learned
+- **Freelance Portfolio**: Showcase of freelance projects and client testimonials
+- **Contact Information**: Multiple contact methods and professional links
 
-## Chatbot Switching Logic
+### Dynamic Content Management
+- **Admin Panel**: Complete control over all website content without structural changes
+- **Project Management**: 
+  - Add, edit, and manage all projects from admin dashboard
+  - Individual project detail pages with markdown content support
+  - Categorization and tagging system
+  - Project status tracking (completed, in-progress, planned)
 
-The portfolio implements an innovative approach to visitor interaction through a dynamic chat system:
+### Project Distribution System
+- **NPM Packages**: Direct links to published packages on npm or other registries
+- **CLI Tools**: Custom download links for installable command-line tools
+- **License Management**: Built-in licensing system for premium CLI tools
+- **Purchase License Key**: Integrated payment system for tool activation
 
-1. **Mode Detection**:
-   - System checks the current chat mode setting stored in the database
-   - Mode toggles between "Manual" and "AI" states
+### Live Communication
+- **Real-time Chat**: Direct communication system with website visitors
+- **Mobile Admin Control**: Enable/disable live chat mode from mobile app
+- **Chat History**: Persistent conversation storage and management
+- **Notification System**: Real-time alerts for new messages
 
-2. **Manual Mode**:
-   - When activated, chat messages from visitors are routed to the admin interfaces
-   - Admin receives real-time notifications via the web dashboard or mobile app
-   - Responses from the admin are immediately sent back to the visitor
-   - Chat history is preserved for context continuity
-
-3. **AI Mode**:
-   - When manual mode is disabled, an AI chatbot automatically processes visitor messages
-   - NLP algorithms interpret user intent and generate appropriate responses
-   - Bot can provide information about projects, skills, and contact information
-   - Fallback mechanisms ensure graceful handling of queries outside the bot's knowledge domain
-
-4. **Transition Handling**:
-   - Seamless handoff between AI and manual modes
-   - Context preservation when switching between modes
-   - Notifications to visitors when chat mode changes
+### Admin Mobile Application
+- **Content Control**: Manage all website content on-the-go
+- **Live Chat Management**: Real-time visitor communication
+- **Analytics Dashboard**: Website traffic and engagement metrics
+- **Push Notifications**: Instant alerts for chat messages and system events
 
 ## Tech Stack
 
 ### Frontend
-- **Framework**: Next.js (React)
-- **State Management**: Redux/Context API
+- **Framework**: Next.js 14 (React 18)
 - **Styling**: Tailwind CSS
-- **Deployment**: Vercel
-- **Additional Libraries**:
-  - React Query for data fetching
-  - Socket.io client for real-time communication
+- **State Management**: Zustand/React Query
+- **Deployment**: Cloudflare Workers
+- **Features**:
+  - Server-side rendering (SSR)
+  - Static site generation (SSG)
+  - Real-time chat integration
   - Markdown rendering for project documentation
+  - SEO optimization
 
 ### Backend
-- **Framework**: NestJS
-- **Database ORM**: Prisma
-- **Database**: PostgreSQL
-- **Authentication**: JWT
-- **Storage**: Local file system with backup to cloud storage
+- **Framework**: Fastify
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: JWT with refresh tokens
+- **File Storage**: Azure Blob Storage
+- **Payment Processing**: Stripe integration
 - **Deployment**: Azure VPS
-- **Additional Features**:
-  - Socket.io server for websocket connections
-  - File upload handling and optimization
+- **Features**:
+  - High-performance API endpoints
+  - Real-time WebSocket connections
+  - License key generation and validation
+  - File upload and processing
   - Rate limiting and security middleware
 
-### Mobile Admin
+### Mobile Admin App
 - **Framework**: React Native with Expo
-- **State Management**: Redux/Context API
-- **UI Components**: Native Base or similar
-- **Additional Features**:
+- **State Management**: Zustand
+- **UI Library**: NativeBase/Tamagui
+- **Real-time**: Socket.io client
+- **Features**:
+  - Live chat management
+  - Content editing capabilities
   - Push notifications
-  - Offline capability with synchronization
-  - Secure authentication
+  - Offline mode with sync
+  - Biometric authentication
 
-### DevOps & Infrastructure
+### Infrastructure & DevOps
+- **Frontend Hosting**: Cloudflare Workers
+- **Backend Hosting**: Azure Virtual Private Server
+- **Database**: PostgreSQL on Azure
+- **CDN**: Cloudflare
 - **CI/CD**: GitHub Actions
-- **DNS & CDN**: Cloudflare
-- **Monitoring**: Application Insights or similar
-- **Version Control**: Git with GitHub
+- **Monitoring**: Azure Application Insights
+- **DNS**: Cloudflare DNS
 
-## Folder Structure
+## Project Structure
 
 ```
 /
-├── frontend/                  # Next.js web application
-│   ├── app/                   # Next.js app directory
-│   ├── components/            # React components
-│   ├── lib/                   # Utility functions and helpers
+├── frontend/                  # Next.js website
+│   ├── app/                   # App router pages
+│   ├── components/            # Reusable UI components
+│   │   ├── Home/              # Homepage sections
+│   │   ├── Header.tsx         # Navigation header
+│   │   └── Footer.tsx         # Website footer
+│   ├── lib/                   # Utilities and configurations
 │   ├── public/                # Static assets
-│   └── ...
+│   └── styles/                # Global styles
 │
-├── backend/                   # NestJS API server
+├── backend/                   # Fastify API server
 │   ├── src/
-│   │   ├── modules/           # Feature modules
-│   │   ├── middleware/        # Custom middleware
-│   │   ├── config/            # Configuration files
-│   │   └── ...
+│   │   ├── routes/            # API route handlers
+│   │   ├── plugins/           # Fastify plugins
+│   │   ├── services/          # Business logic
+│   │   ├── models/            # Database models
+│   │   └── utils/             # Helper functions
 │   ├── prisma/                # Database schema and migrations
-│   └── ...
+│   └── uploads/               # File storage directory
 │
-├── mobile/                    # Expo React Native mobile app
-│   ├── src/
-│   │   ├── screens/           # Mobile app screens
-│   │   ├── components/        # Reusable components
-│   │   ├── navigation/        # Navigation configuration
-│   │   └── ...
-│   ├── assets/                # App assets
-│   └── ...
+├── application/               # Expo React Native mobile app
+│   ├── app/                   # App screens and navigation
+│   ├── components/            # Reusable mobile components
+│   ├── hooks/                 # Custom React hooks
+│   ├── constants/             # App constants
+│   └── assets/                # Mobile app assets
 │
-└── shared/                    # Shared code and types
+└── shared/                    # Shared types and utilities
     ├── types/                 # TypeScript definitions
     ├── constants/             # Shared constants
     └── utils/                 # Common utilities
 ```
 
-## Setup & Installation
+## Content Management Features
+
+### Homepage Sections (Admin Editable)
+- **Hero Section**: Welcome message, tagline, and call-to-action
+- **Work Experience**: Employment history with detailed descriptions
+- **Skills & Technologies**: Technical proficiencies with categories
+- **Current Learning**: Active learning projects and progress
+- **Projects Showcase**: Featured projects with filtering options
+- **Freelance Portfolio**: Client work and testimonials
+- **Contact Information**: Multiple contact methods
+
+### Project Management System
+- **Project CRUD Operations**: Full create, read, update, delete functionality
+- **Markdown Documentation**: Rich project descriptions with code syntax highlighting
+- **Project Categories**: Organize projects by type (Web, Mobile, CLI, NPM, etc.)
+- **External Links**: NPM packages, GitHub repositories, live demos
+- **Download Management**: Custom download links for CLI tools
+- **License Integration**: Premium tool licensing with key generation
+
+### License Management System
+- **Key Generation**: Unique license keys for CLI tools
+- **Payment Integration**: Secure payment processing with Stripe
+- **License Validation**: Server-side verification system
+- **Usage Tracking**: Monitor license usage and analytics
+- **Renewal System**: Automatic and manual license renewals
+
+## API Endpoints
+
+### Public Endpoints
+```
+GET    /api/portfolio          # Get portfolio data
+GET    /api/projects           # List all projects
+GET    /api/projects/:id       # Get project details
+POST   /api/contact            # Send contact message
+POST   /api/chat/message       # Send chat message
+GET    /api/licenses/validate  # Validate license key
+```
+
+### Admin Endpoints
+```
+POST   /api/auth/login         # Admin authentication
+GET    /api/admin/dashboard    # Dashboard data
+PUT    /api/admin/portfolio    # Update portfolio content
+POST   /api/admin/projects     # Create new project
+PUT    /api/admin/projects/:id # Update project
+DELETE /api/admin/projects/:id # Delete project
+GET    /api/admin/chat         # Get chat messages
+POST   /api/admin/chat/reply   # Reply to chat
+POST   /api/licenses/generate  # Generate license key
+```
+
+## Installation & Setup
 
 ### Prerequisites
-- Node.js (>= 16.x)
-- npm or yarn
-- PostgreSQL database
-- Expo CLI (for mobile development)
+- Node.js 18+
+- PostgreSQL 14+
+- Azure CLI (for deployment)
+- Expo CLI
+- Cloudflare account
 
-### Frontend Setup
+### Environment Variables
+
+#### Frontend (.env.local)
+```bash
+NEXT_PUBLIC_API_URL=https://api.yoursite.com
+NEXT_PUBLIC_SOCKET_URL=wss://api.yoursite.com
+NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+```
+
+#### Backend (.env)
+```bash
+DATABASE_URL=postgresql://user:password@localhost:5432/portfolio
+JWT_SECRET=your_super_secret_jwt_key
+STRIPE_SECRET_KEY=sk_live_...
+AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https...
+CORS_ORIGINS=https://yoursite.com
+PORT=3000
+```
+
+#### Mobile App (.env)
+```bash
+EXPO_PUBLIC_API_URL=https://api.yoursite.com
+EXPO_PUBLIC_SOCKET_URL=wss://api.yoursite.com
+```
+
+### Local Development
+
+#### Backend Setup
+```bash
+cd backend
+npm install
+npx prisma migrate dev
+npm run dev
+```
+
+#### Frontend Setup
 ```bash
 cd frontend
 npm install
 npm run dev
 ```
 
-### Backend Setup
+#### Mobile App Setup
 ```bash
+cd application
+npm install
+npx expo start
+```
+
+## Deployment
+
+### Frontend (Cloudflare Workers)
+```bash
+cd frontend
+npm run build
+npx wrangler deploy
+```
+
+### Backend (Azure VPS)
+```bash
+# Automated deployment via GitHub Actions
+# Manual deployment:
 cd backend
-npm install
-npx prisma migrate dev
-npm run start:dev
+npm run build
+pm2 start ecosystem.config.js
 ```
 
-### Mobile Setup
+### Mobile App (Expo EAS)
 ```bash
-cd mobile
-npm install
-expo start
+cd application
+eas build --platform all
+eas submit --platform all
 ```
 
-## Environment Variables
+## Features Roadmap
 
-### Frontend (.env.local)
-```
-NEXT_PUBLIC_API_URL=https://api.ankanweb.site
-NEXT_PUBLIC_SOCKET_URL=wss://api.ankanweb.site
-NEXT_PUBLIC_SITE_URL=https://ankanweb.site
-```
+### Phase 1 (Current)
+- [x] Basic portfolio structure
+- [x] Admin content management
+- [x] Project showcase
+- [x] Live chat system
+- [x] Mobile admin app
 
-### Backend (.env)
-```
-DATABASE_URL=postgresql://username:password@localhost:5432/portfolio
-JWT_SECRET=your_jwt_secret_key
-STORAGE_PATH=./uploads
-CORS_ORIGIN=https://ankanweb.site
-PORT=3000
-```
+### Phase 2 (In Progress)
+- [ ] License management system
+- [ ] Payment integration
+- [ ] Advanced analytics dashboard
+- [ ] Blog section with markdown support
+- [ ] Client testimonials system
 
-### Mobile (.env)
-```
-API_URL=https://api.ankanweb.site
-SOCKET_URL=wss://api.ankanweb.site
-```
-
-## Deployment Information
-
-### Frontend Deployment
-- **Platform**: Vercel
-- **Domain**: ankanweb.site
-- **Build Command**: `npm run build`
-- **Output Directory**: `.next`
-- **Environment**: Production
-
-### Backend Deployment
-- **Platform**: Azure Virtual Private Server
-- **Domain**: api.ankanweb.site
-- **Deployment Method**: GitHub Actions → SSH → PM2
-- **Process Manager**: PM2
-- **SSL**: Let's Encrypt via Certbot
-
-### Mobile Deployment
-- **Platform**: Expo EAS Build
-- **Distribution**: Internal distribution for admin use only
-- **Build Profile**: Production
-
-### DNS Configuration
-All domains are managed through Cloudflare for DNS resolution, SSL, and CDN services.
-
-## Roadmap
-
-- [ ] **Q4 2023**:
-  - Enhance AI chatbot capabilities
-  - Implement advanced analytics dashboard
-  - Add internationalization support
-
-- [ ] **Q1 2024**:
-  - Develop integration with popular CMS platforms
-  - Create public API for portfolio data
-  - Implement automated backup system
-
-- [ ] **Q2 2024**:
-  - Add theme customization options
-  - Develop plugin architecture for extensibility
-  - Create comprehensive documentation site
+### Phase 3 (Planned)
+- [ ] Multi-language support
+- [ ] Advanced SEO optimization
+- [ ] Performance monitoring
+- [ ] Automated backup system
+- [ ] API rate limiting enhancements
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is proprietary software. All rights reserved.
+
+For licensing inquiries, please contact through the website's contact form.
 
 ---
 
-© 2023 Ankan. All rights reserved.
+© 2024 Ankan Saha. All rights reserved.
