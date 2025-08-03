@@ -96,7 +96,7 @@ jobs:
             echo "Generating SSL certificate for domains: $CERTBOT_DOMAINS"
             
             # Generate SSL certificate automatically (non-interactive)
-            sudo certbot --nginx --non-interactive --agree-tos -m ${{ secrets.SSL_EMAIL }} $CERTBOT_DOMAINS --redirect
+            sudo certbot --nginx --non-interactive --agree-tos --force-renewal --redirect -m ${{ secrets.SSL_EMAIL }} $CERTBOT_DOMAINS
             
             # Enable automatic renewal
             sudo systemctl enable certbot.timer

@@ -30,7 +30,7 @@ const Introduction: React.FC = () => {
           <div className="text-xl md:text-2xl mb-8 font-light">
             <span className="text-gray-300">Full-Stack Developer</span>
             <a
-              href="https://hoichoi.tv"
+              href="https://hoichoi.tech/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 ml-2 hover:text-blue-300 transition-colors duration-200"
