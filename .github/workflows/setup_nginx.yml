@@ -70,8 +70,33 @@ jobs:
               sudo apt install -y certbot python3-certbot-nginx
             fi
             
+            # Extract domain names from nginx configuration
+            DOMAINS=$(sudo grep -h "server_name" /etc/nginx/conf.d/ankanweb.conf | sed 's/.*server_name\s*//g' | sed 's/;//g' | tr -s ' ' | tr ' ' '\n' | grep -v "^$" | sort -u | tr '\n' ' ')
+            
+            if [ -z "$DOMAINS" ]; then
+              echo "No domains found in nginx configuration"
+              exit 1
+            fi
+            
+            echo "Found domains: $DOMAINS"
+            
+            # Build certbot command with all domains
+            CERTBOT_DOMAINS=""
+            for domain in $DOMAINS; do
+              if [ "$domain" != "_" ]; then  # Skip default server names
+                CERTBOT_DOMAINS="$CERTBOT_DOMAINS -d $domain"
+              fi
+            done
+            
+            if [ -z "$CERTBOT_DOMAINS" ]; then
+              echo "No valid domains found for SSL certificate"
+              exit 1
+            fi
+            
+            echo "Generating SSL certificate for domains: $CERTBOT_DOMAINS"
+            
             # Generate SSL certificate automatically (non-interactive)
-            sudo certbot --nginx --non-interactive --agree-tos --email ${{ secrets.SSL_EMAIL }} --domains ${{ secrets.DOMAIN_NAME }} --redirect
+            sudo certbot --nginx --non-interactive --agree-tos -m ${{ secrets.SSL_EMAIL }} $CERTBOT_DOMAINS --redirect
             
             # Enable automatic renewal
             sudo systemctl enable certbot.timer
