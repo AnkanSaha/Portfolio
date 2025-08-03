@@ -8,7 +8,7 @@ const fastify = Fastify({
 // Register CORS plugin
 fastify.register(cors, {
   origin: (origin, cb) => {
-    const hostname = new URL(origin || 'http://localhost:3000').hostname;
+    const hostname = new URL(origin || 'http://localhost:2025').hostname;
     if (hostname === 'localhost' || hostname === '127.0.0.1' || !origin) {
       cb(null, true);
       return;
@@ -34,7 +34,7 @@ fastify.get('/health', async (request, reply) => {
 // Start the server
 const start = async () => {
   try {
-    const port = Number(process.env.PORT) || 3001;
+    const port = Number(process.env.PORT) || 2025;
     const host = process.env.HOST || '0.0.0.0';
 
     await fastify.listen({ port, host });
