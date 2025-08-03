@@ -60,21 +60,29 @@ jobs:
             fi
           EOF
 
+      - name: Generate SSL Certificate
+        if: steps.check_changes.outputs.config_changed == 'true'
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+            # Install certbot if not already installed
+            if ! command -v certbot &> /dev/null; then
+              sudo apt update
+              sudo apt install -y certbot python3-certbot-nginx
+            fi
+            
+            # Generate SSL certificate automatically (non-interactive)
+            sudo certbot --nginx --non-interactive --agree-tos --email ${{ secrets.SSL_EMAIL }} --domains ${{ secrets.DOMAIN_NAME }} --redirect
+            
+            # Enable automatic renewal
+            sudo systemctl enable certbot.timer
+            sudo systemctl start certbot.timer
+            
+            # Test automatic renewal
+            sudo certbot renew --dry-run
+            
+            echo "SSL certificate generated and configured successfully"
+          EOF
+
       - name: Skip deployment
         if: steps.check_changes.outputs.config_changed == 'false'
         run: echo "No config changes detected. Skipping nginx deployment."
-
-      - name: Cleanup SSH key
-        if: always()
-        run: |
-          rm -f server-key.pem
-          ssh -o StrictHostKeyChecking=no ${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }} << 'EOF'
-          sudo systemctl status nginx --no-pager
-          echo "Nginx configuration files:"
-          ls -la /etc/nginx/conf.d/ankanweb.conf
-          EOF
-
-      - name: Cleanup SSH key
-        if: always()
-        run: |
-          rm -f ~/.ssh/id_rsa
