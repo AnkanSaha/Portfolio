@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Ankan Saha - Full Stack Developer",
+  title: "AnkanHub - Portfolio of Ankan Saha",
   description: "Portfolio of Ankan Saha, a Full Stack Developer specializing in building modern web applications.",
 };
 
