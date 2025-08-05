@@ -138,6 +138,42 @@ html {
   }
 }
 
+/* About Page Animations */
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes skill-progress {
+  0% {
+    width: 0%;
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.7;
+    transform: scale(1.1);
+  }
+}
+
 .animate-text-gradient {
   background-size: 200% auto;
   animation: text-gradient 4s linear infinite;
@@ -161,6 +197,37 @@ html {
 
 .animation-delay-3000 {
   animation-delay: 3s;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.animate-skill-progress {
+  animation: skill-progress 1s ease-out forwards;
+}
+
+.glow-blue {
+  box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.glow-purple {
+  box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: 0.5s;
+}
+
+.glow-green {
+  box-shadow: 0 0 15px 2px rgba(16, 185, 129, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.glow-amber {
+  box-shadow: 0 0 15px 2px rgba(245, 158, 11, 0.5);
+  animation: pulse 2s ease-in-out infinite;
+  animation-delay: 1.5s;
 }
 
 .animation-delay-random {
