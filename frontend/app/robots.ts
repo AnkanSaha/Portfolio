@@ -6,9 +6,7 @@ import { MetadataRoute } from 'next';
  */
 export default function robots(): MetadataRoute.Robots {
   // Get domain dynamically from environment or default to localhost
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL ||
-    process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` :
-    'http://ankan.site';
+  const baseUrl = 'http://ankan.site';
 
   return {
     rules: {
