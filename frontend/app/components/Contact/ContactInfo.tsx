@@ -12,7 +12,7 @@ const contactInfoItems: ContactInfoItem[] = [
   {
     id: 'email',
     title: 'Email',
-    value: 'ankan@ankanweb.site',
+    value: 'connect@ankan.site',
     icon: '/icons/email.svg',
     color: 'text-blue-500'
   },

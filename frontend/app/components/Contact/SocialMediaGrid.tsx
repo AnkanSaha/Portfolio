@@ -88,12 +88,12 @@ const socialMediaItems: SocialMediaItem[] = [
   {
     id: 'email',
     name: 'Email',
-    url: 'mailto:ankan@ankanweb.site',
+    url: 'mailto:connect@ankan.site',
     icon: '/social/email.svg',
     backgroundColor: 'bg-green-600',
     hoverColor: 'hover:bg-green-500',
     textColor: 'text-white',
-    description: 'Reach out directly: ankan@ankanweb.site'
+    description: 'Reach out directly: connect@ankan.site'
   }
 ];
 
