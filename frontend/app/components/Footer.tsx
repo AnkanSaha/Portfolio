@@ -14,10 +14,10 @@ export default function Footer() {
     useEffect(function (){
         setTimeout(()=> {
             setSocialLink([
-                { icon: <FaGithub size={20} />, href: "https://github.com/ankansaha85" },
-                { icon: <FaLinkedin size={20} />, href: "https://linkedin.com/in/ankansaha85" },
-                { icon: <FaTwitter size={20} />, href: "https://twitter.com/ankansaha85" },
-                { icon: <FaEnvelope size={20} />, href: "ankan@ankanweb.com" },
+                { icon: <FaGithub size={20} />, href: "https://github.com/AnkanSaha" },
+                { icon: <FaLinkedin size={20} />, href: "https://linkedin.com/in/theankansaha" },
+                { icon: <FaTwitter size={20} />, href: "https://twitter.com/theankansaha" },
+              { icon: <FaEnvelope size={20} />, href: "connect@ankan.site" },
             ])
         }, 5000)
     })
