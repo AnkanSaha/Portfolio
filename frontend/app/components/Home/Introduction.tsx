@@ -42,13 +42,13 @@ const Introduction: React.FC = () => {
           {/* Experience Badge */}
           <div className="inline-flex items-center bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-full px-6 py-3 mb-8">
             <FaCode className="text-green-400 mr-2" />
-            <span className="text-gray-300">1.3+ Years of Experience</span>
+            <span className="text-gray-300">1.5+ Years of Experience</span>
           </div>
 
           {/* Bio */}
           <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Passionate about solving problems and creating solutions 🚀 Currently working on AxioDB & Portfolio 💻
-            Ask me about NodeJS, MongoDB, Javascript, Typescript 🌟
+            Passionate about building scalable solutions and optimizing performance 🚀 Currently working on AxioDB & contributing to open-source projects 💻
+            Ask me about NodeJS, MongoDB, Javascript, Typescript, Microservices Architecture 🌟
           </p>
 
           {/* Current Status */}
@@ -59,14 +59,26 @@ const Introduction: React.FC = () => {
             </div>
             <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
               <FaTerminal className="text-blue-400 mr-2" />
-              <span className="text-blue-300 text-sm">Currently learning Golang</span>
+              <span className="text-blue-300 text-sm">Currently learning Go & Rust</span>
+            </div>
+          </div>
+
+          {/* GitHub Stats */}
+          <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 max-w-4xl mx-auto mb-8">
+            <h3 className="text-xl font-semibold text-blue-400 mb-4 text-center">GitHub Achievements</h3>
+            <div className="flex flex-wrap justify-center gap-3">
+              <span className="px-3 py-1 bg-purple-600/20 border border-purple-600/30 rounded-full text-sm text-purple-300">GitHub Pro</span>
+              <span className="px-3 py-1 bg-green-600/20 border border-green-600/30 rounded-full text-sm text-green-300">Pull Shark x4</span>
+              <span className="px-3 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-sm text-blue-300">Pair Extraordinaire</span>
+              <span className="px-3 py-1 bg-yellow-600/20 border border-yellow-600/30 rounded-full text-sm text-yellow-300">YOLO</span>
+              <span className="px-3 py-1 bg-red-600/20 border border-red-600/30 rounded-full text-sm text-red-300">Quickdraw</span>
             </div>
           </div>
 
           {/* Fun Fact */}
           <div className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 max-w-4xl mx-auto mb-12">
             <p className="text-lg text-gray-300 italic">
-              ⚡ Fun fact: "Programmers' favorite error message: There are only 10 types of people in the world: those who understand binary and those who don't."
+              ⚡ Fun fact: "There are only 10 types of people in the world: those who understand binary and those who don't."
             </p>
           </div>
 

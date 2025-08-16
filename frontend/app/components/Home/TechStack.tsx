@@ -7,29 +7,18 @@ const TechStack = () => {
       items: [
         { name: "JavaScript" },
         { name: "TypeScript" },
-        { name: "Go" },
-        { name: "Java" },
-        { name: "HTML5" },
-        { name: "CSS3" },
-        { name: "Bash" },
       ]
     },
     {
-      title: "Frontend",
+      title: "Frameworks & Libraries",
       items: [
-        { name: "React.js" },
-        { name: "EJS" },
-        { name: "Bootstrap" },
-        { name: "Tailwind CSS" },
-      ]
-    },
-    {
-      title: "Backend",
-      items: [
-        { name: "Node.js" },
         { name: "Express.js" },
-        { name: "GraphQL" },
-        { name: "Nginx" },
+        { name: "React.js" },
+        { name: "Node.js" },
+        { name: "Next.js" },
+        { name: "Redux Toolkit" },
+        { name: "WebSocket" },
+        { name: "Template Engine" },
       ]
     },
     {
@@ -37,28 +26,26 @@ const TechStack = () => {
       items: [
         { name: "MongoDB" },
         { name: "MySQL" },
-        { name: "Redis" },
       ]
     },
     {
-      title: "DevOps & Tools",
+      title: "Tools & DevOps",
       items: [
-        { name: "Git" },
-        { name: "GitHub" },
+        { name: "Git & Github" },
+        { name: "Linux Shell" },
+        { name: "Nginx" },
         { name: "Docker" },
-        { name: "Traefik" },
-        { name: "VS Code" },
-        { name: "Terminal" },
-        { name: "Postman" },
+        { name: "Azure" },
+        { name: "CI/CD Automation" },
         { name: "CircleCI" },
+        { name: "RabbitMQ" },
       ]
     },
     {
-      title: "Cloud & Infrastructure",
+      title: "Architecture & Design",
       items: [
-        { name: "AWS" },
-        { name: "Azure" },
-        { name: "Linux" },
+        { name: "Microservices Architecture" },
+        { name: "Serverless Architecture" },
       ]
     },
   ];
@@ -103,7 +90,7 @@ const TechStack = () => {
         <div className="mt-16">
           <h3 className="text-2xl font-bold text-center mb-8 text-gray-200">Core Concepts & Expertise</h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {["Microservices", "REST APIs", "CLI Tools", "System Design", "Networking Internals"].map((concept) => (
+            {["Payment Gateway Integration", "API Management", "JWT Validation", "HTTP Handling", "Encryption", "Data Processing", "Custom Schemas", "Aggregation Queries"].map((concept) => (
               <div
                 key={concept}
                 className="px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-full"
