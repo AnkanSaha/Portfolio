@@ -20,122 +20,130 @@ const fetchAboutData = async () => {
   return {
     hero: {
       name: "Ankan Saha",
-      title: "Full-Stack Developer",
-      tagline: "MERN Stack Specialist | Software Engineer at Hoichoi",
+      title: "Full Stack Developer",
+      tagline: "JavaScript & TypeScript Specialist | Full Stack Developer at Hoichoi Technologies",
       profileImage: "/Myself.png",
-      backgroundHighlight: "A passionate and self-taught developer who believes in building things that matter, learning every day, and collaborating with people who share the same fire for innovation and growth."
+      backgroundHighlight: "A passionate developer from Ranaghat, West Bengal, specializing in JavaScript, TypeScript, and modern web technologies. Expert in Microservices Architecture and Serverless solutions with 1.5+ years of professional experience."
     },
     skills: [
       {
-        id: "frontend",
-        name: "Frontend",
+        id: "languages",
+        name: "Languages",
         color: "blue",
         skills: [
-          { id: "react", name: "React.js", level: 92 },
-          { id: "next", name: "Next.js", level: 88 },
-          { id: "typescript", name: "TypeScript", level: 85 },
           { id: "javascript", name: "JavaScript", level: 95 },
-          { id: "tailwind", name: "Tailwind CSS", level: 90 },
+          { id: "typescript", name: "TypeScript", level: 90 },
         ]
       },
       {
-        id: "backend",
-        name: "Backend",
+        id: "frameworks",
+        name: "Frameworks & Libraries",
         color: "purple",
         skills: [
-          { id: "node", name: "Node.js", level: 90 },
-          { id: "express", name: "Express.js", level: 88 },
-          { id: "mongodb", name: "MongoDB", level: 85 },
-          { id: "typescript-backend", name: "TypeScript", level: 85 },
-          { id: "rest-api", name: "REST API Design", level: 87 },
+          { id: "express", name: "Express.js", level: 92 },
+          { id: "react", name: "React.js", level: 90 },
+          { id: "node", name: "Node.js", level: 93 },
+          { id: "websocket", name: "WebSocket", level: 85 },
+          { id: "template", name: "Template Engine", level: 88 },
+          { id: "next", name: "Next.js", level: 87 },
+          { id: "redux", name: "Redux Toolkit", level: 85 },
+        ]
+      },
+      {
+        id: "databases",
+        name: "Databases",
+        color: "green",
+        skills: [
+          { id: "mongodb", name: "MongoDB", level: 90 },
+          { id: "mysql", name: "MySQL", level: 85 },
         ]
       },
       {
         id: "tools",
         name: "Tools & DevOps",
-        color: "green",
+        color: "amber",
         skills: [
-          { id: "git", name: "Git", level: 90 },
-          { id: "docker", name: "Docker", level: 82 },
-          { id: "traefik", name: "Traefik", level: 78 },
-          { id: "microservices", name: "Microservices", level: 80 },
-          { id: "system-design", name: "System Design", level: 75 },
+          { id: "git", name: "Git & Github", level: 90 },
+          { id: "linux", name: "Linux Shell", level: 88 },
+          { id: "nginx", name: "Nginx", level: 85 },
+          { id: "docker", name: "Docker", level: 87 },
+          { id: "azure", name: "Azure", level: 80 },
+          { id: "cicd", name: "CI/CD Automation", level: 83 },
+          { id: "circleci", name: "CircleCI", level: 80 },
+          { id: "rabbitmq", name: "RabbitMQ", level: 75 },
         ]
       },
       {
-        id: "languages",
-        name: "Other Languages",
-        color: "amber",
+        id: "architecture",
+        name: "Architecture & Design",
+        color: "red",
         skills: [
-          { id: "go", name: "Go", level: 70 },
-          { id: "rust", name: "Rust", level: 65 },
-          { id: "systems", name: "System Programming", level: 72 },
-          { id: "networking", name: "Networking", level: 75 },
-          { id: "os", name: "OS Internals", level: 68 },
+          { id: "microservices", name: "Microservices Architecture", level: 85 },
+          { id: "serverless", name: "Serverless Architecture", level: 80 },
         ]
       }
     ],
     journey: [
       {
         id: "hoichoi",
+        title: "Full Stack Developer",
+        organization: "Hoichoi Technologies Pvt. ltd.",
+        period: "Jul 2025 - Present",
+        description: "Migrated Hoichoi's web from Vercel to Cloudflare, cutting annual costs by $30,000. Contributed to open-source projects like the REST API Docker wrapper for FFmpeg & FFprobe.",
+        technologies: ["React.js", "Node.js", "Docker", "Cloudflare", "FFmpeg", "Open Source"],
+        type: "experience" as 'experience'
+      },
+      {
+        id: "pitangent",
         title: "Software Engineer",
-        organization: "Hoichoi",
-        period: "Present",
-        description: "Contributing to building and maintaining scalable and high-performance applications for a leading OTT platform.",
-        technologies: ["MERN Stack", "TypeScript", "Microservices"],
+        organization: "Pitangent Analytics and Technology Solutions Pvt. ltd.",
+        period: "Sep 2024 – Jun 2025",
+        description: "Built the frontend of Pre Sales Management System (Internal Project). Worked on a real-time CCTV surveillance system.",
+        technologies: ["React.js", "JavaScript", "Real-time Systems", "Frontend Development"],
         type: "experience" as 'experience'
       },
       {
         id: "excellis",
-        title: "Software Engineer",
-        organization: "Excellis IT Pvt Ltd",
-        period: "Previous",
-        description: "Gained hands-on experience working on production-level projects, honing skills in backend development and real-world problem-solving.",
-        technologies: ["Node.js", "Express", "MongoDB", "React"],
+        title: "Junior Software Developer",
+        organization: "Excellis IT Pvt. Ltd.",
+        period: "Apr 2024 – Sep 2024",
+        description: "Led the development of a smart lock IoT project, reducing connectivity issues by 30%. Designed and developed a dashboard, cutting management time by 40%. Optimized security and performance, improving response times by 50% with no breaches.",
+        technologies: ["IoT", "Node.js", "Dashboard Development", "Security Optimization"],
         type: "experience" as 'experience'
       },
       {
-        id: "axiodb",
-        title: "Creator & Developer",
-        organization: "AxioDB Project",
-        period: "Ongoing",
-        description: "Building a custom NoSQL database system with TypeScript and Node.js featuring nested tree file structure, cryptographic data encryption, indexing, and caching.",
-        technologies: ["TypeScript", "Node.js", "Database Design", "Cryptography"],
-        type: "achievement" as 'achievement'
-      },
-      {
-        id: "self-learning",
-        title: "Self-Taught Developer",
-        organization: "Continuous Learning",
-        period: "Ongoing",
-        description: "Started tech journey from a small town with limited resources but limitless curiosity. Developed a habit of questioning how things work and building tools from scratch.",
-        technologies: ["MERN Stack", "System Design", "Go", "Rust"],
+        id: "education",
+        title: "Bachelor of Arts",
+        organization: "University of Kalyani",
+        period: "Oct 2021 – 2024",
+        description: "Completed Bachelor of Arts degree while simultaneously pursuing self-directed learning in software development and building personal projects.",
+        technologies: ["Self-learning", "Project Development"],
         type: "education" as 'education'
       }
     ],
     interests: [
       {
-        id: "system-programming",
-        title: "System Programming",
-        description: "Experimenting with languages like Go and Rust to understand lower-level system operations",
+        id: "payment-systems",
+        title: "Payment Gateway Integration",
+        description: "Building secure payment systems with Razorpay integration and seamless transaction processing",
         color: "blue"
       },
       {
         id: "database-design",
-        title: "Database Design",
-        description: "Creating custom database solutions and understanding how database systems work internally",
+        title: "Database Management Systems",
+        description: "Creating custom database solutions like AxioDB with nested tree structures and advanced querying capabilities",
         color: "purple"
       },
       {
-        id: "iot-solutions",
-        title: "IoT Solutions",
-        description: "Building smart systems like custom lock mechanisms and connected devices",
+        id: "npm-packages",
+        title: "NPM Package Development",
+        description: "Building reusable TypeScript packages for encryption, API management, and developer tools",
         color: "green"
       },
       {
-        id: "microservices",
-        title: "Microservices Architecture",
-        description: "Designing multi-container applications with Docker and Traefik for scalable solutions",
+        id: "open-source",
+        title: "Open Source Contribution",
+        description: "Contributing to open-source projects like REST API Docker wrappers for FFmpeg & FFprobe",
         color: "amber"
       }
     ],

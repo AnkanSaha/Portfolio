@@ -4,34 +4,34 @@ import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 const WorkExperience = () => {
   const experiences = [
     {
-      company: "Hoichoi",
-      role: "Full-Stack Developer",
-      startDate: "2025-07-10",
+      company: "Hoichoi Technologies Pvt. ltd.",
+      role: "Full Stack Developer",
+      startDate: "2025-07-01",
       endDate: "Present",
       status: "current",
-      location: "On-site",
-      description: "Currently working on streaming platform development with React.js and Node.js",
-      technologies: ["React.js", "Node.js", "MongoDB", "AWS"]
+      location: "Kolkata, West Bengal",
+      description: "Migrated Hoichoi's web from Vercel to Cloudflare, cutting annual costs by $30,000. Contributed to open-source projects like the REST API Docker wrapper for FFmpeg & FFprobe.",
+      technologies: ["React.js", "Node.js", "Docker", "Cloudflare", "FFmpeg", "Open Source"]
     },
     {
-      company: "OpenWeb Solutions",
+      company: "Pitangent Analytics and Technology Solutions Pvt. ltd.",
       role: "Software Engineer",
-      startDate: "2024-09-24",
-      endDate: "2025-07-09",
+      startDate: "2024-09-01",
+      endDate: "2025-06-01",
       status: "previous",
-      location: "On-site",
-      description: "Developed web applications and contributed to various client projects",
-      technologies: ["JavaScript", "Express.js", "MySQL", "Docker"]
+      location: "Kolkata, West Bengal",
+      description: "Built the frontend of Pre Sales Management System (Internal Project). Worked on a real-time CCTV surveillance system.",
+      technologies: ["React.js", "JavaScript", "Real-time Systems", "Frontend Development"]
     },
     {
-      company: "Excellis IT Pvt Ltd",
-      role: "Junior Developer",
+      company: "Excellis IT Pvt. Ltd.",
+      role: "Junior Software Developer",
       startDate: "2024-04-01",
-      endDate: "2024-09-23",
+      endDate: "2024-09-01",
       status: "previous",
-      location: "On-site",
-      description: "Started my professional journey, learned industry best practices and teamwork",
-      technologies: ["React.js", "Node.js", "MongoDB", "Git"]
+      location: "Kolkata, West Bengal",
+      description: "Led the development of a smart lock IoT project, reducing connectivity issues by 30%. Designed and developed a dashboard, cutting management time by 40%. Optimized security and performance, improving response times by 50% with no breaches.",
+      technologies: ["IoT", "Node.js", "Dashboard Development", "Security Optimization"]
     }
   ];
 

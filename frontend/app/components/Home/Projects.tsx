@@ -6,16 +6,96 @@ const Projects = () => {
     {
       name: "AxioDB",
       status: "In Development",
-      description: "JSON-based NoSQL DBMS inspired by MongoDB & Redis",
+      description: "Fast, lightweight, and scalable open-source NoSQL Database Management System with JSON-based data storage and advanced features",
       features: [
-        "Nested Tree File Structure",
-        "Indexing, Caching, and Encryption",
-        "NPM package + GUI like MongoDB Compass"
+        "Advanced Schema Validation with flexible configuration",
+        "AES-256 encryption for secure data storage",
+        "Chainable query methods with auto-indexing",
+        "InMemoryCache mechanism for accelerated queries",
+        "Web-based GUI dashboard (in development)"
       ],
-      technologies: ["Node.js", "JavaScript", "Electron"],
-      githubUrl: "#",
-      liveUrl: null,
-      progress: 70
+      technologies: ["TypeScript", "Node.js", "AES-256 Encryption", "JSON", "Streams"],
+      githubUrl: "https://github.com/AnkanSaha/AxioDB",
+      liveUrl: "https://www.npmjs.com/package/axiodb",
+      progress: 85,
+      timeline: "November 2024 – March 2025"
+    },
+    {
+      name: "Portfolio (This Website)",
+      status: "In Development", 
+      description: "Full-stack portfolio platform with Next.js frontend, Fastify backend, and Expo mobile admin app",
+      features: [
+        "Dynamic content management system",
+        "Real-time chat system with WebSocket",
+        "Mobile admin app with biometric authentication",
+        "Integrated payment processing via Stripe",
+        "Server-side rendering with Cloudflare hosting"
+      ],
+      technologies: ["Next.js 14", "React 18", "Fastify", "PostgreSQL", "Prisma", "React Native", "Expo", "Tailwind CSS"],
+      githubUrl: "https://github.com/AnkanSaha/Portfolio",
+      liveUrl: "https://ankan.site",
+      progress: 90,
+      timeline: "Ongoing"
+    }
+  ];
+
+  const completedProjects = [
+    {
+      name: "PaisaPay",
+      description: "Web-based payment wallet application built with MERN stack featuring secure family payments and transaction management",
+      features: [
+        "Balance loading from bank accounts",
+        "Secure family payment transfers",
+        "Real-time transaction history tracking",
+        "JWT tokens & CryptoJS encryption",
+        "User-friendly interface design"
+      ],
+      technologies: ["React", "Node.js", "Express.js", "MongoDB", "Razorpay API", "JWT", "CryptoJS"],
+      timeline: "July 2023 – Aug 2023",
+      githubUrl: "https://github.com/AnkanSaha/PaisaPay",
+      stars: 6
+    },
+    {
+      name: "ContainDB",
+      description: "Open-source CLI tool for automated database container management with instant setup and seamless integration",
+      features: [
+        "Supports MongoDB, Redis, MySQL, PostgreSQL, MariaDB",
+        "Instant setup with sensible defaults",
+        "Auto-rollback mechanism & conflict detection",
+        "Data persistence with volume management",
+        "Interactive credential prompts for security"
+      ],
+      technologies: ["Go", "Docker", "CLI", "Container Management"],
+      timeline: "2023",
+      githubUrl: "https://github.com/AnkanSaha/ContainDB"
+    },
+    {
+      name: "MongoSuper",
+      description: "Enhanced NPM package for MongoDB interactions with automatic reconnection and simplified CRUD operations",
+      features: [
+        "Secure MongoDB connection management",
+        "Automatic reconnection functionality",
+        "Complex query filtering support",
+        "Optional timestamp tracking",
+        "Nested object support"
+      ],
+      technologies: ["Node.js", "MongoDB", "JavaScript", "NPM"],
+      timeline: "2023",
+      githubUrl: "https://github.com/AnkanSaha/MongoSuper"
+    },
+    {
+      name: "Outers",
+      description: "Versatile Node.js utility library offering encryption, HTTP handling, API calling, and console utilities",
+      features: [
+        "Async/sync encryption with secret keys",
+        "HTTP response handling & status codes",
+        "Simplified API request methods",
+        "Random generation utilities",
+        "Colorful console logging"
+      ],
+      technologies: ["Node.js", "TypeScript", "Encryption", "HTTP", "NPM"],
+      timeline: "June 2023 – Aug 2023",
+      githubUrl: "https://github.com/AnkanSaha/outers"
     }
   ];
 
@@ -126,6 +206,8 @@ const Projects = () => {
                 <div className="flex space-x-4">
                   <a
                     href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors duration-200"
                   >
                     <FaGithub className="mr-2" />
@@ -134,12 +216,89 @@ const Projects = () => {
                   {project.liveUrl && (
                     <a
                       href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors duration-200"
                     >
                       <FaExternalLinkAlt className="mr-2" />
-                      <span className="text-sm">Live Demo</span>
+                      <span className="text-sm">{project.name === "AxioDB" ? "NPM Package" : project.name === "Portfolio (This Website)" ? "Live Site" : "Live Demo"}</span>
                     </a>
                   )}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Completed Projects */}
+        <div className="mb-16">
+          <h3 className="text-2xl font-bold text-center mb-8 flex items-center justify-center">
+            <FaGithub className="text-blue-400 mr-3" />
+            Completed Projects
+          </h3>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            {completedProjects.map((project, index) => (
+              <div
+                key={index}
+                className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-2xl p-6 hover:border-gray-600 transition-all duration-300 hover:scale-105"
+              >
+                {/* Header */}
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center">
+                    <h4 className="text-2xl font-bold text-white mr-3">{project.name}</h4>
+                    {project.stars && (
+                      <div className="flex items-center bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1">
+                        <span className="text-yellow-300 text-xs font-medium">⭐ {project.stars}</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
+                    <span className="text-blue-300 text-xs font-medium">{project.timeline}</span>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <p className="text-gray-300 mb-4">{project.description}</p>
+
+                {/* Features */}
+                <div className="mb-6">
+                  <h5 className="text-sm font-semibold text-gray-400 mb-2">Key Features:</h5>
+                  <ul className="space-y-2">
+                    {project.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start">
+                        <span className="text-blue-400 mr-2">•</span>
+                        <span className="text-gray-300 text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Technologies */}
+                <div className="mb-6">
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech) => (
+                      <span
+                        key={tech}
+                        className="px-3 py-1 bg-blue-600/20 border border-blue-600/30 rounded-full text-xs text-blue-300"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Links */}
+                <div className="flex space-x-4">
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center px-4 py-2 bg-gray-700 hover:bg-gray-600 rounded-lg transition-colors duration-200"
+                  >
+                    <FaGithub className="mr-2" />
+                    <span className="text-sm">Code</span>
+                  </a>
                 </div>
               </div>
             ))}
