@@ -4,23 +4,6 @@ import { FaGithub, FaExternalLinkAlt, FaRocket, FaClock } from 'react-icons/fa';
 const Projects = () => {
   const currentProjects = [
     {
-      name: "AxioDB",
-      status: "In Development",
-      description: "Fast, lightweight, and scalable open-source NoSQL Database Management System with JSON-based data storage and advanced features",
-      features: [
-        "Advanced Schema Validation with flexible configuration",
-        "AES-256 encryption for secure data storage",
-        "Chainable query methods with auto-indexing",
-        "InMemoryCache mechanism for accelerated queries",
-        "Web-based GUI dashboard (in development)"
-      ],
-      technologies: ["TypeScript", "Node.js", "AES-256 Encryption", "JSON", "Streams"],
-      githubUrl: "https://github.com/AnkanSaha/AxioDB",
-      liveUrl: "https://www.npmjs.com/package/axiodb",
-      progress: 85,
-      timeline: "November 2024 – March 2025"
-    },
-    {
       name: "Portfolio (This Website)",
       status: "In Development", 
       description: "Full-stack portfolio platform with Next.js frontend, Fastify backend, and Expo mobile admin app",
@@ -31,7 +14,7 @@ const Projects = () => {
         "Integrated payment processing via Stripe",
         "Server-side rendering with Cloudflare hosting"
       ],
-      technologies: ["Next.js 14", "React 18", "Fastify", "PostgreSQL", "Prisma", "React Native", "Expo", "Tailwind CSS"],
+      technologies: ["Next.js 15", "React 19", "Fastify", "MongoDB", "React Native", "Expo", "Tailwind CSS"],
       githubUrl: "https://github.com/AnkanSaha/Portfolio",
       liveUrl: "https://ankan.site",
       progress: 90,
@@ -41,19 +24,19 @@ const Projects = () => {
 
   const completedProjects = [
     {
-      name: "PaisaPay",
-      description: "Web-based payment wallet application built with MERN stack featuring secure family payments and transaction management",
+      name: "AxioDB",
+      description: "A fast, lightweight, and scalable open-source DBMS for modern applications with NoSQL capabilities",
       features: [
-        "Balance loading from bank accounts",
-        "Secure family payment transfers",
-        "Real-time transaction history tracking",
-        "JWT tokens & CryptoJS encryption",
-        "User-friendly interface design"
+        "High-performance JSON-based database",
+        "Lightweight and scalable architecture",
+        "Modern NoSQL database management",
+        "Easy integration with Node.js applications",
+        "Open-source and community-driven"
       ],
-      technologies: ["React", "Node.js", "Express.js", "MongoDB", "Razorpay API", "JWT", "CryptoJS"],
-      timeline: "July 2023 – Aug 2023",
-      githubUrl: "https://github.com/AnkanSaha/PaisaPay",
-      stars: 6
+      technologies: ["TypeScript", "Node.js", "NoSQL", "JSON", "Database"],
+      timeline: "2023 - 2024",
+      githubUrl: "https://github.com/Nexoral/AxioDB",
+      liveUrl: "https://www.npmjs.com/package/axiodb"
     },
     {
       name: "ContainDB",
@@ -66,22 +49,9 @@ const Projects = () => {
         "Interactive credential prompts for security"
       ],
       technologies: ["Go", "Docker", "CLI", "Container Management"],
-      timeline: "2023",
-      githubUrl: "https://github.com/AnkanSaha/ContainDB"
-    },
-    {
-      name: "MongoSuper",
-      description: "Enhanced NPM package for MongoDB interactions with automatic reconnection and simplified CRUD operations",
-      features: [
-        "Secure MongoDB connection management",
-        "Automatic reconnection functionality",
-        "Complex query filtering support",
-        "Optional timestamp tracking",
-        "Nested object support"
-      ],
-      technologies: ["Node.js", "MongoDB", "JavaScript", "NPM"],
-      timeline: "2023",
-      githubUrl: "https://github.com/AnkanSaha/MongoSuper"
+      timeline: "2023 - 2024",
+      githubUrl: "https://github.com/Nexoral/ContainDB",
+      liveUrl: "https://github.com/Nexoral/ContainDB/releases"
     },
     {
       name: "Outers",
@@ -93,13 +63,57 @@ const Projects = () => {
         "Random generation utilities",
         "Colorful console logging"
       ],
-      technologies: ["Node.js", "TypeScript", "Encryption", "HTTP", "NPM"],
+      technologies: ["TypeScript", "Node.js", "Encryption", "HTTP", "NPM"],
       timeline: "June 2023 – Aug 2023",
-      githubUrl: "https://github.com/AnkanSaha/outers"
+      githubUrl: "https://github.com/Nexoral/outers",
+      liveUrl: "https://www.npmjs.com/package/outers"
+    },
+    {
+      name: "React Caches",
+      description: "Lightweight React package that simplifies the management of local storage and cache storage for React applications",
+      features: [
+        "Easy local storage management",
+        "Cache storage utilities",
+        "React-specific optimizations",
+        "TypeScript support",
+        "Lightweight and performant"
+      ],
+      technologies: ["TypeScript", "React", "Local Storage", "Cache Management"],
+      timeline: "2023",
+      githubUrl: "https://github.com/Nexoral/react-caches",
+      liveUrl: "https://www.npmjs.com/package/react-caches"
+    },
+    {
+      name: "UniqueGen",
+      description: "Open-source package for Node.js projects, enabling the generation of random numbers, words, and unique identifiers",
+      features: [
+        "UUID generation capabilities",
+        "Random number generation",
+        "Random word generation",
+        "MongoDB integration utilities",
+        "Flexible generation options"
+      ],
+      technologies: ["TypeScript", "Node.js", "UUID", "MongoDB", "NPM"],
+      timeline: "2023",
+      githubUrl: "https://github.com/Nexoral/uniquegen",
+      liveUrl: "https://www.npmjs.com/package/uniquegen"
     }
   ];
 
   const plannedProjects = [
+    {
+      name: "Docker-Based DNS Server",
+      tech: "Go, Docker",
+      description: "Advanced DNS server solution for traffic monitoring, site blocking, and intelligent routing",
+      features: [
+        "Real-time traffic monitoring and analytics",
+        "Website blocking and filtering capabilities", 
+        "Intelligent site re-routing and load balancing",
+        "Docker containerized for easy deployment",
+        "Web-based administration dashboard"
+      ],
+      estimatedStart: "Q1 2025"
+    },
     {
       name: "Peer-to-Peer Terminal Chat",
       tech: "Go",
@@ -247,11 +261,6 @@ const Projects = () => {
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center">
                     <h4 className="text-2xl font-bold text-white mr-3">{project.name}</h4>
-                    {project.stars && (
-                      <div className="flex items-center bg-yellow-500/20 border border-yellow-500/30 rounded-full px-2 py-1">
-                        <span className="text-yellow-300 text-xs font-medium">⭐ {project.stars}</span>
-                      </div>
-                    )}
                   </div>
                   <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-3 py-1">
                     <span className="text-blue-300 text-xs font-medium">{project.timeline}</span>
@@ -299,6 +308,19 @@ const Projects = () => {
                     <FaGithub className="mr-2" />
                     <span className="text-sm">Code</span>
                   </a>
+                  {project.liveUrl && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg transition-colors duration-200"
+                    >
+                      <FaExternalLinkAlt className="mr-2" />
+                      <span className="text-sm">
+                        {project.name === "ContainDB" ? "Download" : "NPM Package"}
+                      </span>
+                    </a>
+                  )}
                 </div>
               </div>
             ))}

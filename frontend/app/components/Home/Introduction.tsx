@@ -59,7 +59,7 @@ const Introduction: React.FC = () => {
             </div>
             <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
               <FaTerminal className="text-blue-400 mr-2" />
-              <span className="text-blue-300 text-sm">Currently learning Go & Rust</span>
+              <span className="text-blue-300 text-sm">Currently learning Go</span>
             </div>
           </div>
 

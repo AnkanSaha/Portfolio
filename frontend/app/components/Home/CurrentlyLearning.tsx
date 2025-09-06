@@ -4,32 +4,46 @@ import React from 'react';
 const CurrentlyLearning = () => {
   const learningItems = [
     {
-      title: "Rust",
-      purpose: "for background monitoring tools",
-      progress: 65,
-      projects: ["System monitoring CLI", "Performance profilers"],
-      color: "from-orange-500 to-red-500"
-    },
-    {
-      title: "Go",
-      purpose: "for CLI and server-side tools",
-      progress: 75,
-      projects: ["P2P Terminal Chat", "Network utilities"],
+      title: "Golang",
+      purpose: "for high-performance backend services",
+      progress: 85,
+      projects: ["Docker DNS Server", "P2P Terminal Chat"],
       color: "from-cyan-400 to-blue-500"
     },
     {
-      title: "Java + SQL + DSA",
-      purpose: "for backend engineering depth",
-      progress: 45,
-      projects: ["Enterprise applications", "Algorithm implementations"],
-      color: "from-red-500 to-orange-500"
+      title: "JavaScript Design Patterns",
+      purpose: "for scalable backend architecture",
+      progress: 70,
+      projects: ["Design pattern implementations", "Code optimization"],
+      color: "from-yellow-400 to-orange-500"
     },
     {
-      title: "System Design & Networking",
-      purpose: "for scalable architecture",
-      progress: 55,
-      projects: ["Distributed systems", "Network protocols"],
+      title: "Networking",
+      purpose: "for distributed systems and protocols",
+      progress: 65,
+      projects: ["DNS Server implementation", "Network monitoring tools"],
+      color: "from-green-400 to-teal-500"
+    },
+    {
+      title: "DevOps",
+      purpose: "for deployment and infrastructure automation",
+      progress: 60,
+      projects: ["CI/CD pipelines", "Container orchestration"],
+      color: "from-blue-500 to-indigo-600"
+    },
+    {
+      title: "Advanced DBMS",
+      purpose: "for complex database operations and optimization",
+      progress: 75,
+      projects: ["Database performance tuning", "Distributed databases"],
       color: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "Distributed Systems",
+      purpose: "for building scalable microservices",
+      progress: 55,
+      projects: ["Microservice architecture", "Load balancing systems"],
+      color: "from-red-500 to-orange-500"
     }
   ];
 

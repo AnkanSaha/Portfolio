@@ -12,10 +12,10 @@ export type HeroData = {
 // Default data (will be replaced with API data)
 const defaultHeroData: HeroData = {
   name: "Ankan Saha",
-  title: "Full-Stack Developer",
-  tagline: "Building innovative web solutions with modern technologies",
+  title: "Backend Developer",
+  tagline: "Building scalable server-side solutions and robust APIs",
   profileImage: "/Myself.png",
-  backgroundHighlight: "Software Engineer with a passion for creating elegant, efficient, and user-friendly applications"
+  backgroundHighlight: "Backend Engineer specializing in high-performance systems, distributed architectures, and scalable server-side solutions"
 };
 
 export default function HeroSection({ data = defaultHeroData }: { data?: HeroData }) {

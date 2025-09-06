@@ -20,66 +20,75 @@ const fetchAboutData = async () => {
   return {
     hero: {
       name: "Ankan Saha",
-      title: "Full Stack Developer",
-      tagline: "JavaScript & TypeScript Specialist | Full Stack Developer at Hoichoi Technologies",
+      title: "Backend Developer",
+      tagline: "JavaScript & TypeScript Specialist | Backend Developer at Hoichoi Technologies",
       profileImage: "/Myself.png",
-      backgroundHighlight: "A passionate developer from Ranaghat, West Bengal, specializing in JavaScript, TypeScript, and modern web technologies. Expert in Microservices Architecture and Serverless solutions with 1.5+ years of professional experience."
+      backgroundHighlight: "A passionate backend developer from Ranaghat, West Bengal, specializing in server-side technologies, APIs, and distributed systems. Expert in Microservices Architecture and scalable backend solutions with 1.5+ years of professional experience."
     },
     skills: [
       {
-        id: "languages",
-        name: "Languages",
+        id: "backend-languages",
+        name: "Backend Languages",
         color: "blue",
         skills: [
           { id: "javascript", name: "JavaScript", level: 95 },
           { id: "typescript", name: "TypeScript", level: 90 },
+          { id: "go", name: "Go", level: 85 },
+          { id: "python", name: "Python", level: 75 },
         ]
       },
       {
-        id: "frameworks",
-        name: "Frameworks & Libraries",
+        id: "backend-frameworks",
+        name: "Backend Frameworks & APIs",
         color: "purple",
         skills: [
-          { id: "express", name: "Express.js", level: 92 },
-          { id: "react", name: "React.js", level: 90 },
-          { id: "node", name: "Node.js", level: 93 },
+          { id: "node", name: "Node.js", level: 95 },
+          { id: "express", name: "Express.js", level: 90 },
+          { id: "fastify", name: "Fastify", level: 85 },
+          { id: "graphql", name: "GraphQL", level: 80 },
+          { id: "rest", name: "REST APIs", level: 95 },
           { id: "websocket", name: "WebSocket", level: 85 },
-          { id: "template", name: "Template Engine", level: 88 },
-          { id: "next", name: "Next.js", level: 87 },
-          { id: "redux", name: "Redux Toolkit", level: 85 },
+          { id: "grpc", name: "gRPC", level: 75 },
         ]
       },
       {
         id: "databases",
-        name: "Databases",
+        name: "Databases & Storage",
         color: "green",
         skills: [
           { id: "mongodb", name: "MongoDB", level: 90 },
-          { id: "mysql", name: "MySQL", level: 85 },
+          { id: "postgres", name: "PostgreSQL", level: 85 },
+          { id: "mysql", name: "MySQL", level: 80 },
+          { id: "redis", name: "Redis", level: 85 },
+          { id: "mariadb", name: "MariaDB", level: 75 },
         ]
       },
       {
-        id: "tools",
-        name: "Tools & DevOps",
+        id: "devops",
+        name: "DevOps & Infrastructure",
         color: "amber",
         skills: [
-          { id: "git", name: "Git & Github", level: 90 },
-          { id: "linux", name: "Linux Shell", level: 88 },
-          { id: "nginx", name: "Nginx", level: 85 },
-          { id: "docker", name: "Docker", level: 87 },
-          { id: "azure", name: "Azure", level: 80 },
-          { id: "cicd", name: "CI/CD Automation", level: 83 },
+          { id: "docker", name: "Docker", level: 90 },
+          { id: "git", name: "Git", level: 95 },
+          { id: "linux", name: "Linux Shell", level: 85 },
+          { id: "nginx", name: "Nginx", level: 80 },
+          { id: "ci-cd", name: "CI/CD", level: 85 },
+          { id: "azure", name: "Azure", level: 75 },
           { id: "circleci", name: "CircleCI", level: 80 },
-          { id: "rabbitmq", name: "RabbitMQ", level: 75 },
+          { id: "container", name: "Container Orchestration", level: 75 },
         ]
       },
       {
         id: "architecture",
-        name: "Architecture & Design",
-        color: "red",
+        name: "Architecture & Systems",
+        color: "cyan",
         skills: [
-          { id: "microservices", name: "Microservices Architecture", level: 85 },
-          { id: "serverless", name: "Serverless Architecture", level: 80 },
+          { id: "microservices", name: "Microservices", level: 85 },
+          { id: "distributed", name: "Distributed Systems", level: 80 },
+          { id: "rabbitmq", name: "Message Queues", level: 75 },
+          { id: "performance", name: "Performance Optimization", level: 85 },
+          { id: "security", name: "Security Best Practices", level: 80 },
+          { id: "eventdriven", name: "Event-Driven Architecture", level: 75 },
         ]
       }
     ],

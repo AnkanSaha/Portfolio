@@ -177,7 +177,7 @@ export default function Header() {
           ))}
           <motion.li variants={itemVariants} className="ml-4">
             <Link
-              href="/join"
+              href="/admin"
               className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-300"
             >
               <motion.span
@@ -185,7 +185,7 @@ export default function Header() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <span>Join Me</span>
+                <span>Admin Panel</span>
                 {renderIcon('arrow-right', 'text-white')}
               </motion.span>
             </Link>
@@ -236,7 +236,7 @@ export default function Header() {
 
             <motion.div variants={itemVariants} className="flex flex-col space-y-2 mt-2 border-t border-gray-700 pt-4">
               <Link
-                href="/join"
+                href="/admin"
                 className="flex items-center justify-center space-x-2 p-3 rounded-md bg-blue-600 hover:bg-blue-700 transition-all"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -245,7 +245,7 @@ export default function Header() {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <span className="text-white">Join Me</span>
+                  <span className="text-white">Admin Panel</span>
                   {renderIcon('arrow-right', 'text-white')}
                 </motion.div>
               </Link>
