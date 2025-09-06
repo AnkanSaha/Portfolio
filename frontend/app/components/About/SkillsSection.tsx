@@ -16,39 +16,64 @@ export type Skill = {
 // Default data (will be replaced with API data)
 const defaultSkillsData: SkillCategory[] = [
   {
-    id: "frontend",
-    name: "Frontend",
+    id: "backend-languages",
+    name: "Backend Languages",
     color: "blue",
     skills: [
-      { id: "react", name: "React", level: 90 },
-      { id: "next", name: "Next.js", level: 85 },
-      { id: "typescript", name: "TypeScript", level: 80 },
-      { id: "tailwind", name: "Tailwind CSS", level: 95 },
-      { id: "framer", name: "Framer Motion", level: 75 },
+      { id: "javascript", name: "JavaScript", level: 95 },
+      { id: "typescript", name: "TypeScript", level: 90 },
+      { id: "go", name: "Go", level: 85 },
+      { id: "python", name: "Python", level: 75 },
     ]
   },
   {
-    id: "backend",
-    name: "Backend",
+    id: "backend-frameworks",
+    name: "Backend Frameworks & APIs",
     color: "purple",
     skills: [
-      { id: "node", name: "Node.js", level: 88 },
-      { id: "express", name: "Express", level: 85 },
-      { id: "mongodb", name: "MongoDB", level: 82 },
-      { id: "postgres", name: "PostgreSQL", level: 75 },
-      { id: "graphql", name: "GraphQL", level: 70 },
+      { id: "node", name: "Node.js", level: 95 },
+      { id: "express", name: "Express.js", level: 90 },
+      { id: "fastify", name: "Fastify", level: 85 },
+      { id: "graphql", name: "GraphQL", level: 80 },
+      { id: "rest", name: "REST APIs", level: 95 },
+      { id: "websocket", name: "WebSocket", level: 85 },
     ]
   },
   {
-    id: "tools",
-    name: "Tools & DevOps",
+    id: "databases",
+    name: "Databases & Storage",
     color: "green",
     skills: [
-      { id: "git", name: "Git", level: 90 },
-      { id: "docker", name: "Docker", level: 80 },
-      { id: "aws", name: "AWS", level: 75 },
+      { id: "mongodb", name: "MongoDB", level: 90 },
+      { id: "postgres", name: "PostgreSQL", level: 85 },
+      { id: "mysql", name: "MySQL", level: 80 },
+      { id: "redis", name: "Redis", level: 85 },
+      { id: "mariadb", name: "MariaDB", level: 75 },
+    ]
+  },
+  {
+    id: "devops",
+    name: "DevOps & Infrastructure",
+    color: "amber",
+    skills: [
+      { id: "docker", name: "Docker", level: 90 },
+      { id: "git", name: "Git", level: 95 },
+      { id: "linux", name: "Linux Shell", level: 85 },
+      { id: "nginx", name: "Nginx", level: 80 },
       { id: "ci-cd", name: "CI/CD", level: 85 },
-      { id: "testing", name: "Testing", level: 80 },
+      { id: "azure", name: "Azure", level: 75 },
+    ]
+  },
+  {
+    id: "architecture",
+    name: "Architecture & Systems",
+    color: "cyan",
+    skills: [
+      { id: "microservices", name: "Microservices", level: 85 },
+      { id: "distributed", name: "Distributed Systems", level: 80 },
+      { id: "rabbitmq", name: "Message Queues", level: 75 },
+      { id: "performance", name: "Performance Optimization", level: 85 },
+      { id: "security", name: "Security Best Practices", level: 80 },
     ]
   }
 ];
@@ -93,7 +118,7 @@ export default function SkillsSection({ data = defaultSkillsData }: { data?: Ski
           <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transform animate-progress"></div>
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          A showcase of my technical expertise and competencies
+          My backend development expertise and server-side technology competencies
         </p>
       </div>
 

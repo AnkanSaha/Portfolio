@@ -3,49 +3,56 @@ import React from 'react';
 const TechStack = () => {
   const techCategories = [
     {
-      title: "Languages",
+      title: "Backend Languages",
       items: [
         { name: "JavaScript" },
         { name: "TypeScript" },
+        { name: "Go" },
+        { name: "Python" },
       ]
     },
     {
-      title: "Frameworks & Libraries",
+      title: "Backend Frameworks & APIs",
       items: [
-        { name: "Express.js" },
-        { name: "React.js" },
         { name: "Node.js" },
-        { name: "Next.js" },
-        { name: "Redux Toolkit" },
+        { name: "Express.js" },
+        { name: "Fastify" },
+        { name: "GraphQL" },
+        { name: "REST APIs" },
         { name: "WebSocket" },
-        { name: "Template Engine" },
+        { name: "gRPC" },
       ]
     },
     {
-      title: "Databases",
+      title: "Databases & Storage",
       items: [
         { name: "MongoDB" },
+        { name: "PostgreSQL" },
         { name: "MySQL" },
+        { name: "Redis" },
+        { name: "MariaDB" },
       ]
     },
     {
-      title: "Tools & DevOps",
+      title: "DevOps & Infrastructure",
       items: [
+        { name: "Docker" },
         { name: "Git & Github" },
         { name: "Linux Shell" },
         { name: "Nginx" },
-        { name: "Docker" },
         { name: "Azure" },
         { name: "CI/CD Automation" },
         { name: "CircleCI" },
-        { name: "RabbitMQ" },
+        { name: "Container Orchestration" },
       ]
     },
     {
-      title: "Architecture & Design",
+      title: "Architecture & Messaging",
       items: [
         { name: "Microservices Architecture" },
-        { name: "Serverless Architecture" },
+        { name: "Distributed Systems" },
+        { name: "RabbitMQ" },
+        { name: "Event-Driven Architecture" },
       ]
     },
   ];
@@ -58,7 +65,7 @@ const TechStack = () => {
             Tech Stack
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Technologies I work with to build scalable and efficient solutions
+            Backend technologies and infrastructure tools I use to build scalable server-side solutions
           </p>
         </div>
 
@@ -88,9 +95,9 @@ const TechStack = () => {
 
         {/* Concepts Section */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-200">Core Concepts & Expertise</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-200">Backend Expertise & Core Concepts</h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {["Payment Gateway Integration", "API Management", "JWT Validation", "HTTP Handling", "Encryption", "Data Processing", "Custom Schemas", "Aggregation Queries"].map((concept) => (
+            {["RESTful API Design", "GraphQL Implementation", "Database Optimization", "JWT Authentication", "Microservices Architecture", "Message Queue Systems", "Container Orchestration", "Performance Monitoring", "Security Best Practices", "Distributed Caching", "API Rate Limiting", "Background Job Processing"].map((concept) => (
               <div
                 key={concept}
                 className="px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-full"
