@@ -146,6 +146,43 @@ const Projects = () => {
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
             Building innovative solutions and exploring new technologies
           </p>
+          
+          {/* Organization Highlight */}
+          <div className="mt-12 max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-purple-600/10 to-blue-600/10 border border-purple-500/20 rounded-2xl p-8">
+              <div className="flex items-center justify-center mb-4">
+                <FaGithub className="text-purple-400 text-3xl mr-3" />
+                <h3 className="text-2xl font-bold text-white">Nexoral Systems</h3>
+              </div>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">
+                I manage and own the <strong>Nexoral Systems</strong> GitHub organization, where I develop and maintain 
+                problem-solving products that address real-world challenges in backend development and infrastructure.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 mt-6">
+                <div className="flex items-center px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-full">
+                  <span className="text-purple-300 font-medium">AxioDB - NoSQL Database</span>
+                </div>
+                <div className="flex items-center px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full">
+                  <span className="text-blue-300 font-medium">ContainDB - Container Manager</span>
+                </div>
+                <div className="flex items-center px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full">
+                  <span className="text-green-300 font-medium">Developer Tools & Utilities</span>
+                </div>
+              </div>
+              <div className="mt-6">
+                <a
+                  href="https://github.com/Nexoral"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white rounded-lg font-medium transition-all duration-300 hover:scale-105"
+                >
+                  <FaGithub className="mr-2" />
+                  Visit Nexoral Systems
+                  <FaExternalLinkAlt className="ml-2 text-sm" />
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Current Projects */}
