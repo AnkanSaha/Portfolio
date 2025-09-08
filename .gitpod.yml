@@ -20,7 +20,6 @@ vscode:
     - adpyke.codesnap
     - foxundermoon.shell-format
     - rangav.vscode-thunder-client
-    - DeepSourceCorp.deepsource-vscode
 
 # Run Some Commands
 tasks:
