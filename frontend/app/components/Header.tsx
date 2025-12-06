@@ -48,27 +48,12 @@ export default function Header() {
       hoverColor: "hover:text-purple-400"
     },
     {
-      href: "/chat",
-      label: "Chat With Me",
-      icon: "message-square",
-      activeColor: "text-teal-400",
-      hoverColor: "hover:text-teal-400"
-    },
-    {
       href: "/projects",
       label: "Showcase",
       icon: "code",
       activeColor: "text-cyan-400",
       hoverColor: "hover:text-cyan-400",
       subtitle: "(My Projects)"
-    },
-    {
-      href: "/insights",
-      label: "Insights",
-      icon: "book",
-      activeColor: "text-amber-400",
-      hoverColor: "hover:text-amber-400",
-      subtitle: "(My Tech Journey)"
     },
     {
       href: "/contact",
@@ -175,21 +160,6 @@ export default function Header() {
               </Link>
             </motion.li>
           ))}
-          <motion.li variants={itemVariants} className="ml-4">
-            <Link
-              href="/admin"
-              className="px-5 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-all duration-300"
-            >
-              <motion.span
-                className="flex items-center space-x-2"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <span>Admin Panel</span>
-                {renderIcon('arrow-right', 'text-white')}
-              </motion.span>
-            </Link>
-          </motion.li>
         </motion.ul>
       </motion.nav>
 
@@ -233,23 +203,6 @@ export default function Header() {
                 </Link>
               </motion.li>
             ))}
-
-            <motion.div variants={itemVariants} className="flex flex-col space-y-2 mt-2 border-t border-gray-700 pt-4">
-              <Link
-                href="/admin"
-                className="flex items-center justify-center space-x-2 p-3 rounded-md bg-blue-600 hover:bg-blue-700 transition-all"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <motion.div
-                  className="flex items-center space-x-2"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <span className="text-white">Admin Panel</span>
-                  {renderIcon('arrow-right', 'text-white')}
-                </motion.div>
-              </Link>
-            </motion.div>
           </motion.ul>
         </motion.div>
       )}
