@@ -20,75 +20,80 @@ const fetchAboutData = async () => {
   return {
     hero: {
       name: "Ankan Saha",
-      title: "Backend Developer",
-      tagline: "JavaScript & TypeScript Specialist | Backend Developer at Hoichoi Technologies",
+      title: "Full Stack Developer",
+      tagline: "Backend Engineering Specialist | System Design & Infrastructure Optimization Expert",
       profileImage: "/Myself.png",
-      backgroundHighlight: "A passionate backend developer from Ranaghat, West Bengal, specializing in server-side technologies, APIs, and distributed systems. Expert in Microservices Architecture and scalable backend solutions with 1.5+ years of professional experience."
+      backgroundHighlight: "Full Stack Developer with deep expertise in backend engineering, specializing in building high-performance DNS servers, custom NoSQL databases, and container orchestration tools. Successfully reduced infrastructure costs by $3,000/month through strategic migrations and automation. Creator of open-source tools with 2,000+ downloads, passionate about system design, distributed architectures, and scalable server-side solutions."
     },
     skills: [
       {
-        id: "backend-languages",
-        name: "Backend Languages",
+        id: "languages-frameworks",
+        name: "Languages & Frameworks",
         color: "blue",
         skills: [
           { id: "javascript", name: "JavaScript", level: 95 },
-          { id: "typescript", name: "TypeScript", level: 90 },
-          { id: "go", name: "Go", level: 85 },
-          { id: "python", name: "Python", level: 75 },
+          { id: "typescript", name: "TypeScript", level: 93 },
+          { id: "nodejs", name: "Node.js", level: 95 },
+          { id: "golang", name: "Golang", level: 85 },
+          { id: "express", name: "Express.js", level: 92 },
+          { id: "fastify", name: "Fastify", level: 88 },
+          { id: "nestjs", name: "NestJS", level: 82 },
         ]
       },
       {
-        id: "backend-frameworks",
-        name: "Backend Frameworks & APIs",
+        id: "databases-messaging",
+        name: "Databases & Messaging",
         color: "purple",
         skills: [
-          { id: "node", name: "Node.js", level: 95 },
-          { id: "express", name: "Express.js", level: 90 },
-          { id: "fastify", name: "Fastify", level: 85 },
-          { id: "graphql", name: "GraphQL", level: 80 },
-          { id: "rest", name: "REST APIs", level: 95 },
-          { id: "websocket", name: "WebSocket", level: 85 },
-          { id: "grpc", name: "gRPC", level: 75 },
+          { id: "mongodb", name: "MongoDB", level: 92 },
+          { id: "redis", name: "Redis", level: 90 },
+          { id: "rabbitmq", name: "RabbitMQ", level: 85 },
+          { id: "nosql", name: "NoSQL Design", level: 88 },
+          { id: "event-driven", name: "Event-driven Architecture", level: 83 },
+          { id: "postgresql", name: "PostgreSQL", level: 80 },
         ]
       },
       {
-        id: "databases",
-        name: "Databases & Storage",
+        id: "cloud-devops",
+        name: "Cloud & DevOps",
         color: "green",
         skills: [
-          { id: "mongodb", name: "MongoDB", level: 90 },
-          { id: "postgres", name: "PostgreSQL", level: 85 },
-          { id: "mysql", name: "MySQL", level: 80 },
-          { id: "redis", name: "Redis", level: 85 },
-          { id: "mariadb", name: "MariaDB", level: 75 },
+          { id: "docker", name: "Docker", level: 93 },
+          { id: "docker-compose", name: "Docker Compose", level: 91 },
+          { id: "cicd", name: "CI/CD Pipelines", level: 87 },
+          { id: "cloudflare", name: "Cloudflare Workers", level: 88 },
+          { id: "nginx", name: "Nginx", level: 85 },
+          { id: "pm2", name: "PM2", level: 89 },
+          { id: "linux", name: "Linux Administration", level: 86 },
+          { id: "git", name: "Git & GitHub", level: 94 },
         ]
       },
       {
-        id: "devops",
-        name: "DevOps & Infrastructure",
+        id: "architecture-tools",
+        name: "Architecture & Tools",
         color: "amber",
         skills: [
-          { id: "docker", name: "Docker", level: 90 },
-          { id: "git", name: "Git", level: 95 },
-          { id: "linux", name: "Linux Shell", level: 85 },
-          { id: "nginx", name: "Nginx", level: 80 },
-          { id: "ci-cd", name: "CI/CD", level: 85 },
-          { id: "azure", name: "Azure", level: 75 },
-          { id: "circleci", name: "CircleCI", level: 80 },
-          { id: "container", name: "Container Orchestration", level: 75 },
+          { id: "microservices", name: "Microservices Architecture", level: 87 },
+          { id: "rest", name: "REST APIs", level: 94 },
+          { id: "graphql", name: "GraphQL", level: 82 },
+          { id: "websocket", name: "WebSocket", level: 86 },
+          { id: "dns", name: "DNS Protocol (RFC 1035)", level: 90 },
+          { id: "ffmpeg", name: "FFmpeg Integration", level: 83 },
+          { id: "serverless", name: "Serverless Computing", level: 85 },
         ]
       },
       {
-        id: "architecture",
-        name: "Architecture & Systems",
+        id: "specialized-skills",
+        name: "Specialized Skills",
         color: "cyan",
         skills: [
-          { id: "microservices", name: "Microservices", level: 85 },
-          { id: "distributed", name: "Distributed Systems", level: 80 },
-          { id: "rabbitmq", name: "Message Queues", level: 75 },
-          { id: "performance", name: "Performance Optimization", level: 85 },
-          { id: "security", name: "Security Best Practices", level: 80 },
-          { id: "eventdriven", name: "Event-Driven Architecture", level: 75 },
+          { id: "udp-parsing", name: "UDP Protocol Parsing", level: 88 },
+          { id: "binary-serialization", name: "Binary Serialization", level: 85 },
+          { id: "encryption", name: "AES-256 Encryption", level: 87 },
+          { id: "rtsp", name: "RTSP Stream Handling", level: 82 },
+          { id: "mqtt", name: "MQTT Protocol", level: 80 },
+          { id: "performance", name: "Performance Optimization", level: 89 },
+          { id: "system-design", name: "System Design", level: 86 },
         ]
       }
     ],
@@ -96,19 +101,19 @@ const fetchAboutData = async () => {
       {
         id: "hoichoi",
         title: "Full Stack Developer",
-        organization: "Hoichoi Technologies Pvt. ltd.",
+        organization: "Hoichoi Technologies Pvt. Ltd.",
         period: "Jul 2025 - Present",
-        description: "Migrated Hoichoi's web from Vercel to Cloudflare, cutting annual costs by $30,000. Contributed to open-source projects like the REST API Docker wrapper for FFmpeg & FFprobe.",
-        technologies: ["React.js", "Node.js", "Docker", "Cloudflare", "FFmpeg", "Open Source"],
+        description: "Leading critical infrastructure migrations for a platform serving 10M+ users. Successfully migrated Hoichoi's entire web platform from Vercel to Cloudflare Workers, achieving $3,000/month cost savings ($36,000 annually). Architected and implemented comprehensive CI/CD automation pipelines, eliminating manual deployment overhead. Created and open-sourced a production-grade REST API wrapper for FFmpeg & FFprobe using Docker, enabling efficient video processing workflows. Optimizing serverless architecture for maximum performance and reliability.",
+        technologies: ["Cloudflare Workers", "Node.js", "Docker", "FFmpeg", "CI/CD", "Serverless", "REST API", "Video Processing", "Infrastructure Migration"],
         type: "experience" as 'experience'
       },
       {
-        id: "pitangent",
+        id: "openweb",
         title: "Software Engineer",
-        organization: "Pitangent Analytics and Technology Solutions Pvt. ltd.",
-        period: "Sep 2024 – Jun 2025",
-        description: "Built the frontend of Pre Sales Management System (Internal Project). Worked on a real-time CCTV surveillance system.",
-        technologies: ["React.js", "JavaScript", "Real-time Systems", "Frontend Development"],
+        organization: "Openweb Solutions (Previously Pitangent Analytics)",
+        period: "Sep 2024 – Jul 2025",
+        description: "Architected and developed backend infrastructure for an AI-powered CCTV surveillance SaaS platform. Built real-time video stream processing system handling RTSP streams with complex protocol integration. Implemented advanced optimization techniques that reduced frame processing latency by 30ms, significantly improving system responsiveness. Designed and developed an internal pre-sales automation tool that revolutionized workflow efficiency, reducing client onboarding time from 2 hours to just 20 minutes. Focused on performance optimization, stream reliability, and scalable microservices architecture.",
+        technologies: ["Node.js", "RTSP Protocol", "Real-time Processing", "AI Integration", "Microservices", "Performance Optimization", "Video Streaming", "Automation Tools"],
         type: "experience" as 'experience'
       },
       {
@@ -116,44 +121,56 @@ const fetchAboutData = async () => {
         title: "Junior Software Developer",
         organization: "Excellis IT Pvt. Ltd.",
         period: "Apr 2024 – Sep 2024",
-        description: "Led the development of a smart lock IoT project, reducing connectivity issues by 30%. Designed and developed a dashboard, cutting management time by 40%. Optimized security and performance, improving response times by 50% with no breaches.",
-        technologies: ["IoT", "Node.js", "Dashboard Development", "Security Optimization"],
+        description: "Led backend development for smart lock IoT system managing 200+ connected devices using MQTT protocol. Implemented critical performance and reliability improvements that reduced device disconnect rates from 12% to 8%, significantly enhancing system stability. Architected secure communication layer with AES-256 encryption for end-to-end data protection. Designed and developed comprehensive admin dashboard with real-time device monitoring, analytics, and management capabilities. Optimized backend performance and security protocols, ensuring zero security breaches throughout deployment.",
+        technologies: ["Node.js", "IoT", "MQTT Protocol", "AES-256 Encryption", "Real-time Systems", "Admin Dashboard", "Device Management", "Security Architecture"],
         type: "experience" as 'experience'
       },
       {
         id: "education",
         title: "Bachelor of Arts",
         organization: "University of Kalyani",
-        period: "Oct 2021 – 2024",
-        description: "Completed Bachelor of Arts degree while simultaneously pursuing self-directed learning in software development and building personal projects.",
-        technologies: ["Self-learning", "Project Development"],
+        period: "2021 – 2024",
+        description: "Completed Bachelor of Arts degree while simultaneously pursuing intensive self-directed learning in software development, system design, and distributed architectures. During this period, built multiple production-grade projects including custom databases, DNS servers, and developer tools. Developed strong foundation in backend engineering, infrastructure optimization, and open-source contribution. Balanced academic commitments with hands-on technical skill development and real-world project implementation.",
+        technologies: ["Self-learning", "Project Development", "System Design", "Backend Engineering", "Open Source"],
         type: "education" as 'education'
       }
     ],
     interests: [
       {
-        id: "payment-systems",
-        title: "Payment Gateway Integration",
-        description: "Building secure payment systems with Razorpay integration and seamless transaction processing",
+        id: "nexoraldns",
+        title: "NexoralDNS - High-Performance DNS Server",
+        description: "Built a production-grade RFC 1035 compliant DNS server in JavaScript with custom UDP protocol parsing. Implemented Redis caching layer and MongoDB delta synchronization for optimal performance. Achieved 7,000+ queries per second (QPS) while managing 400,000+ DNS records. Demonstrates expertise in network protocols, distributed caching, and high-performance system design.",
         color: "blue"
       },
       {
-        id: "database-design",
-        title: "Database Management Systems",
-        description: "Creating custom database solutions like AxioDB with nested tree structures and advanced querying capabilities",
+        id: "containdb",
+        title: "ContainDB - Database Deployment CLI",
+        description: "Created a Golang CLI tool that revolutionizes database deployment with one-command Docker-based setup for MongoDB, PostgreSQL, and Redis. Features include automated backup systems, container health monitoring, and comprehensive management utilities. Simplifies DevOps workflows and infrastructure management for developers through containerization.",
         color: "purple"
       },
       {
-        id: "npm-packages",
-        title: "NPM Package Development",
-        description: "Building reusable TypeScript packages for encryption, API management, and developer tools",
+        id: "axiodb",
+        title: "AxioDB - Embedded NoSQL Database",
+        description: "Developed a custom TypeScript-based embedded NoSQL database with advanced features including hash indexing for fast lookups, binary serialization for efficient storage, and AES-256 encryption for data security. Achieved 1,950+ npm downloads, demonstrating strong adoption. Showcases deep understanding of database internals, data structures, and cryptography.",
         color: "green"
       },
       {
-        id: "open-source",
-        title: "Open Source Contribution",
-        description: "Contributing to open-source projects like REST API Docker wrappers for FFmpeg & FFprobe",
+        id: "system-architecture",
+        title: "Distributed Systems & Microservices",
+        description: "Passionate about designing scalable distributed architectures with event-driven patterns. Expertise in building microservices using RabbitMQ message queues, implementing real-time communication with WebSocket, and optimizing system performance through caching strategies. Focused on creating resilient, fault-tolerant systems that scale horizontally.",
         color: "amber"
+      },
+      {
+        id: "infrastructure",
+        title: "Infrastructure Optimization & DevOps",
+        description: "Specializing in cloud infrastructure optimization, CI/CD pipeline automation, and containerization strategies. Experience with Cloudflare Workers, Docker orchestration, and serverless architectures. Committed to reducing operational costs while improving system reliability, deployment speed, and developer productivity through automation and best practices.",
+        color: "cyan"
+      },
+      {
+        id: "open-source",
+        title: "Open Source Development",
+        description: "Active contributor to open-source ecosystem with tools downloaded 2,000+ times. Created production-ready libraries for FFmpeg integration, database management, and developer tooling. Believe in giving back to the community through well-documented, production-grade tools that solve real-world problems. Focused on building tools that developers actually want to use.",
+        color: "blue"
       }
     ],
     story: {

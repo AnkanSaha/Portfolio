@@ -1,15 +1,31 @@
 "use client";
 
+import { useState, useEffect } from 'react';
+
 export default function AboutAnimatedBackground() {
-  // Generate particle positions
-  const particles = Array.from({ length: 30 }).map((_, i) => ({
-    id: `particle-${i}`,
-    size: Math.floor(Math.random() * 6) + 2,
-    x: Math.floor(Math.random() * 100),
-    y: Math.floor(Math.random() * 100),
-    delay: Math.floor(Math.random() * 10) * 100,
-    duration: Math.floor(Math.random() * 20) + 10,
-  }));
+  // Generate particle positions only on client side to avoid hydration mismatch
+  const [particles, setParticles] = useState<Array<{
+    id: string;
+    size: number;
+    x: number;
+    y: number;
+    delay: number;
+    duration: number;
+  }>>([]);
+
+  useEffect(() => {
+    // Generate particles on client side only
+    setParticles(
+      Array.from({ length: 30 }).map((_, i) => ({
+        id: `particle-${i}`,
+        size: Math.floor(Math.random() * 6) + 2,
+        x: Math.floor(Math.random() * 100),
+        y: Math.floor(Math.random() * 100),
+        delay: Math.floor(Math.random() * 10) * 100,
+        duration: Math.floor(Math.random() * 20) + 10,
+      }))
+    );
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none">

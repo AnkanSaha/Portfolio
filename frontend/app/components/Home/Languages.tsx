@@ -24,7 +24,7 @@ const Languages = () => {
     {
       name: "English",
       proficiency: "Professional",
-      level: 90,
+      level: 50,
       color: "from-purple-400 to-pink-400",
       bgColor: "bg-purple-500/20",
       borderColor: "border-purple-500/30",

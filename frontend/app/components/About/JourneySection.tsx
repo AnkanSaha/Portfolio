@@ -83,12 +83,12 @@ export default function JourneySection({ data = defaultTimelineData }: { data?: 
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 relative inline-block">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 animate-text-gradient">
-            My Journey
+            Professional Journey
           </span>
           <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transform animate-progress"></div>
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          Professional experiences and educational background that shaped my career
+          Career progression from IoT systems to infrastructure optimization, building scalable solutions for millions of users
         </p>
       </div>
 
