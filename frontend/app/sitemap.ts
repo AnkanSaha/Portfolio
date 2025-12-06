@@ -1,36 +1,32 @@
 import { MetadataRoute } from 'next';
 
-/**
- * Generate a sitemap for the website
- * @returns Sitemap configuration
- */
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Get domain dynamically from environment or default to localhost
-  const baseUrl = 'http://ankan.site';
+  const baseUrl = 'https://ankan.in';
 
-  // Current date
-  const currentDate = new Date().toISOString();
-
-  // Define routes
-  // You can add more routes as needed
   return [
     {
-      url: `${baseUrl}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly' as const,
+      url: baseUrl,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
       priority: 1.0,
     },
     {
       url: `${baseUrl}/about`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.8,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.9,
     },
     {
       url: `${baseUrl}/contact`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.8,
     },
   ];
 }
