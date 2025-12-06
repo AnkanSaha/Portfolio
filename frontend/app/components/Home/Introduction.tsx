@@ -24,42 +24,43 @@ const Introduction: React.FC = () => {
 
           {/* Subtitle with typing effect */}
           <div className="text-2xl md:text-3xl mb-8 font-light">
-            <span className="text-gray-300">A Software Engineer from India ❤️</span>
+            <span className="text-gray-300">Full Stack Developer</span>
+          </div>
+
+          <div className="text-lg md:text-xl mb-4 font-light">
+            <span className="text-blue-400">Specializing in Backend Engineering, System Design & Infrastructure Optimization</span>
           </div>
 
           <div className="text-xl md:text-2xl mb-8 font-light">
-            <span className="text-gray-300">Full-Stack Developer</span>
+            <span className="text-gray-300">Currently at</span>
             <a
               href="https://hoichoi.tech/"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 ml-2 hover:text-blue-300 transition-colors duration-200"
             >
-              @Hoichoi
+              Hoichoi Technologies
             </a>
           </div>
 
-          {/* Experience Badge */}
-          <div className="inline-flex items-center bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-full px-6 py-3 mb-8">
-            <FaCode className="text-green-400 mr-2" />
-            <span className="text-gray-300">1.5+ Years of Experience</span>
-          </div>
-
           {/* Bio */}
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed">
-            Passionate about building scalable solutions and optimizing performance 🚀 Currently working on AxioDB & contributing to open-source projects 💻
-            Ask me about NodeJS, MongoDB, Javascript, Typescript, Microservices Architecture 🌟
+          <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
+            Full Stack Developer experienced in building DNS servers, NoSQL databases, and container orchestration tools. Reduced infrastructure costs by $3K/month and shipped open-source tools with 2,000+ downloads.
           </p>
 
-          {/* Current Status */}
+          {/* Achievements */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <div className="flex items-center bg-green-500/20 border border-green-500/30 rounded-full px-4 py-2">
-              <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
-              <span className="text-green-300 text-sm">Available for opportunities</span>
+              <FaCode className="text-green-400 mr-2" />
+              <span className="text-green-300 text-sm">$3K/month Cost Savings</span>
+            </div>
+            <div className="flex items-center bg-purple-500/20 border border-purple-500/30 rounded-full px-4 py-2">
+              <FaTerminal className="text-purple-400 mr-2" />
+              <span className="text-purple-300 text-sm">2,000+ Downloads</span>
             </div>
             <div className="flex items-center bg-blue-500/20 border border-blue-500/30 rounded-full px-4 py-2">
-              <FaTerminal className="text-blue-400 mr-2" />
-              <span className="text-blue-300 text-sm">Currently learning Go</span>
+              <div className="w-2 h-2 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+              <span className="text-blue-300 text-sm">10M+ Users Served</span>
             </div>
           </div>
 
@@ -101,39 +102,7 @@ const Introduction: React.FC = () => {
               <FaLinkedin className="text-2xl text-blue-400 hover:text-blue-300" />
             </a>
             <a
-              href="https://twitter.com/theankansaha"
-              className="p-4 bg-sky-600/20 hover:bg-sky-600/30 border border-sky-600/30 hover:border-sky-600/50 rounded-full transition-all duration-300 hover:scale-110"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaTwitter className="text-2xl text-sky-400 hover:text-sky-300" />
-            </a>
-            <a
-              href="https://fb.com/theankansaha"
-              className="p-4 bg-blue-800/20 hover:bg-blue-800/30 border border-blue-800/30 hover:border-blue-800/50 rounded-full transition-all duration-300 hover:scale-110"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaFacebook className="text-2xl text-blue-500 hover:text-blue-400" />
-            </a>
-            <a
-              href="https://instagram.com/theankansaha"
-              className="p-4 bg-pink-600/20 hover:bg-pink-600/30 border border-pink-600/30 hover:border-pink-600/50 rounded-full transition-all duration-300 hover:scale-110"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaInstagram className="text-2xl text-pink-400 hover:text-pink-300" />
-            </a>
-            <a
-              href="https://www.youtube.com/c/@javascriptalks"
-              className="p-4 bg-red-600/20 hover:bg-red-600/30 border border-red-600/30 hover:border-red-600/50 rounded-full transition-all duration-300 hover:scale-110"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FaYoutube className="text-2xl text-red-400 hover:text-red-300" />
-            </a>
-            <a
-              href="mailto:help@ankanweb.site"
+              href="mailto:ankansahaofficial@gmail.com"
               className="p-4 bg-green-600/20 hover:bg-green-600/30 border border-green-600/30 hover:border-green-600/50 rounded-full transition-all duration-300 hover:scale-110"
             >
               <FaEnvelope className="text-2xl text-green-400 hover:text-green-300" />

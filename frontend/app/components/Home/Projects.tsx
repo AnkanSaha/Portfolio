@@ -24,34 +24,50 @@ const Projects = () => {
 
   const completedProjects = [
     {
-      name: "AxioDB",
-      description: "A fast, lightweight, and scalable open-source DBMS for modern applications with NoSQL capabilities",
+      name: "NexoralDNS",
+      description: "Custom RFC 1035 DNS server built from scratch in JavaScript with high-performance caching and database synchronization",
       features: [
-        "High-performance JSON-based database",
-        "Lightweight and scalable architecture",
-        "Modern NoSQL database management",
-        "Easy integration with Node.js applications",
-        "Open-source and community-driven"
+        "Custom RFC 1035 DNS implementation with UDP parsing",
+        "Redis caching for sub-millisecond response times",
+        "MongoDB delta sync for 400K+ DNS records",
+        "Achieves 7,000+ queries per second (QPS)",
+        "Supports A, AAAA, CNAME, MX, TXT, and NS records"
       ],
-      technologies: ["TypeScript", "Node.js", "NoSQL", "JSON", "Database"],
-      timeline: "2023 - 2024",
-      githubUrl: "https://github.com/Nexoral/AxioDB",
-      liveUrl: "https://www.npmjs.com/package/axiodb"
+      technologies: ["JavaScript", "MongoDB", "Redis", "UDP", "DNS", "RFC 1035"],
+      timeline: "2024",
+      githubUrl: "https://github.com/Nexoral/NexoralDNS",
+      stats: "7,000+ QPS | 400K+ Records"
     },
     {
       name: "ContainDB",
-      description: "Open-source CLI tool for automated database container management with instant setup and seamless integration",
+      description: "Golang CLI tool for one-command database deployments with automatic backups and health monitoring",
       features: [
-        "Supports MongoDB, Redis, MySQL, PostgreSQL, MariaDB",
-        "Instant setup with sensible defaults",
-        "Auto-rollback mechanism & conflict detection",
-        "Data persistence with volume management",
-        "Interactive credential prompts for security"
+        "One-command deployments for MongoDB, PostgreSQL, Redis",
+        ".deb installer for easy Linux distribution",
+        "Automatic backup scheduling and restoration",
+        "Container health monitoring and auto-restart",
+        "Environment-based configuration management"
       ],
-      technologies: ["Go", "Docker", "CLI", "Container Management"],
-      timeline: "2023 - 2024",
+      technologies: ["Golang", "Docker", "CLI", "Shell Scripting", ".deb Packaging"],
+      timeline: "2024",
       githubUrl: "https://github.com/Nexoral/ContainDB",
       liveUrl: "https://github.com/Nexoral/ContainDB/releases"
+    },
+    {
+      name: "AxioDB",
+      description: "TypeScript embedded NoSQL database with advanced indexing, encryption, and serialization capabilities",
+      features: [
+        "Hash indexing for O(1) query performance",
+        "Binary serialization for compact storage",
+        "AES-256 encryption for data security",
+        "1,950+ npm downloads",
+        "Zero external dependencies for embedded use"
+      ],
+      technologies: ["TypeScript", "NoSQL", "Binary Serialization", "AES Encryption", "Hash Indexing"],
+      timeline: "2023 - 2024",
+      githubUrl: "https://github.com/Nexoral/AxioDB",
+      liveUrl: "https://www.npmjs.com/package/axiodb",
+      stats: "1,950+ Downloads"
     },
     {
       name: "Outers",
@@ -160,13 +176,13 @@ const Projects = () => {
               </p>
               <div className="flex flex-wrap justify-center gap-4 mt-6">
                 <div className="flex items-center px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-full">
-                  <span className="text-purple-300 font-medium">AxioDB - NoSQL Database</span>
+                  <span className="text-purple-300 font-medium">NexoralDNS - DNS Server</span>
                 </div>
                 <div className="flex items-center px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-full">
                   <span className="text-blue-300 font-medium">ContainDB - Container Manager</span>
                 </div>
                 <div className="flex items-center px-4 py-2 bg-green-600/20 border border-green-500/30 rounded-full">
-                  <span className="text-green-300 font-medium">Developer Tools & Utilities</span>
+                  <span className="text-green-300 font-medium">AxioDB - NoSQL Database</span>
                 </div>
               </div>
               <div className="mt-6">
@@ -303,6 +319,16 @@ const Projects = () => {
                     <span className="text-blue-300 text-xs font-medium">{project.timeline}</span>
                   </div>
                 </div>
+
+                {/* Stats Badge (if exists) */}
+                {project.stats && (
+                  <div className="mb-4">
+                    <div className="inline-flex items-center bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-full px-4 py-2">
+                      <FaRocket className="text-green-400 mr-2 text-sm" />
+                      <span className="text-green-300 text-sm font-semibold">{project.stats}</span>
+                    </div>
+                  </div>
+                )}
 
                 {/* Description */}
                 <p className="text-gray-300 mb-4">{project.description}</p>

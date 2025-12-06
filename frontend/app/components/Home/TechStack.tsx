@@ -3,56 +3,50 @@ import React from 'react';
 const TechStack = () => {
   const techCategories = [
     {
-      title: "Backend Languages",
+      title: "Languages & Frameworks",
       items: [
         { name: "JavaScript" },
         { name: "TypeScript" },
-        { name: "Go" },
-        { name: "Python" },
-      ]
-    },
-    {
-      title: "Backend Frameworks & APIs",
-      items: [
         { name: "Node.js" },
+        { name: "Golang" },
         { name: "Express.js" },
         { name: "Fastify" },
-        { name: "GraphQL" },
-        { name: "REST APIs" },
-        { name: "WebSocket" },
-        { name: "gRPC" },
+        { name: "NestJS" },
       ]
     },
     {
-      title: "Databases & Storage",
+      title: "Databases & Messaging",
       items: [
         { name: "MongoDB" },
-        { name: "PostgreSQL" },
-        { name: "MySQL" },
         { name: "Redis" },
-        { name: "MariaDB" },
+        { name: "RabbitMQ" },
+        { name: "Event-driven Architecture" },
+        { name: "NoSQL Design" },
       ]
     },
     {
-      title: "DevOps & Infrastructure",
+      title: "Cloud & DevOps",
       items: [
         { name: "Docker" },
-        { name: "Git & Github" },
-        { name: "Linux Shell" },
+        { name: "CI/CD" },
+        { name: "Cloudflare Workers" },
         { name: "Nginx" },
-        { name: "Azure" },
-        { name: "CI/CD Automation" },
-        { name: "CircleCI" },
-        { name: "Container Orchestration" },
+        { name: "PM2" },
+        { name: "Docker Compose" },
+        { name: "Linux" },
+        { name: "Git & GitHub" },
       ]
     },
     {
-      title: "Architecture & Messaging",
+      title: "Architecture & Tools",
       items: [
-        { name: "Microservices Architecture" },
-        { name: "Distributed Systems" },
-        { name: "RabbitMQ" },
-        { name: "Event-Driven Architecture" },
+        { name: "Microservices" },
+        { name: "REST APIs" },
+        { name: "GraphQL" },
+        { name: "WebSocket" },
+        { name: "DNS" },
+        { name: "FFmpeg" },
+        { name: "Serverless" },
       ]
     },
   ];
@@ -62,10 +56,10 @@ const TechStack = () => {
       <div className="container mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-            Tech Stack
+            Skills & Technologies
           </h2>
           <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Backend technologies and infrastructure tools I use to build scalable server-side solutions
+            Expertise in backend engineering, system design, and infrastructure optimization
           </p>
         </div>
 
@@ -93,11 +87,11 @@ const TechStack = () => {
           ))}
         </div>
 
-        {/* Concepts Section */}
+        {/* Specializations Section */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-center mb-8 text-gray-200">Backend Expertise & Core Concepts</h3>
+          <h3 className="text-2xl font-bold text-center mb-8 text-gray-200">Core Specializations</h3>
           <div className="flex flex-wrap justify-center gap-4">
-            {["RESTful API Design", "GraphQL Implementation", "Database Optimization", "JWT Authentication", "Microservices Architecture", "Message Queue Systems", "Container Orchestration", "Performance Monitoring", "Security Best Practices", "Distributed Caching", "API Rate Limiting", "Background Job Processing"].map((concept) => (
+            {["DNS Server Development", "NoSQL Database Design", "Container Orchestration", "Infrastructure Optimization", "System Design", "RTSP Streaming", "IoT Backend", "Cost Reduction", "Performance Tuning", "Open Source Development", "UDP Protocol", "Binary Serialization"].map((concept) => (
               <div
                 key={concept}
                 className="px-6 py-3 bg-gradient-to-r from-purple-600/20 to-blue-600/20 border border-purple-500/30 rounded-full"
