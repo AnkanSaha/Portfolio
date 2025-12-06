@@ -2,7 +2,7 @@
 
 /* eslint-disable react/no-unescaped-entities */
 import React from "react";
-import { FaGithub, FaLinkedin, FaCode, FaTerminal, FaFacebook, FaInstagram, FaEnvelope, FaTwitter, FaYoutube } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaCode, FaTerminal, FaEnvelope } from 'react-icons/fa';
 
 const Introduction: React.FC = () => {
   return (
