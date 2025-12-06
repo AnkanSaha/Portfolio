@@ -4,34 +4,49 @@ import { FaBriefcase, FaCalendar, FaMapMarkerAlt } from 'react-icons/fa';
 const WorkExperience = () => {
   const experiences = [
     {
-      company: "Hoichoi Technologies Pvt. ltd.",
+      company: "Hoichoi Technologies",
       role: "Full Stack Developer",
       startDate: "2025-07-01",
       endDate: "Present",
       status: "current",
       location: "Kolkata, West Bengal",
-      description: "Migrated Hoichoi's web from Vercel to Cloudflare, cutting annual costs by $30,000. Contributed to open-source projects like the REST API Docker wrapper for FFmpeg & FFprobe.",
-      technologies: ["React.js", "Node.js", "Docker", "Cloudflare", "FFmpeg", "Open Source"]
+      description: "Led migration to Cloudflare Workers for 10M+ users, built CI/CD automation saving $3,000/month, created FFmpeg REST API wrapper.",
+      achievements: [
+        "Migrated infrastructure to Cloudflare Workers serving 10M+ users",
+        "Built CI/CD automation pipeline reducing costs by $3,000/month",
+        "Created FFmpeg REST API wrapper for video processing"
+      ],
+      technologies: ["Cloudflare Workers", "CI/CD", "FFmpeg", "Node.js", "Docker", "Serverless"]
     },
     {
-      company: "Pitangent Analytics and Technology Solutions Pvt. ltd.",
+      company: "Openweb Solutions",
       role: "Software Engineer",
       startDate: "2024-09-01",
-      endDate: "2025-06-01",
+      endDate: "2025-07-01",
       status: "previous",
       location: "Kolkata, West Bengal",
-      description: "Built the frontend of Pre Sales Management System (Internal Project). Worked on a real-time CCTV surveillance system.",
-      technologies: ["React.js", "JavaScript", "Real-time Systems", "Frontend Development"]
+      description: "Built backend for AI CCTV surveillance SaaS handling RTSP streams, reduced frame latency by 30ms, built pre-sales automation tool cutting workflow from 2 hours to 20 minutes.",
+      achievements: [
+        "Built AI CCTV surveillance SaaS backend handling RTSP streams",
+        "Reduced frame latency by 30ms through optimization",
+        "Created pre-sales automation tool: 2 hours → 20 minutes"
+      ],
+      technologies: ["Node.js", "RTSP", "AI/ML", "Real-time Processing", "Automation", "Backend Development"]
     },
     {
-      company: "Excellis IT Pvt. Ltd.",
-      role: "Junior Software Developer",
+      company: "Excellis IT",
+      role: "Junior Developer",
       startDate: "2024-04-01",
       endDate: "2024-09-01",
       status: "previous",
       location: "Kolkata, West Bengal",
-      description: "Led the development of a smart lock IoT project, reducing connectivity issues by 30%. Designed and developed a dashboard, cutting management time by 40%. Optimized security and performance, improving response times by 50% with no breaches.",
-      technologies: ["IoT", "Node.js", "Dashboard Development", "Security Optimization"]
+      description: "Built smart lock IoT backend using MQTT for 200+ devices, reduced disconnect rate from 12% to 8%, implemented AES-256 encryption and admin dashboard.",
+      achievements: [
+        "Built IoT backend using MQTT for 200+ smart lock devices",
+        "Reduced device disconnect rate from 12% to 8%",
+        "Implemented AES-256 encryption and admin dashboard"
+      ],
+      technologies: ["Node.js", "MQTT", "IoT", "AES-256", "Dashboard Development", "Security"]
     }
   ];
 
@@ -116,6 +131,18 @@ const WorkExperience = () => {
 
                       {/* Description */}
                       <p className="text-gray-300 mb-4">{exp.description}</p>
+
+                      {/* Achievements */}
+                      {exp.achievements && exp.achievements.length > 0 && (
+                        <ul className="mb-4 space-y-2">
+                          {exp.achievements.map((achievement, idx) => (
+                            <li key={idx} className="flex items-start text-gray-300 text-sm">
+                              <span className="text-blue-400 mr-2">•</span>
+                              <span>{achievement}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
 
                       {/* Technologies */}
                       <div className="flex flex-wrap gap-2">

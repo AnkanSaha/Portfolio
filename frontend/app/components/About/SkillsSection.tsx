@@ -113,12 +113,12 @@ export default function SkillsSection({ data = defaultSkillsData }: { data?: Ski
       <div className="text-center mb-16">
         <h2 className="text-3xl md:text-4xl font-bold mb-6 relative inline-block">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 animate-text-gradient">
-            My Skills
+            Technical Expertise
           </span>
           <div className="absolute -bottom-3 left-0 w-full h-1 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full transform animate-progress"></div>
         </h2>
         <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-          My backend development expertise and server-side technology competencies
+          Comprehensive technology stack spanning backend development, infrastructure, databases, and system architecture
         </p>
       </div>
 
@@ -133,26 +133,14 @@ export default function SkillsSection({ data = defaultSkillsData }: { data?: Ski
               {category.name}
             </h3>
 
-            <div className="space-y-6">
+            <div className="flex flex-wrap gap-3">
               {category.skills.map((skill, skillIndex) => (
                 <div
                   key={skill.id}
-                  className="animate-fadeInUp"
+                  className={`px-4 py-2 ${colorMap[category.color]?.bg || "bg-blue-500/10"} ${colorMap[category.color]?.text || "text-blue-400"} rounded-lg font-medium text-sm hover:scale-105 transition-transform duration-200 animate-fadeInUp`}
                   style={{ animationDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms` }}
                 >
-                  <div className="flex justify-between mb-2">
-                    <span className="font-medium text-white">{skill.name}</span>
-                    <span className="text-gray-400">{skill.level}%</span>
-                  </div>
-                  <div className={`w-full h-2 ${colorMap[category.color]?.bg || "bg-blue-500/10"} rounded-full overflow-hidden`}>
-                    <div
-                      className={`h-full ${colorMap[category.color]?.bar || "bg-blue-500"} rounded-full animate-skill-progress`}
-                      style={{
-                        width: `${skill.level}%`,
-                        animationDelay: `${(categoryIndex * 200) + (skillIndex * 100) + 300}ms`
-                      }}
-                    ></div>
-                  </div>
+                  {skill.name}
                 </div>
               ))}
             </div>
