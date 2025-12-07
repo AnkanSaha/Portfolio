@@ -57,10 +57,14 @@ jobs:
         run: |
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo mv /tmp/ankanweb.conf /etc/nginx/conf.d/ankanweb.conf && sudo chown root:root /etc/nginx/conf.d/ankanweb.conf && sudo chmod 644 /etc/nginx/conf.d/ankanweb.conf && sudo nginx -t && sudo systemctl reload nginx && echo 'Nginx configuration deployed and reloaded successfully'"
 
+      - name: Cleanup old SSL certificates
+        run: |
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "sudo certbot delete --cert-name api.ankanweb.site --non-interactive || true"
+
       - name: Generate SSL Certificate
         run: |
           ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "command -v certbot > /dev/null || (sudo apt update && sudo apt install -y certbot python3-certbot-nginx)"
-          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "DOMAINS=\$(sudo grep -h 'server_name' /etc/nginx/conf.d/ankanweb.conf | sed 's/.*server_name\s*//g' | sed 's/;//g' | tr -s ' ' | tr ' ' '\n' | grep -v '^$' | sort -u | tr '\n' ' ') && echo 'Found domains: '\$DOMAINS && CERTBOT_DOMAINS='' && for domain in \$DOMAINS; do if [ \"\$domain\" != \"_\" ]; then CERTBOT_DOMAINS=\"\$CERTBOT_DOMAINS -d \$domain\"; fi; done && echo 'Generating SSL certificate for domains: '\$CERTBOT_DOMAINS && sudo certbot --nginx --non-interactive --agree-tos --force-renewal --redirect -m ${{ secrets.SSL_EMAIL }} \$CERTBOT_DOMAINS && sudo systemctl enable certbot.timer && sudo systemctl start certbot.timer && echo 'SSL certificate generated and configured successfully'"
+          ssh -i server-key.pem -o StrictHostKeyChecking=no -o BatchMode=yes ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} "DOMAINS=\$(sudo grep -h 'server_name' /etc/nginx/conf.d/ankanweb.conf | sed 's/.*server_name\s*//g' | sed 's/;//g' | tr -s ' ' | tr ' ' '\n' | grep -v '^$' | sort -u | tr '\n' ' ') && echo 'Found domains: '\$DOMAINS && CERTBOT_DOMAINS='' && for domain in \$DOMAINS; do if [ \"\$domain\" != \"_\" ]; then CERTBOT_DOMAINS=\"\$CERTBOT_DOMAINS -d \$domain\"; fi; done && echo 'Checking SSL certificate for domains: '\$CERTBOT_DOMAINS && FIRST_DOMAIN=\$(echo \$DOMAINS | awk '{print \$1}') && if sudo test -d /etc/letsencrypt/live/\$FIRST_DOMAIN; then echo 'SSL certificate exists for '\$FIRST_DOMAIN', deleting old certificate'; sudo certbot delete --cert-name \$FIRST_DOMAIN --non-interactive; fi && echo 'Generating SSL certificate for domains: '\$CERTBOT_DOMAINS && sudo certbot --nginx --non-interactive --agree-tos --redirect -m ${{ secrets.SSL_EMAIL }} \$CERTBOT_DOMAINS && sudo systemctl enable certbot.timer && sudo systemctl start certbot.timer && echo 'SSL certificate generated and configured successfully'"
 
   deploy-backend:
     needs: [check-changes, deploy-nginx]
