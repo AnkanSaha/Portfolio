@@ -1,301 +1,234 @@
-# Portfolio Website
+# Terminal Portfolio
 
-A comprehensive full-stack portfolio website built as a monorepo containing three main components: a Next.js frontend, a Fastify backend, and an Expo React Native mobile admin application.
+A unique, interactive terminal-based portfolio website built with Next.js and xterm.js. Experience my portfolio through a fully functional Linux-like terminal interface.
 
-## Project Overview
+![Terminal Portfolio](https://img.shields.io/badge/Portfolio-Terminal--Based-00ff00?style=for-the-badge&logo=gnubash&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
+![xterm.js](https://img.shields.io/badge/xterm.js-6.0-green?style=for-the-badge)
 
-This portfolio website is a professional showcase of full-stack development capabilities, featuring a modern web application with comprehensive content management. The system is designed as a monorepo housing three distinct applications:
+## 🖥️ Live Demo
 
-1. **Frontend (Next.js)**: A responsive, server-side rendered website hosted on Cloudflare Workers
-2. **Backend (Fastify)**: A high-performance API service with robust data management deployed on Azure VPS
-3. **Mobile Admin (Expo React Native)**: A native mobile application for real-time content control and live chat management
+Visit: [ankan.in](https://ankan.in)
 
-The project demonstrates advanced concepts including real-time communication, dynamic content management, license management system, and multi-platform deployment strategies.
+## ✨ Features
 
-## Key Features
+### Interactive Terminal Experience
+- **Authentic Terminal Feel**: Full xterm.js integration with smooth scrolling, cursor blinking, and proper key handling
+- **Tab Autocomplete**: Press `Tab` to autocomplete commands or see available options
+- **Command History**: Use `↑` and `↓` arrow keys to navigate through command history
+- **Keyboard Shortcuts**: `Ctrl+L` to clear screen, `Ctrl+C` to cancel
 
-### Professional Portfolio Content
-- **Work Experience**: Detailed employment history with roles, responsibilities, and achievements
-- **Skills & Technologies**: Comprehensive listing of technical skills with proficiency levels
-- **Current Learning Status**: Real-time updates on technologies and skills being learned
-- **Freelance Portfolio**: Showcase of freelance projects and client testimonials
-- **Contact Information**: Multiple contact methods and professional links
+### Portfolio Commands
+| Command | Description |
+|---------|-------------|
+| `about` | Display information about me |
+| `skills` | List technical skills and expertise |
+| `experience` | Show work experience |
+| `projects` | Display portfolio projects |
+| `education` | Show educational background |
+| `achievements` | List achievements and badges |
+| `contact` | Display contact information |
+| `social` | Show social media links |
+| `github` | Open GitHub profile |
+| `linkedin` | Open LinkedIn profile |
 
-### Dynamic Content Management
-- **Admin Panel**: Complete control over all website content without structural changes
-- **Project Management**: 
-  - Add, edit, and manage all projects from admin dashboard
-  - Individual project detail pages with markdown content support
-  - Categorization and tagging system
-  - Project status tracking (completed, in-progress, planned)
+### Linux-Like Commands
+| Command | Description |
+|---------|-------------|
+| `ls` | List directory contents |
+| `ll` / `ls -la` | Detailed file listing |
+| `pwd` | Print working directory |
+| `cd <dir>` | Change directory |
+| `cat <file>` | Display file contents |
+| `echo <text>` | Print text to terminal |
+| `whoami` | Display current user |
+| `hostname` | Show system hostname |
+| `date` | Display current date/time |
+| `uptime` | Show system uptime |
+| `uname -a` | System information |
+| `neofetch` | Display system info with ASCII art |
+| `history` | Show command history |
+| `top` / `htop` | Display running processes |
+| `ps` | Process status |
+| `df` | Disk space usage |
+| `free` | Memory usage |
+| `id` | User identity |
+| `ping` | Network connectivity test |
 
-### Project Distribution System
-- **NPM Packages**: Direct links to published packages on npm or other registries
-- **CLI Tools**: Custom download links for installable command-line tools
-- **License Management**: Built-in licensing system for premium CLI tools
-- **Purchase License Key**: Integrated payment system for tool activation
+### System Commands
+| Command | Description |
+|---------|-------------|
+| `help` | Show all available commands |
+| `clear` | Clear terminal screen |
+| `exit` | Exit terminal session |
 
-### Live Communication
-- **Real-time Chat**: Direct communication system with website visitors
-- **Mobile Admin Control**: Enable/disable live chat mode from mobile app
-- **Chat History**: Persistent conversation storage and management
-- **Notification System**: Real-time alerts for new messages
+### Easter Eggs 🥚
+Try running: `sudo`, `rm -rf`, `vim`, `nano`, `curl`, and more!
 
-### Admin Mobile Application
-- **Content Control**: Manage all website content on-the-go
-- **Live Chat Management**: Real-time visitor communication
-- **Analytics Dashboard**: Website traffic and engagement metrics
-- **Push Notifications**: Instant alerts for chat messages and system events
+## 🚀 Tech Stack
 
-## Tech Stack
+- **Framework**: [Next.js 15.3.4](https://nextjs.org/) with App Router
+- **Terminal**: [xterm.js 6.0](https://xtermjs.org/) with FitAddon and WebLinksAddon
+- **Language**: TypeScript 5.0
+- **Styling**: Tailwind CSS 4.0
+- **Deployment**: Cloudflare Workers via OpenNext
+- **Analytics**: Vercel Analytics
 
-### Frontend
-- **Framework**: Next.js 14 (React 18)
-- **Styling**: Tailwind CSS
-- **State Management**: Zustand/React Query
-- **Deployment**: Cloudflare Workers
-- **Features**:
-  - Server-side rendering (SSR)
-  - Static site generation (SSG)
-  - Real-time chat integration
-  - Markdown rendering for project documentation
-  - SEO optimization
-
-### Backend
-- **Framework**: Fastify
-- **Database**: PostgreSQL with Prisma ORM
-- **Authentication**: JWT with refresh tokens
-- **File Storage**: Azure Blob Storage
-- **Payment Processing**: Stripe integration
-- **Deployment**: Azure VPS
-- **Features**:
-  - High-performance API endpoints
-  - Real-time WebSocket connections
-  - License key generation and validation
-  - File upload and processing
-  - Rate limiting and security middleware
-
-### Mobile Admin App
-- **Framework**: React Native with Expo
-- **State Management**: Zustand
-- **UI Library**: NativeBase/Tamagui
-- **Real-time**: Socket.io client
-- **Features**:
-  - Live chat management
-  - Content editing capabilities
-  - Push notifications
-  - Offline mode with sync
-  - Biometric authentication
-
-### Infrastructure & DevOps
-- **Frontend Hosting**: Cloudflare Workers
-- **Backend Hosting**: Azure Virtual Private Server
-- **Database**: PostgreSQL on Azure
-- **CDN**: Cloudflare
-- **CI/CD**: GitHub Actions
-- **Monitoring**: Azure Application Insights
-- **DNS**: Cloudflare DNS
-
-## Project Structure
+## 📦 Project Structure
 
 ```
-/
-├── frontend/                  # Next.js website
-│   ├── app/                   # App router pages
-│   ├── components/            # Reusable UI components
-│   │   ├── Home/              # Homepage sections
-│   │   ├── Header.tsx         # Navigation header
-│   │   └── Footer.tsx         # Website footer
-│   ├── lib/                   # Utilities and configurations
-│   ├── public/                # Static assets
-│   └── styles/                # Global styles
-│
-├── backend/                   # Fastify API server
-│   ├── src/
-│   │   ├── routes/            # API route handlers
-│   │   ├── plugins/           # Fastify plugins
-│   │   ├── services/          # Business logic
-│   │   ├── models/            # Database models
-│   │   └── utils/             # Helper functions
-│   ├── prisma/                # Database schema and migrations
-│   └── uploads/               # File storage directory
-│
-├── application/               # Expo React Native mobile app
-│   ├── app/                   # App screens and navigation
-│   ├── components/            # Reusable mobile components
-│   ├── hooks/                 # Custom React hooks
-│   ├── constants/             # App constants
-│   └── assets/                # Mobile app assets
-│
-└── shared/                    # Shared types and utilities
-    ├── types/                 # TypeScript definitions
-    ├── constants/             # Shared constants
-    └── utils/                 # Common utilities
+Portfolio/
+├── frontend/
+│   ├── app/
+│   │   ├── components/
+│   │   │   └── Terminal/
+│   │   │       └── TerminalPortfolio.tsx  # Main terminal component
+│   │   ├── globals.css                     # Global styles
+│   │   ├── layout.tsx                      # Root layout
+│   │   ├── page.tsx                        # Home page
+│   │   ├── not-found.tsx                   # 404 page
+│   │   ├── robots.ts                       # SEO robots
+│   │   └── sitemap.ts                      # SEO sitemap
+│   ├── public/
+│   │   ├── patterns/                       # Background patterns
+│   │   └── social/                         # Social icons
+│   ├── package.json
+│   ├── next.config.ts
+│   ├── tsconfig.json
+│   └── wrangler.toml                       # Cloudflare config
+├── config/
+│   └── ankan.conf                          # Nginx configuration
+├── LICENSE
+└── README.md
 ```
 
-## Content Management Features
-
-### Homepage Sections (Admin Editable)
-- **Hero Section**: Welcome message, tagline, and call-to-action
-- **Work Experience**: Employment history with detailed descriptions
-- **Skills & Technologies**: Technical proficiencies with categories
-- **Current Learning**: Active learning projects and progress
-- **Projects Showcase**: Featured projects with filtering options
-- **Freelance Portfolio**: Client work and testimonials
-- **Contact Information**: Multiple contact methods
-
-### Project Management System
-- **Project CRUD Operations**: Full create, read, update, delete functionality
-- **Markdown Documentation**: Rich project descriptions with code syntax highlighting
-- **Project Categories**: Organize projects by type (Web, Mobile, CLI, NPM, etc.)
-- **External Links**: NPM packages, GitHub repositories, live demos
-- **Download Management**: Custom download links for CLI tools
-- **License Integration**: Premium tool licensing with key generation
-
-### License Management System
-- **Key Generation**: Unique license keys for CLI tools
-- **Payment Integration**: Secure payment processing with Stripe
-- **License Validation**: Server-side verification system
-- **Usage Tracking**: Monitor license usage and analytics
-- **Renewal System**: Automatic and manual license renewals
-
-## API Endpoints
-
-### Public Endpoints
-```
-GET    /api/portfolio          # Get portfolio data
-GET    /api/projects           # List all projects
-GET    /api/projects/:id       # Get project details
-POST   /api/contact            # Send contact message
-POST   /api/chat/message       # Send chat message
-GET    /api/licenses/validate  # Validate license key
-```
-
-### Admin Endpoints
-```
-POST   /api/auth/login         # Admin authentication
-GET    /api/admin/dashboard    # Dashboard data
-PUT    /api/admin/portfolio    # Update portfolio content
-POST   /api/admin/projects     # Create new project
-PUT    /api/admin/projects/:id # Update project
-DELETE /api/admin/projects/:id # Delete project
-GET    /api/admin/chat         # Get chat messages
-POST   /api/admin/chat/reply   # Reply to chat
-POST   /api/licenses/generate  # Generate license key
-```
-
-## Installation & Setup
+## 🛠️ Installation
 
 ### Prerequisites
-- Node.js 18+
-- PostgreSQL 14+
-- Azure CLI (for deployment)
-- Expo CLI
-- Cloudflare account
 
-### Environment Variables
+- Node.js 18.x or higher
+- npm, yarn, or pnpm
 
-#### Frontend (.env.local)
+### Quick Start
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/AnkanSaha/Portfolio.git
+   cd Portfolio/frontend
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+3. **Run development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   Navigate to [http://localhost:3000](http://localhost:3000)
+
+## 🚀 Deployment
+
+### Cloudflare Workers
+
 ```bash
-NEXT_PUBLIC_API_URL=https://api.yoursite.com
-NEXT_PUBLIC_SOCKET_URL=wss://api.yoursite.com
-NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_live_...
+# Login to Cloudflare
+npm run login:cf
+
+# Build for Cloudflare
+npm run build:cf
+
+# Deploy
+npm run deploy:cf
 ```
 
-#### Backend (.env)
+### Vercel / Other Platforms
+
 ```bash
-DATABASE_URL=postgresql://user:password@localhost:5432/portfolio
-JWT_SECRET=your_super_secret_jwt_key
-STRIPE_SECRET_KEY=sk_live_...
-AZURE_STORAGE_CONNECTION_STRING=DefaultEndpointsProtocol=https...
-CORS_ORIGINS=https://yoursite.com
-PORT=3000
-```
-
-#### Mobile App (.env)
-```bash
-EXPO_PUBLIC_API_URL=https://api.yoursite.com
-EXPO_PUBLIC_SOCKET_URL=wss://api.yoursite.com
-```
-
-### Local Development
-
-#### Backend Setup
-```bash
-cd backend
-npm install
-npx prisma migrate dev
-npm run dev
-```
-
-#### Frontend Setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-#### Mobile App Setup
-```bash
-cd application
-npm install
-npx expo start
-```
-
-## Deployment
-
-### Frontend (Cloudflare Workers)
-```bash
-cd frontend
 npm run build
-npx wrangler deploy
+npm run start
 ```
 
-### Backend (Azure VPS)
-```bash
-# Automated deployment via GitHub Actions
-# Manual deployment:
-cd backend
-npm run build
-pm2 start ecosystem.config.js
+## 🎨 Customization
+
+### Update Portfolio Data
+
+Edit the `portfolioData` object in `frontend/app/components/Terminal/TerminalPortfolio.tsx`:
+
+```typescript
+const portfolioData = {
+  name: "Your Name",
+  title: "Your Title",
+  email: "your@email.com",
+  // ... add your information
+};
 ```
 
-### Mobile App (Expo EAS)
-```bash
-cd application
-eas build --platform all
-eas submit --platform all
+### Customize Terminal Theme
+
+Modify the theme in the Terminal initialization:
+
+```typescript
+theme: {
+  background: '#0a0e27',      // Terminal background
+  foreground: '#e0e0e0',      // Text color
+  cursor: '#00ff00',          // Cursor color
+  // ... customize colors
+}
 ```
 
-## Features Roadmap
+### Add New Commands
 
-### Phase 1 (Current)
-- [x] Basic portfolio structure
-- [x] Admin content management
-- [x] Project showcase
-- [x] Live chat system
-- [x] Mobile admin app
+Add new commands to the `commands` object:
 
-### Phase 2 (In Progress)
-- [ ] License management system
-- [ ] Payment integration
-- [ ] Advanced analytics dashboard
-- [ ] Blog section with markdown support
-- [ ] Client testimonials system
+```typescript
+const commands = {
+  mycommand: () => {
+    writeLine('\r\n\x1b[1;36mMy custom output\x1b[0m');
+  },
+  // ... more commands
+};
+```
 
-### Phase 3 (Planned)
-- [ ] Multi-language support
-- [ ] Advanced SEO optimization
-- [ ] Performance monitoring
-- [ ] Automated backup system
-- [ ] API rate limiting enhancements
+## 🎯 ANSI Color Codes Reference
 
-## License
+| Code | Color |
+|------|-------|
+| `\x1b[1;31m` | Bold Red |
+| `\x1b[1;32m` | Bold Green |
+| `\x1b[1;33m` | Bold Yellow |
+| `\x1b[1;34m` | Bold Blue |
+| `\x1b[1;35m` | Bold Magenta |
+| `\x1b[1;36m` | Bold Cyan |
+| `\x1b[1;37m` | Bold White |
+| `\x1b[90m` | Gray |
+| `\x1b[0m` | Reset |
 
-This project is proprietary software. All rights reserved.
+## 📄 License
 
-For licensing inquiries, please contact through the website's contact form.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👨‍💻 Author
+
+**Ankan Saha**
+- Full Stack Developer at Hoichoi Technologies
+- GitHub: [@AnkanSaha](https://github.com/AnkanSaha)
+- LinkedIn: [theankansaha](https://linkedin.com/in/theankansaha)
+- Email: ankansahaofficial@gmail.com
+
+## 🙏 Acknowledgments
+
+- [xterm.js](https://xtermjs.org/) - The terminal emulator that powers this project
+- [Next.js](https://nextjs.org/) - The React framework
+- [Tailwind CSS](https://tailwindcss.com/) - For styling
+- [OpenNext](https://open-next.js.org/) - For Cloudflare Workers deployment
 
 ---
 
-© 2024 Ankan Saha. All rights reserved.
+<p align="center">
+  Made with 💚 and lots of ☕ by Ankan Saha
+</p>
