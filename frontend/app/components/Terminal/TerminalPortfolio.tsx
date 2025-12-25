@@ -196,10 +196,6 @@ const TerminalPortfolio: React.FC = () => {
     clear: () => {
       terminal.current?.reset();
     },
-    resume: () => {
-      writeLine('\r\n\x1b[1;36mOpening resume in new tab...\x1b[0m');
-      window.open('/resume.pdf', '_blank');
-    },
     github: () => {
       writeLine('\r\n\x1b[1;36mOpening GitHub profile...\x1b[0m');
       window.open(portfolioData.social.github, '_blank');
@@ -216,15 +212,14 @@ const TerminalPortfolio: React.FC = () => {
       writeLine('\r\n\x1b[1;37m/home/ankan/portfolio\x1b[0m');
     },
     ls: () => {
-      writeLine('\r\n\x1b[1;34mabout/\x1b[0m  \x1b[1;34mprojects/\x1b[0m  \x1b[1;34mskills/\x1b[0m  \x1b[1;34mexperience/\x1b[0m  \x1b[1;32mresume.pdf\x1b[0m  \x1b[1;32mREADME.md\x1b[0m');
+      writeLine('\r\n\x1b[1;34mabout/\x1b[0m  \x1b[1;34mprojects/\x1b[0m  \x1b[1;34mskills/\x1b[0m  \x1b[1;34mexperience/\x1b[0m  \x1b[1;32mREADME.md\x1b[0m');
     },
     'll': () => {
-      writeLine('\r\n\x1b[1;37mtotal 6\x1b[0m');
+      writeLine('\r\n\x1b[1;37mtotal 5\x1b[0m');
       writeLine('\x1b[1;34mdrwxr-xr-x\x1b[0m  2 ankan ankan 4096 Dec 26 12:00 \x1b[1;34mabout/\x1b[0m');
       writeLine('\x1b[1;34mdrwxr-xr-x\x1b[0m  2 ankan ankan 4096 Dec 26 12:00 \x1b[1;34mprojects/\x1b[0m');
       writeLine('\x1b[1;34mdrwxr-xr-x\x1b[0m  2 ankan ankan 4096 Dec 26 12:00 \x1b[1;34mskills/\x1b[0m');
       writeLine('\x1b[1;34mdrwxr-xr-x\x1b[0m  2 ankan ankan 4096 Dec 26 12:00 \x1b[1;34mexperience/\x1b[0m');
-      writeLine('\x1b[1;32m-rw-r--r--\x1b[0m  1 ankan ankan 2048 Dec 26 12:00 \x1b[1;32mresume.pdf\x1b[0m');
       writeLine('\x1b[1;32m-rw-r--r--\x1b[0m  1 ankan ankan 1024 Dec 26 12:00 \x1b[1;32mREADME.md\x1b[0m');
     },
     'ls -la': () => {
@@ -234,7 +229,7 @@ const TerminalPortfolio: React.FC = () => {
       commands['ll']();
     },
     'ls -a': () => {
-      writeLine('\r\n\x1b[1;37m.\x1b[0m  \x1b[1;37m..\x1b[0m  \x1b[1;34m.config/\x1b[0m  \x1b[1;34mabout/\x1b[0m  \x1b[1;34mprojects/\x1b[0m  \x1b[1;34mskills/\x1b[0m  \x1b[1;34mexperience/\x1b[0m  \x1b[1;32mresume.pdf\x1b[0m  \x1b[1;32mREADME.md\x1b[0m');
+      writeLine('\r\n\x1b[1;37m.\x1b[0m  \x1b[1;37m..\x1b[0m  \x1b[1;34m.config/\x1b[0m  \x1b[1;34mabout/\x1b[0m  \x1b[1;34mprojects/\x1b[0m  \x1b[1;34mskills/\x1b[0m  \x1b[1;34mexperience/\x1b[0m  \x1b[1;32mREADME.md\x1b[0m');
     },
     date: () => {
       writeLine(`\r\n\x1b[1;37m${new Date().toString()}\x1b[0m`);
@@ -438,7 +433,6 @@ const TerminalPortfolio: React.FC = () => {
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mprojects\x1b[0m       Display portfolio projects                       \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32meducation\x1b[0m      Show educational background                      \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32machievements\x1b[0m   List achievements and badges                     \x1b[1;36m║\x1b[0m');
-    writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mresume\x1b[0m         Open resume PDF                                  \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mgithub\x1b[0m         Open GitHub profile                              \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mlinkedin\x1b[0m       Open LinkedIn profile                            \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m                                                                       \x1b[1;36m║\x1b[0m');
