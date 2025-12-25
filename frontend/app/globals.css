@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0e27;
+  --foreground: #e0e0e0;
 }
 
 @theme inline {
@@ -14,15 +14,88 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0a0e27;
+    --foreground: #e0e0e0;
   }
 }
 
+/* Terminal-focused body styles */
+html,
 body {
-  background: var(--background);
+  background: #0a0e27;
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Fira Code", "JetBrains Mono", monospace;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
+  width: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+/* Hide all scrollbars globally - must be at top */
+*,
+*::before,
+*::after {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+*::-webkit-scrollbar,
+*::-webkit-scrollbar-track,
+*::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-corner {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Improve xterm styling */
+.xterm {
+  padding: 0;
+  height: 100%;
+  overflow: hidden !important;
+}
+
+.xterm-viewport {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.xterm-viewport::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+.xterm-scroll-area {
+  scrollbar-width: none !important;
+  -ms-overflow-style: none !important;
+}
+
+.xterm-scroll-area::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+}
+
+.xterm-screen {
+  height: 100% !important;
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(100, 150, 255, 0.3);
+  color: #ffffff;
 }
 
 /* Custom animations and utilities */
