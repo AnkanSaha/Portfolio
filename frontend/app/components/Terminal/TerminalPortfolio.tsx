@@ -254,7 +254,7 @@ const TerminalPortfolio: React.FC = () => {
       writeLine('\x1b[1;36m     (|     | )    \x1b[0m\x1b[1;33mKernel:\x1b[0m 6.1.0-ankan');
       writeLine('\x1b[1;36m    /\'\\_   _/`\\    \x1b[0m\x1b[1;33mUptime:\x1b[0m 365 days');
       writeLine('\x1b[1;36m    \\___)=(___/    \x1b[0m\x1b[1;33mShell:\x1b[0m portfolio-sh');
-      writeLine('                   \x1b[1;33mTerminal:\x1b[0m xterm.js');
+      writeLine('                   \x1b[1;33mTerminal:\x1b[0m cloudflare.js');
       writeLine('                   \x1b[1;33mCPU:\x1b[0m Full Stack Developer');
       writeLine('                   \x1b[1;33mMemory:\x1b[0m 10M+ users served');
     },
