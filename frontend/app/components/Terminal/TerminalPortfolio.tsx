@@ -254,7 +254,7 @@ const TerminalPortfolio: React.FC = () => {
       writeLine('\x1b[1;36m     (|     | )    \x1b[0m\x1b[1;33mKernel:\x1b[0m 6.1.0-ankan');
       writeLine('\x1b[1;36m    /\'\\_   _/`\\    \x1b[0m\x1b[1;33mUptime:\x1b[0m 365 days');
       writeLine('\x1b[1;36m    \\___)=(___/    \x1b[0m\x1b[1;33mShell:\x1b[0m portfolio-sh');
-      writeLine('                   \x1b[1;33mTerminal:\x1b[0m xterm.js');
+      writeLine('                   \x1b[1;33mTerminal:\x1b[0m cloudflare.js');
       writeLine('                   \x1b[1;33mCPU:\x1b[0m Full Stack Developer');
       writeLine('                   \x1b[1;33mMemory:\x1b[0m 10M+ users served');
     },
@@ -689,7 +689,7 @@ const TerminalPortfolio: React.FC = () => {
       scrollback: 5000,
       smoothScrollDuration: 100,
       theme: {
-        background: '#0a0e27',
+        background: '#000000',
         foreground: '#e0e0e0',
         cursor: '#00ff00',
         cursorAccent: '#0a0e27',
@@ -730,9 +730,23 @@ const TerminalPortfolio: React.FC = () => {
     // Hide scrollbar via JavaScript
     const viewport = terminalRef.current.querySelector('.xterm-viewport');
     if (viewport) {
-      (viewport as HTMLElement).style.overflow = 'hidden';
-      (viewport as HTMLElement).style.scrollbarWidth = 'none';
+      const vpElement = viewport as HTMLElement;
+      vpElement.style.overflow = 'hidden';
+      vpElement.style.scrollbarWidth = 'none';
     }
+
+    // Add webkit scrollbar hiding
+    const style = document.createElement('style');
+    style.textContent = `
+      .xterm-viewport::-webkit-scrollbar {
+        display: none;
+      }
+      .xterm-viewport {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+    `;
+    document.head.appendChild(style);
 
     // Initial fit
     fit.fit();
@@ -743,8 +757,9 @@ const TerminalPortfolio: React.FC = () => {
       // Re-apply scrollbar hiding after fit
       const vp = terminalRef.current?.querySelector('.xterm-viewport');
       if (vp) {
-        (vp as HTMLElement).style.overflow = 'hidden';
-        (vp as HTMLElement).style.scrollbarWidth = 'none';
+        const vpElement = vp as HTMLElement;
+        vpElement.style.overflow = 'hidden';
+        vpElement.style.scrollbarWidth = 'none';
       }
     }, 100);
 
@@ -884,7 +899,7 @@ const TerminalPortfolio: React.FC = () => {
 
   return (
     <div
-      className="w-full h-screen bg-[#0a0e27]"
+      className="w-full h-screen bg-[#000000]"
       style={{
         overflow: 'hidden',
         position: 'fixed',
