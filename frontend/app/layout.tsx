@@ -16,6 +16,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "AnkanHub - Portfolio of Ankan Saha",
   description: "Portfolio of Ankan Saha, a Full Stack Developer specializing in building modern web applications.",
+  viewport: {
+    width: "device-width",
+    initialScale: 1,
+    maximumScale: 1,
+  },
 };
 
 export default function RootLayout({
