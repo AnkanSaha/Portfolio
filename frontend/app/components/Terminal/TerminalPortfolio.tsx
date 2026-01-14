@@ -161,7 +161,16 @@ const TerminalPortfolio: React.FC = () => {
     },
     exit: () => {
       writeLine('\r\n\x1b[1;33mThanks for visiting! Goodbye! 👋\x1b[0m');
-      writeLine('\x1b[90m(Refresh the page to start a new session)\x1b[0m');
+      writeLine('\x1b[90mReloading session...\x1b[0m\r\n');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1500);
+    },
+    reload: () => {
+      writeLine('\r\n\x1b[1;36mReloading terminal session...\x1b[0m\r\n');
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
     },
     sudo: () => {
       writeLine('\r\n\x1b[1;31m[sudo] password for ankan: \x1b[0m');
@@ -336,8 +345,9 @@ const TerminalPortfolio: React.FC = () => {
     writeLine('\x1b[1;36m║\x1b[0m                                                                       \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m  \x1b[1;33m⚙️  SYSTEM COMMANDS:\x1b[0m                                                \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mclear\x1b[0m          Clear terminal screen                             \x1b[1;36m║\x1b[0m');
+    writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mreload\x1b[0m         Reload terminal session                           \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mhelp\x1b[0m           Show this help message                            \x1b[1;36m║\x1b[0m');
-    writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mexit\x1b[0m           Exit terminal session                             \x1b[1;36m║\x1b[0m');
+    writeLine('\x1b[1;36m║\x1b[0m    \x1b[1;32mexit\x1b[0m           Exit and reload session                           \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m║\x1b[0m                                                                       \x1b[1;36m║\x1b[0m');
     writeLine('\x1b[1;36m╚═══════════════════════════════════════════════════════════════════════╝\x1b[0m');
     writeLine('\r\n\x1b[90mTip: Use ↑↓ arrows for history, Tab for autocomplete, Ctrl+L to clear.\x1b[0m\r\n');
