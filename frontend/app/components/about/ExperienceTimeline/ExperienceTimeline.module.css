@@ -1,0 +1,123 @@
+.section {
+  padding: 4rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 3rem 1.25rem; }
+}
+@media (max-width: 480px) {
+  .section { padding: 2.5rem 1rem; }
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, var(--accent-cyan), transparent);
+}
+
+@media (max-width: 480px) {
+  .timeline { padding-left: 1.5rem; }
+}
+
+.card {
+  position: relative;
+  margin-bottom: 1.75rem;
+}
+
+.dot {
+  position: absolute;
+  left: -2rem;
+  top: 1.25rem;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
+  border: 2px solid var(--bg-primary);
+}
+
+@media (max-width: 480px) {
+  .dot { left: -1.5rem; top: 1rem; }
+}
+
+.cardInner {
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  min-width: 0;
+  overflow: hidden;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.cardInner:hover {
+  border-color: var(--border-mid);
+  box-shadow: 0 4px 20px rgba(0, 212, 255, 0.08);
+}
+
+@media (max-width: 480px) {
+  .cardInner { padding: 1.25rem; }
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.title {
+  font-size: 1.02rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 3px;
+}
+
+.company {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--accent-cyan);
+}
+
+.period {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  padding: 3px 10px;
+  border: 1px solid var(--border-dim);
+  border-radius: 20px;
+  flex-shrink: 0;
+}
+
+.description {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-width: 0;
+  width: 100%;
+}

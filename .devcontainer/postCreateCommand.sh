@@ -15,3 +15,9 @@ cd backend && npm i --force && npm run build && cd ../
 
 # Install Dependencies for app
 cd application && npm i --force
+
+
+# Install  Claude code
+curl -fsSL https://claude.ai/install.sh | bash
+# install for claude code voice mode
+sudo apt-get install sox
