@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState, AppDispatch } from "../../../store";
 import { toggleMobileNav } from "../../../store/slices/uiSlice";
@@ -22,11 +23,11 @@ export default function Navbar() {
     <>
       <header className={styles.header}>
         <div className={styles.inner}>
-          <a href="/" className={styles.logo}>
+          <Link href="/" className={styles.logo}>
             <span className={styles.logoBracket}>[</span>
             <span className={styles.logoText}>Ankan Saha</span>
             <span className={styles.logoBracket}>]</span>
-          </a>
+          </Link>
 
           <nav className={styles.desktopNav}>
             {links.map((l) => (

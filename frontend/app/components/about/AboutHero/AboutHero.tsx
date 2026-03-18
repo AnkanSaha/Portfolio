@@ -4,7 +4,7 @@ export default function AboutHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <span className={styles.label}>// about</span>
+        <span className={styles.label}>{"// about"}</span>
         <h1 className={styles.title}>
           The Engineer<br />
           <span className={styles.highlight}>Behind the Code</span>

@@ -4,7 +4,7 @@ export default function ContactHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <span className={styles.label}>// contact</span>
+        <span className={styles.label}>{"// contact"}</span>
         <h1 className={styles.title}>
           Let&apos;s Build<br />
           <span className={styles.highlight}>Something Great</span>

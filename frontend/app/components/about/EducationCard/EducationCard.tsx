@@ -7,7 +7,7 @@ export default function EducationCard() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <span className={styles.label}>// education</span>
+        <span className={styles.label}>{"// education"}</span>
         <div className={styles.card}>
           <div className={styles.icon}><FiBookOpen /></div>
           <div>

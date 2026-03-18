@@ -4,7 +4,7 @@ export default function SkillsHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <span className={styles.label}>// skills</span>
+        <span className={styles.label}>{"// skills"}</span>
         <h1 className={styles.title}>
           Technical<br />
           <span className={styles.highlight}>Expertise</span>

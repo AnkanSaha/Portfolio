@@ -4,7 +4,7 @@ export default function ProjectsHero() {
   return (
     <section className={styles.hero}>
       <div className={styles.inner}>
-        <span className={styles.label}>// projects</span>
+        <span className={styles.label}>{"// projects"}</span>
         <h1 className={styles.title}>
           Open Source<br />
           <span className={styles.highlight}>& Production Work</span>

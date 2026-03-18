@@ -11,7 +11,7 @@ export default function LanguagesSection() {
   return (
     <section className={styles.section}>
       <div className={styles.inner}>
-        <span className={styles.label}>// languages</span>
+        <span className={styles.label}>{"// languages"}</span>
         <div className={styles.row}>
           {portfolioData.languages.map((lang) => {
             const [name, level] = lang.split(" (");
