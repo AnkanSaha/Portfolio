@@ -1,312 +1,252 @@
 @import "tailwindcss";
 
+/* ============================================================
+   DESIGN TOKENS
+   ============================================================ */
 :root {
-  --background: #0a0e27;
-  --foreground: #e0e0e0;
+  /* Colors */
+  --bg-primary: #050A0F;
+  --bg-secondary: #0A1525;
+  --bg-card: #0D1B2A;
+  --bg-card-hover: #112236;
+
+  --accent-green: #00FF41;
+  --accent-cyan: #00D4FF;
+  --accent-blue: #0066FF;
+  --accent-green-dim: rgba(0, 255, 65, 0.6);
+  --accent-cyan-dim: rgba(0, 212, 255, 0.6);
+  --accent-blue-dim: rgba(0, 102, 255, 0.6);
+
+  --text-primary: #E0E6ED;
+  --text-secondary: #7A8A9A;
+  --text-muted: #4A5A6A;
+  --text-green: var(--accent-green);
+  --text-cyan: var(--accent-cyan);
+
+  --border-dim: rgba(0, 212, 255, 0.15);
+  --border-mid: rgba(0, 212, 255, 0.3);
+  --border-bright: rgba(0, 212, 255, 0.6);
+
+  --glow-green: 0 0 20px rgba(0, 255, 65, 0.4);
+  --glow-cyan: 0 0 20px rgba(0, 212, 255, 0.4);
+  --glow-blue: 0 0 20px rgba(0, 102, 255, 0.4);
+
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", monospace;
+  --font-body: var(--font-geist-sans), system-ui, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+
+  --transition: 0.2s ease;
+  --transition-slow: 0.4s ease;
+
+  /* Legacy aliases for compat */
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bg-primary);
+  --color-foreground: var(--text-primary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0e27;
-    --foreground: #e0e0e0;
-  }
-}
-
-/* Terminal-focused body styles */
-html,
-body {
-  background: #0a0e27;
-  color: var(--foreground);
-  font-family: "Fira Code", "JetBrains Mono", monospace;
+/* ============================================================
+   BASE RESET
+   ============================================================ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  height: 100%;
-  width: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-  /* Mobile touch optimizations */
+  /* overflow-x: clip is safe — unlike hidden it does NOT create a scroll
+     container, so position:fixed children still anchor to the viewport */
+  overflow-x: clip;
+  min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
   touch-action: pan-y;
 }
 
-/* Hide all scrollbars globally - must be at top */
-*,
-*::before,
-*::after {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
+/* Reinforce on the Next.js App Router wrapper and main */
+body > div,
+main {
+  overflow-x: clip;
+  width: 100%;
 }
 
-*::-webkit-scrollbar,
-*::-webkit-scrollbar-track,
-*::-webkit-scrollbar-thumb,
-*::-webkit-scrollbar-corner {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
-  opacity: 0 !important;
-  visibility: hidden !important;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-/* Improve xterm styling */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ============================================================
+   SCROLLBAR
+   ============================================================ */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-mid);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--accent-cyan);
+}
+
+/* ============================================================
+   SELECTION
+   ============================================================ */
+::selection {
+  background: rgba(0, 212, 255, 0.25);
+  color: #ffffff;
+}
+
+/* ============================================================
+   XTERM OVERRIDES (for small hero terminal)
+   ============================================================ */
 .xterm {
   padding: 0;
   height: 100%;
-  overflow: hidden !important;
 }
-
 .xterm-viewport {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
   overflow-y: auto !important;
   overflow-x: hidden !important;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-mid) transparent;
 }
-
-.xterm-viewport::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  background: transparent !important;
-  opacity: 0 !important;
-}
-
-.xterm-scroll-area {
-  scrollbar-width: none !important;
-  -ms-overflow-style: none !important;
-}
-
-.xterm-scroll-area::-webkit-scrollbar {
-  display: none !important;
-  width: 0 !important;
-}
-
 .xterm-screen {
   height: 100% !important;
 }
 
-/* Selection styling */
-::selection {
-  background: rgba(100, 150, 255, 0.3);
-  color: #ffffff;
+/* ============================================================
+   GLOBAL KEYFRAMES
+   ============================================================ */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Custom animations and utilities */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes glitch {
+  0%, 100% { transform: translate(0); clip-path: none; }
+  20%       { transform: translate(-2px, 1px); clip-path: inset(20% 0 60% 0); }
+  40%       { transform: translate(2px, -1px); clip-path: inset(60% 0 20% 0); }
+  60%       { transform: translate(-1px, 2px); clip-path: inset(40% 0 40% 0); }
+  80%       { transform: translate(1px, -2px); clip-path: inset(80% 0 10% 0); }
+}
+
+@keyframes scanLine {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: var(--glow-cyan); }
+  50%       { box-shadow: 0 0 40px rgba(0, 212, 255, 0.7); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes matrix-fall {
+  0%   { transform: translateY(-100%); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes skill-fill {
+  from { width: 0%; }
+  to   { width: var(--target-width); }
+}
+
+@keyframes count-up {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes border-flow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 @keyframes float {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-10px);
-  }
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
 }
 
-.animate-fadeInUp {
-  animation: fadeInUp 0.6s ease-out forwards;
+@keyframes typing {
+  from { width: 0; }
+  to   { width: 100%; }
 }
 
-.animate-float {
-  animation: float 3s ease-in-out infinite;
-}
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+.animate-fadeInUp    { animation: fadeInUp 0.6s ease-out forwards; }
+.animate-fadeIn      { animation: fadeIn 0.5s ease-out forwards; }
+.animate-blink       { animation: blink 1s step-end infinite; }
+.animate-float       { animation: float 3s ease-in-out infinite; }
+.animate-spin        { animation: spin 1s linear infinite; }
+.animate-glow-pulse  { animation: glow-pulse 2s ease-in-out infinite; }
 
-/* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+.delay-100  { animation-delay: 100ms; }
+.delay-200  { animation-delay: 200ms; }
+.delay-300  { animation-delay: 300ms; }
+.delay-400  { animation-delay: 400ms; }
+.delay-500  { animation-delay: 500ms; }
+.delay-600  { animation-delay: 600ms; }
+.delay-700  { animation-delay: 700ms; }
+.delay-800  { animation-delay: 800ms; }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
+.font-mono { font-family: var(--font-mono); }
 
-::-webkit-scrollbar-track {
-  background: #1f2937;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #4b5563;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #6b7280;
-}
-
-/* Gradient text selection */
-::selection {
-  background: rgba(59, 130, 246, 0.3);
-  color: white;
-}
-
-/* Custom gradient borders */
-.gradient-border {
-  position: relative;
-  background: linear-gradient(45deg, #3b82f6, #8b5cf6, #ef4444);
-  padding: 1px;
-  border-radius: 1rem;
-}
-
-.gradient-border-inner {
-  background: #111827;
-  border-radius: calc(1rem - 1px);
-  padding: 1.5rem;
-}
-
-/* 404 Page Animations */
-@keyframes text-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes bounce-x {
-
-  0%,
-  100% {
-    transform: translateX(0);
-  }
-
-  50% {
-    transform: translateX(10px);
-  }
-}
-
-@keyframes progress {
-  0% {
-    width: 0%;
-  }
-
-  100% {
-    width: 80%;
-  }
-}
-
-/* About Page Animations */
-@keyframes spin-slow {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes skill-progress {
-  0% {
-    width: 0%;
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes pulse {
-
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-}
-
-.animate-text-gradient {
-  background-size: 200% auto;
-  animation: text-gradient 4s linear infinite;
-}
-
-.animate-bounce-x {
-  animation: bounce-x 1s infinite;
-}
-
-.animate-progress {
-  animation: progress 2.5s ease-out forwards;
-}
-
-.animation-delay-1000 {
-  animation-delay: 1s;
-}
-
-.animation-delay-2000 {
-  animation-delay: 2s;
-}
-
-.animation-delay-3000 {
-  animation-delay: 3s;
-}
-
-.animate-spin-slow {
-  animation: spin-slow 20s linear infinite;
-}
-
-.animate-skill-progress {
-  animation: skill-progress 1s ease-out forwards;
-}
-
-.glow-blue {
-  box-shadow: 0 0 15px 2px rgba(59, 130, 246, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-.glow-purple {
-  box-shadow: 0 0 15px 2px rgba(139, 92, 246, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-  animation-delay: 0.5s;
-}
-
-.glow-green {
-  box-shadow: 0 0 15px 2px rgba(16, 185, 129, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-  animation-delay: 1s;
-}
-
-.glow-amber {
-  box-shadow: 0 0 15px 2px rgba(245, 158, 11, 0.5);
-  animation: pulse 2s ease-in-out infinite;
-  animation-delay: 1.5s;
-}
-
-.animation-delay-random {
-  animation-delay: calc(100ms * var(--random, 5));
-  opacity: calc(0.1 + (var(--random, 5) / 30));
-}
+.text-green { color: var(--accent-green); }
+.text-cyan  { color: var(--accent-cyan); }
+.text-blue  { color: var(--accent-blue); }
+.text-muted { color: var(--text-muted); }
+.text-secondary { color: var(--text-secondary); }

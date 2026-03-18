@@ -1,0 +1,89 @@
+.page {
+  min-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 480px) {
+  .page { padding: 2rem 1rem; }
+}
+
+.content {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 560px;
+  width: 100%;
+}
+
+.codeBlock {
+  font-family: var(--font-mono);
+  font-size: clamp(0.7rem, 2vw, 0.85rem);
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-md);
+  padding: 10px 18px;
+  display: inline-flex;
+  gap: 4px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.lineNum { color: var(--text-muted); margin-right: 10px; }
+.keyword { color: var(--accent-blue); }
+.fn      { color: var(--text-primary); }
+.error   { color: #FF5F57; }
+.paren   { color: var(--text-secondary); }
+.string  { color: var(--accent-green); }
+.semi    { color: var(--text-muted); }
+
+.code {
+  font-family: var(--font-mono);
+  font-size: clamp(4rem, 18vw, 9rem);
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--accent-cyan);
+  text-shadow: 0 0 40px rgba(0, 212, 255, 0.25);
+  line-height: 1;
+}
+
+.message {
+  font-size: clamp(1rem, 3vw, 1.25rem);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.hint {
+  font-family: var(--font-mono);
+  font-size: clamp(0.78rem, 2vw, 0.88rem);
+  color: var(--text-secondary);
+}
+
+.prompt { color: var(--accent-green); }
+
+.homeLink {
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  color: var(--accent-cyan);
+  border: 1px solid var(--border-mid);
+  padding: 10px 24px;
+  border-radius: var(--radius-md);
+  transition: all var(--transition);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.homeLink:hover {
+  background: rgba(0, 212, 255, 0.08);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}

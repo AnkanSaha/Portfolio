@@ -1,0 +1,74 @@
+.section {
+  padding: 2.5rem 1.5rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .section { padding: 2rem 1.25rem 3rem; }
+}
+@media (max-width: 480px) {
+  .section { padding: 1.5rem 1rem 2.5rem; }
+}
+
+.inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--accent-cyan);
+  margin-bottom: 1.25rem;
+  letter-spacing: 0.08em;
+}
+
+.card {
+  display: flex;
+  gap: 1.25rem;
+  align-items: flex-start;
+  background: var(--bg-card);
+  border: 1px solid var(--border-dim);
+  border-radius: var(--radius-lg);
+  padding: 1.75rem;
+}
+
+@media (max-width: 480px) {
+  .card { padding: 1.25rem; gap: 1rem; }
+}
+
+.icon {
+  font-size: 1.4rem;
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.degree {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+.university {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--accent-cyan);
+  margin-bottom: 4px;
+}
+
+.period {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+  font-family: var(--font-mono);
+}
+
+.desc {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  line-height: 1.65;
+}

@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@opennextjs/cloudflare": "^1.6.3",
+    "@reduxjs/toolkit": "^2.11.2",
     "@vercel/analytics": "^1.5.0",
     "@xterm/addon-fit": "^0.11.0",
     "@xterm/addon-web-links": "^0.12.0",
@@ -22,6 +23,7 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-icons": "^5.5.0",
+    "react-redux": "^9.2.0",
     "typewriter-effect": "^2.22.0",
     "wrangler": "^4.27.0"
   },
