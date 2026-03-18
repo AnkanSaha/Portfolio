@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { fetchGitHubStats } from "../../lib/github";
 
-export const runtime = "edge";
-
 export async function GET() {
   try {
     const data = await fetchGitHubStats();
