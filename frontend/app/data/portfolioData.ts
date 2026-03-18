@@ -55,6 +55,7 @@ export interface PortfolioData {
   summary: string;
   social: SocialLinks;
   skillCategories: SkillCategory[];
+  skills: Record<string, string[]>;
   experience: Experience[];
   education: Education;
   projects: Project[];

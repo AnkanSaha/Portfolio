@@ -1,7 +1,7 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 
-const variants = {
+const variants: Variants = {
   initial: { opacity: 0, y: 12 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.35, ease: "easeOut" } },
   exit:    { opacity: 0, y: -12, transition: { duration: 0.25, ease: "easeIn" } },
