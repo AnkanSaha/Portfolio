@@ -7,7 +7,7 @@
 .entry {
   position: relative;
   padding: 0 0 26px 24px;
-  border-left: 2px solid var(--kali-panel-border);
+  border-left: 2px solid var(--ankan-panel-border);
 }
 
 .entry:last-child {
@@ -22,32 +22,32 @@
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background: var(--kali-blue);
-  border: 2px solid var(--kali-bg);
-  box-shadow: 0 0 0 2px var(--kali-blue);
+  background: var(--ankan-blue);
+  border: 2px solid var(--ankan-bg);
+  box-shadow: 0 0 0 2px var(--ankan-blue);
 }
 
 .roleTitle {
   font-size: 1rem;
   font-weight: 700;
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
 }
 
 .company {
   font-family: var(--font-mono);
   font-size: 0.82rem;
-  color: var(--kali-green);
+  color: var(--ankan-green);
   margin-top: 2px;
 }
 
 .companyDesc {
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-weight: 400;
 }
 
 .meta {
   font-size: 0.75rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   margin: 4px 0 10px;
 }
 
@@ -62,7 +62,7 @@
 .bullets li {
   font-size: 0.85rem;
   line-height: 1.55;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   padding-left: 16px;
   position: relative;
 }
@@ -71,7 +71,7 @@
   content: "▸";
   position: absolute;
   left: 0;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
 }
 
 .badgeRow {

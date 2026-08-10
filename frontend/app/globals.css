@@ -1,32 +1,30 @@
 /* ============================================================
-   KALI DESIGN TOKENS
-   Sourced from kali-themes (Kali-Dark qterminal colorscheme)
-   https://gitlab.com/kalilinux/packages/kali-themes
+   ANKAN OS DESIGN TOKENS
    ============================================================ */
 :root {
-  --kali-bg: #23252e;
-  --kali-bg-rgb: 35, 37, 46;
-  --kali-bg-elevated: #2a2d38;
-  --kali-panel: #1f2229;
-  --kali-panel-border: rgba(255, 255, 255, 0.06);
+  --ankan-bg: #23252e;
+  --ankan-bg-rgb: 35, 37, 46;
+  --ankan-bg-elevated: #2a2d38;
+  --ankan-panel: #1f2229;
+  --ankan-panel-border: rgba(255, 255, 255, 0.06);
 
-  --kali-teal: #198388;
-  --kali-red: #d41919;
-  --kali-red-bright: #ec0101;
-  --kali-green: #5ebdab;
-  --kali-green-bright: #47d4b9;
-  --kali-yellow: #fea44c;
-  --kali-yellow-bright: #ff8a18;
-  --kali-blue: #367bf0;
-  --kali-blue-bright: #277fff;
-  --kali-magenta: #9755b3;
-  --kali-magenta-bright: #962ac3;
-  --kali-cyan: #49aee6;
-  --kali-cyan-bright: #05a1f7;
-  --kali-fg: #e6e6e6;
-  --kali-fg-bright: #ffffff;
-  --kali-fg-muted: #8a8d98;
-  --kali-fg-dim: #5a5d68;
+  --ankan-teal: #198388;
+  --ankan-red: #d41919;
+  --ankan-red-bright: #ec0101;
+  --ankan-green: #5ebdab;
+  --ankan-green-bright: #47d4b9;
+  --ankan-yellow: #fea44c;
+  --ankan-yellow-bright: #ff8a18;
+  --ankan-blue: #367bf0;
+  --ankan-blue-bright: #277fff;
+  --ankan-magenta: #9755b3;
+  --ankan-magenta-bright: #962ac3;
+  --ankan-cyan: #49aee6;
+  --ankan-cyan-bright: #05a1f7;
+  --ankan-fg: #e6e6e6;
+  --ankan-fg-bright: #ffffff;
+  --ankan-fg-muted: #8a8d98;
+  --ankan-fg-dim: #5a5d68;
 
   --window-radius: 6px;
   --panel-height: 30px;
@@ -52,8 +50,8 @@
   --z-boot: 900;
   --z-shutdown: 950;
 
-  --background: var(--kali-bg);
-  --foreground: var(--kali-fg);
+  --background: var(--ankan-bg);
+  --foreground: var(--ankan-fg);
 }
 
 /* ============================================================
@@ -72,8 +70,8 @@ html {
 }
 
 body {
-  background: var(--kali-bg);
-  color: var(--kali-fg);
+  background: var(--ankan-bg);
+  color: var(--ankan-fg);
   font-family: var(--font-ui);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -152,7 +150,7 @@ textarea {
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
 }
 
 ::selection {

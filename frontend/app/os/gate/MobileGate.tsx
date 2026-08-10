@@ -5,7 +5,7 @@ export default function MobileGate({ children }: { children: ReactNode }) {
   return (
     <>
       <div className={styles.gate}>
-        <img src="/os/kali-dragon.svg" alt="" className={styles.dragon} />
+        <img src="/os/dragon.svg" alt="" className={styles.dragon} />
         <div className={styles.line}>
           <span className={styles.fail}>[ FAIL ]</span> Failed to start Graphical Interface.
         </div>

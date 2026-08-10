@@ -1,17 +1,17 @@
 "use client";
 import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../store/hooks";
-import { fetchGitHubData } from "../store/slices/githubSlice";
+import { fetchGitHubData, selectGitHubEntry } from "../store/slices/githubSlice";
 
-export function useGitHubData() {
+export function useGitHubData(login: string) {
   const dispatch = useAppDispatch();
-  const { data, status, error } = useAppSelector((s) => s.github);
+  const { data, status, error } = useAppSelector((s) => selectGitHubEntry(s, login));
 
   useEffect(() => {
     if (status === "idle") {
-      dispatch(fetchGitHubData());
+      dispatch(fetchGitHubData(login));
     }
-  }, [status, dispatch]);
+  }, [status, login, dispatch]);
 
   return { data, status, error };
 }

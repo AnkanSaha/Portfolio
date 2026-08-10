@@ -16,7 +16,7 @@ export default function Clock() {
   const date = now.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" });
 
   return (
-    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--kali-fg)" }}>
+    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--ankan-fg)" }}>
       {date} {time}
     </span>
   );

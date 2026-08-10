@@ -10,7 +10,7 @@ export function promptLines(cwd: string[]): { top: string; bottom: string } {
     C.green("┌──(") +
     C.bold(C.blue("ankan")) +
     C.muted("㉿") +
-    C.bold(C.blue("kali")) +
+    C.bold(C.blue("ankanos")) +
     C.green(")-[") +
     C.bold(path) +
     C.green("]");

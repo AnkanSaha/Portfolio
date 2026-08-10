@@ -11,11 +11,11 @@
   width: 26px;
   height: 26px;
   border-radius: 4px;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   font-size: 1rem;
 }
 
 .btn:hover {
   background: rgba(255, 255, 255, 0.1);
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
 }

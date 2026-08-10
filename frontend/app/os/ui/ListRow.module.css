@@ -6,7 +6,7 @@
   padding: 6px 8px;
   border-radius: 4px;
   font-size: 0.85rem;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   text-align: left;
 }
 
@@ -15,12 +15,12 @@
 }
 
 .active {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
   color: #ffffff;
 }
 
 .active:hover {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
 }
 
 .icon {
@@ -41,7 +41,7 @@
 .meta {
   flex-shrink: 0;
   font-size: 0.75rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .active .meta {

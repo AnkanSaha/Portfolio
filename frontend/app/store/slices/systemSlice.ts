@@ -5,12 +5,10 @@ export type SystemPhase = "boot" | "desktop" | "shuttingDown" | "halted";
 
 interface SystemState {
   phase: SystemPhase;
-  activeWorkspace: number;
 }
 
 const initialState: SystemState = {
   phase: "boot",
-  activeWorkspace: 1,
 };
 
 const systemSlice = createSlice({
@@ -20,11 +18,8 @@ const systemSlice = createSlice({
     setPhase(state, action: PayloadAction<SystemPhase>) {
       state.phase = action.payload;
     },
-    setActiveWorkspace(state, action: PayloadAction<number>) {
-      state.activeWorkspace = action.payload;
-    },
   },
 });
 
-export const { setPhase, setActiveWorkspace } = systemSlice.actions;
+export const { setPhase } = systemSlice.actions;
 export default systemSlice.reducer;

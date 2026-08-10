@@ -9,11 +9,11 @@ export function useAccentColor() {
   useEffect(() => {
     const def = WALLPAPER_VARIANTS.find((v) => v.id === variant) ?? WALLPAPER_VARIANTS[0];
     const root = document.documentElement.style;
-    root.setProperty("--kali-blue", def.accent);
-    root.setProperty("--kali-blue-bright", def.accentBright);
+    root.setProperty("--ankan-blue", def.accent);
+    root.setProperty("--ankan-blue-bright", def.accentBright);
     return () => {
-      root.removeProperty("--kali-blue");
-      root.removeProperty("--kali-blue-bright");
+      root.removeProperty("--ankan-blue");
+      root.removeProperty("--ankan-blue-bright");
     };
   }, [variant]);
 }

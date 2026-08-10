@@ -13,8 +13,8 @@
   display: flex;
   flex-direction: column;
   border-radius: 8px;
-  background: var(--kali-panel);
-  border: 1px solid var(--kali-panel-border);
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
   box-shadow: var(--shadow-menu);
   z-index: var(--z-menu);
   overflow: hidden;
@@ -28,15 +28,15 @@
   width: 100%;
   padding: 7px 10px;
   border-radius: 5px;
-  background: var(--kali-bg);
-  border: 1px solid var(--kali-panel-border);
-  color: var(--kali-fg);
+  background: var(--ankan-bg);
+  border: 1px solid var(--ankan-panel-border);
+  color: var(--ankan-fg);
   font-size: 0.82rem;
 }
 
 .search:focus {
   outline: none;
-  border-color: var(--kali-blue);
+  border-color: var(--ankan-blue);
 }
 
 .list {
@@ -55,11 +55,11 @@
   padding: 8px 10px;
   border-radius: 5px;
   font-size: 0.83rem;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
 }
 
 .appRow:hover {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
   color: #ffffff;
 }
 
@@ -67,7 +67,7 @@
   display: flex;
   align-items: center;
   font-size: 1.1rem;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
 }
 
 .appRow:hover .appIcon {
@@ -77,7 +77,7 @@
 .empty {
   padding: 20px;
   text-align: center;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-size: 0.8rem;
 }
 
@@ -86,7 +86,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 8px 12px;
-  border-top: 1px solid var(--kali-panel-border);
+  border-top: 1px solid var(--ankan-panel-border);
 }
 
 .userTag {
@@ -95,7 +95,7 @@
   gap: 6px;
   font-family: var(--font-mono);
   font-size: 0.76rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .footerActions {
@@ -110,10 +110,10 @@
   width: 28px;
   height: 28px;
   border-radius: 5px;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .footerBtn:hover {
   background: rgba(255, 255, 255, 0.08);
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
 }

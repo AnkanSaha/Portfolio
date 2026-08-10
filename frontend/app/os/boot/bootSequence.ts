@@ -1,6 +1,6 @@
 export const GRUB_ENTRIES = [
-  "Kali GNU/Linux",
-  "Advanced options for Kali GNU/Linux",
+  "Ankan OS",
+  "Advanced options for Ankan OS",
   "Memory test (memtest86+x64.efi)",
 ];
 
@@ -18,13 +18,13 @@ export const BOOT_LOG: string[] = [
   "Starting Light Display Manager...",
   "Started D-Bus System Message Bus.",
   "Reached target Sound Card.",
-  "Started Kali Linux Display Manager.",
+  "Started Ankan OS Display Manager.",
   "Reached target Graphical Interface.",
   "Reached target Multi-User System.",
 ];
 
 export const BOOT_STAGE_MS = {
   grub: 350,
-  log: 700,
+  log: 1400,
   splash: 550,
 };

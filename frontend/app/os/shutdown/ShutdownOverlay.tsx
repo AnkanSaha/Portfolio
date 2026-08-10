@@ -4,19 +4,26 @@ import { motion, AnimatePresence } from "motion/react";
 import { FiPower } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
 import { setPhase } from "../../store/slices/systemSlice";
-import { requestFullscreen } from "../theme/useAutoFullscreen";
+import { exitFullscreen, requestFullscreen } from "../theme/useAutoFullscreen";
 import { SHUTDOWN_LOG, SHUTDOWN_STAGE_MS } from "./shutdownSequence";
 import styles from "./ShutdownOverlay.module.css";
 
 type Stage = "log" | "black";
 
+const LOG_CONTAINER_VARIANTS = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+const LOG_LINE_VARIANTS = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 // window.close() only works on a tab that a script opened. A tab the visitor
 // navigated to directly cannot be closed by script in any current browser —
 // that restriction can't be bypassed. window.open("", "_self") re-claims the
 // window as script-opened in a handful of older/embedded browser contexts,
-// so it's worth trying as a second attempt before giving up. Deliberately
-// does NOT touch fullscreen state — exiting it here would only strand a
-// failed close outside fullscreen for no benefit.
+// so it's worth trying as a second attempt before giving up.
 function attemptTabClose() {
   if (typeof window === "undefined") return;
   window.close();
@@ -35,6 +42,8 @@ export default function ShutdownOverlay() {
 
   useEffect(() => {
     if (phase !== "shuttingDown") return;
+
+    exitFullscreen();
 
     const timers: ReturnType<typeof setTimeout>[] = [];
     timers.push(setTimeout(() => setStage("black"), SHUTDOWN_STAGE_MS.log));
@@ -64,11 +73,18 @@ export default function ShutdownOverlay() {
     <motion.div className={styles.screen} initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
       <AnimatePresence mode="wait">
         {phase === "shuttingDown" && stage === "log" && (
-          <motion.div key="log" className={styles.log} exit={{ opacity: 0 }}>
+          <motion.div
+            key="log"
+            className={styles.log}
+            variants={LOG_CONTAINER_VARIANTS}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0 }}
+          >
             {SHUTDOWN_LOG.map((line) => (
-              <div key={line} className={styles.logLine}>
+              <motion.div key={line} className={styles.logLine} variants={LOG_LINE_VARIANTS}>
                 <span className={styles.stopping}>[STOP]</span> {line}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}

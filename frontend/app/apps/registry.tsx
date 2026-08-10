@@ -11,13 +11,13 @@ import {
   FiClipboard,
   FiSettings,
   FiGithub,
+  FiGitBranch,
   FiTerminal,
   FiPercent,
   FiActivity,
   FiBookOpen,
 } from "react-icons/fi";
 import type { AppComponentProps } from "./types";
-import ChromeIcon from "./browser/ChromeIcon";
 
 import AboutApp from "./about/AboutApp";
 import ExperienceApp from "./experience/ExperienceApp";
@@ -29,9 +29,9 @@ import EditorApp from "./editor/EditorApp";
 import ResumeApp from "./resume/ResumeApp";
 import SettingsApp from "./settings/SettingsApp";
 import GitHubApp from "./github/GitHubApp";
+import NexoralApp from "./nexoral/NexoralApp";
 import CalculatorApp from "./calculator/CalculatorApp";
 import MonitorApp from "./monitor/MonitorApp";
-import BrowserApp from "./browser/BrowserApp";
 import BlogApp from "./blog/BlogApp";
 
 const TerminalApp = dynamic(() => import("./terminal/TerminalApp"), { ssr: false });
@@ -139,10 +139,19 @@ export const APP_REGISTRY: Record<string, AppDefinition> = {
   },
   github: {
     id: "github",
-    title: "GitHub Stats",
+    title: "GitHub Profile",
     icon: FiGithub,
     component: GitHubApp,
-    defaultSize: { w: 480, h: 440 },
+    defaultSize: { w: 560, h: 640 },
+    category: "utility",
+    desktopIcon: true,
+  },
+  nexoral: {
+    id: "nexoral",
+    title: "Nexoral (GitHub Org)",
+    icon: FiGitBranch,
+    component: NexoralApp,
+    defaultSize: { w: 560, h: 640 },
     category: "utility",
     desktopIcon: true,
   },
@@ -160,17 +169,8 @@ export const APP_REGISTRY: Record<string, AppDefinition> = {
     title: "System Monitor",
     icon: FiActivity,
     component: MonitorApp,
-    defaultSize: { w: 560, h: 560 },
+    defaultSize: { w: 720, h: 640 },
     category: "system",
-    desktopIcon: true,
-  },
-  browser: {
-    id: "browser",
-    title: "Chrome",
-    icon: ChromeIcon,
-    component: BrowserApp,
-    defaultSize: { w: 820, h: 600 },
-    category: "utility",
     desktopIcon: true,
   },
   blog: {
@@ -186,7 +186,6 @@ export const APP_REGISTRY: Record<string, AppDefinition> = {
 
 export const APP_ORDER = [
   "terminal",
-  "browser",
   "about",
   "experience",
   "projects",
@@ -200,4 +199,5 @@ export const APP_ORDER = [
   "calculator",
   "settings",
   "github",
+  "nexoral",
 ];

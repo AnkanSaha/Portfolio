@@ -1,5 +1,6 @@
 import { AppShell, ScrollArea, Badge } from "../../os/ui";
 import { portfolioData } from "../../data/portfolioData";
+import { useGitHubData } from "../../hooks/useGitHubData";
 import styles from "./AboutApp.module.css";
 
 export default function AboutApp() {
@@ -7,12 +8,20 @@ export default function AboutApp() {
     .split(" ")
     .map((n) => n[0])
     .join("");
+  const { data: github } = useGitHubData("AnkanSaha");
 
   return (
     <AppShell>
       <ScrollArea>
         <div className={styles.header}>
-          <div className={styles.avatar}>{initials}</div>
+          <div className={styles.avatar}>
+            {github?.avatarUrl ? (
+              // eslint-disable-next-line @next/next/no-img-element -- remote GitHub avatar, no local static path for next/image
+              <img src={github.avatarUrl} alt="" className={styles.avatarImg} />
+            ) : (
+              initials
+            )}
+          </div>
           <div>
             <div className={styles.name}>{portfolioData.name}</div>
             <div className={styles.title}>{portfolioData.title}</div>

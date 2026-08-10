@@ -4,7 +4,6 @@ import { useSetting } from "../../hooks/useSetting";
 import WhiskerMenuButton from "./WhiskerMenuButton";
 import QuickLaunch from "./QuickLaunch";
 import TaskbarButtons from "./TaskbarButtons";
-import WorkspaceSwitcher from "./WorkspaceSwitcher";
 import SystemTray from "./SystemTray";
 import Clock from "./Clock";
 import PowerMenu from "./PowerMenu";
@@ -29,8 +28,6 @@ export default function Panel() {
         <TaskbarButtons />
         <div className={styles.spacer} />
         <div className={styles.right}>
-          <WorkspaceSwitcher />
-          <div className={styles.divider} />
           <SystemTray />
           <div className={styles.divider} />
           <Clock />

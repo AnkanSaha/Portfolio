@@ -190,7 +190,7 @@ export default function SettingsApp() {
               <div className={styles.infoGrid}>
                 <div>
                   <div className={styles.infoLabel}>OS</div>
-                  <div className={styles.infoValue}>Kali Linux Portfolio Edition</div>
+                  <div className={styles.infoValue}>Ankan OS</div>
                 </div>
                 <div>
                   <div className={styles.infoLabel}>Host</div>

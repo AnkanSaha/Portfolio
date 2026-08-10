@@ -3,8 +3,8 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  background: rgba(var(--kali-bg-rgb), var(--window-opacity));
-  color: var(--kali-fg);
+  background: rgba(var(--ankan-bg-rgb), var(--window-opacity));
+  color: var(--ankan-fg);
   font-size: 0.9rem;
 }
 

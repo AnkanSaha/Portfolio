@@ -23,7 +23,7 @@
   align-items: center;
   gap: 10px;
   padding: 0 8px;
-  background: var(--kali-panel);
+  background: var(--ankan-panel);
   box-shadow: var(--shadow-panel);
   font-family: var(--font-ui);
 }
@@ -31,7 +31,7 @@
 .divider {
   width: 1px;
   height: 16px;
-  background: var(--kali-panel-border);
+  background: var(--ankan-panel-border);
   flex-shrink: 0;
 }
 

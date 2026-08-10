@@ -5,8 +5,8 @@
   height: var(--titlebar-height);
   flex-shrink: 0;
   padding: 0 8px 0 12px;
-  background: var(--kali-panel);
-  border-bottom: 1px solid var(--kali-panel-border);
+  background: var(--ankan-panel);
+  border-bottom: 1px solid var(--ankan-panel-border);
   border-radius: var(--window-radius) var(--window-radius) 0 0;
   user-select: none;
 }
@@ -25,9 +25,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   font-size: 0.82rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .focused .title {
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
 }

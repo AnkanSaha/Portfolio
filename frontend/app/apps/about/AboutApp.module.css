@@ -13,28 +13,35 @@
   height: 64px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: linear-gradient(135deg, var(--kali-blue), var(--kali-cyan));
+  background: linear-gradient(135deg, var(--ankan-blue), var(--ankan-cyan));
   color: #ffffff;
   font-family: var(--font-mono);
   font-weight: 700;
   font-size: 1.3rem;
+  overflow: hidden;
+}
+
+.avatarImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .name {
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
 }
 
 .title {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  color: var(--kali-green);
+  color: var(--ankan-green);
 }
 
 .subtitle {
   font-size: 0.8rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   margin-top: 2px;
 }
 
@@ -47,16 +54,16 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--kali-panel-border);
+  border-bottom: 1px solid var(--ankan-panel-border);
 }
 
 .summary {
   font-size: 0.88rem;
   line-height: 1.65;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
 }
 
 .factGrid {
@@ -67,13 +74,13 @@
 }
 
 .factLabel {
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
 }
 
 .factValue {
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
 }
 
 .eduCard {
@@ -82,12 +89,12 @@
 }
 
 .eduDegree {
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
   font-weight: 700;
 }
 
 .eduMeta {
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-size: 0.78rem;
   margin: 2px 0 8px;
 }

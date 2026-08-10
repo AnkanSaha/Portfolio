@@ -1,0 +1,176 @@
+.toolbarTitle {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ankan-fg-muted);
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--ankan-fg-muted);
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--ankan-panel-border);
+}
+
+.link:hover {
+  border-color: var(--ankan-blue);
+  color: var(--ankan-blue-bright);
+}
+
+.state {
+  padding: 24px;
+  color: var(--ankan-fg-muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: var(--ankan-red-bright, #ec0101);
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  border: 1px solid var(--ankan-panel-border);
+}
+
+.name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--ankan-fg-bright);
+}
+
+.login {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--ankan-fg-muted);
+}
+
+.bio {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--ankan-fg);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px;
+  border-radius: 6px;
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
+}
+
+.statIcon {
+  color: var(--ankan-blue-bright);
+  margin-bottom: 2px;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--ankan-fg-bright);
+  font-family: var(--font-mono);
+}
+
+.statLabel {
+  font-size: 0.72rem;
+  color: var(--ankan-fg-muted);
+}
+
+.reposHead {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ankan-fg-muted);
+  margin-top: 4px;
+}
+
+.repos {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.repoRow {
+  display: block;
+  padding: 10px 14px;
+  border-radius: 6px;
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
+  text-decoration: none;
+  color: inherit;
+}
+
+.repoRow:hover {
+  border-color: var(--ankan-blue);
+}
+
+.repoTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.repoName {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--ankan-blue-bright);
+}
+
+.repoStars {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  color: var(--ankan-fg-muted);
+  flex-shrink: 0;
+}
+
+.repoDesc {
+  margin: 4px 0 0;
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: var(--ankan-fg-muted);
+}
+
+.repoLang {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 0.68rem;
+  color: var(--ankan-fg-dim);
+}
+
+.footnote {
+  font-size: 0.7rem;
+  color: var(--ankan-fg-dim);
+  line-height: 1.5;
+  padding-top: 4px;
+  border-top: 1px solid var(--ankan-panel-border);
+}

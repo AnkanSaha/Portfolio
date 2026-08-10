@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
+  <defs>
+    <linearGradient id="dragonBody" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#277FFF"/>
+      <stop offset="100%" stop-color="#49AEE6"/>
+    </linearGradient>
+  </defs>
+
+  <circle cx="60" cy="60" r="60" fill="#0b0c10"/>
+
+  <g transform="translate(10,-2) scale(0.86)">
+    <g stroke="url(#dragonBody)" fill="none" stroke-linecap="round">
+      <path d="M 40,32 C 54,20 66,12 82,6" stroke-width="3.4"/>
+      <path d="M 38,36 C 52,26 68,20 88,16" stroke-width="4"/>
+      <path d="M 36,41 C 50,33 66,29 86,27" stroke-width="4.6"/>
+    </g>
+    <path d="M 34,36 C 50,30 68,34 80,50 C 92,66 92,88 78,102 C 68,112 54,116 44,111"
+          stroke="url(#dragonBody)" stroke-width="13" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 44,111 C 40,110 37,107 36,103 L 41,104 C 42,107 43,109 46,110 Z" fill="url(#dragonBody)"/>
+    <path d="M 34,36 C 30,32 24,30 16,31 C 8,32 2,37 0,44 C 6,40 12,38 18,39 C 14,44 8,47 2,47 C 9,52 18,51 24,45 C 27,42 30,39 34,36 Z" fill="url(#dragonBody)"/>
+    <circle cx="20" cy="37" r="2.3" fill="#0b0c10"/>
+  </g>
+</svg>

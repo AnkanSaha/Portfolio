@@ -3,10 +3,10 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
   margin-bottom: 12px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--kali-panel-border);
+  border-bottom: 1px solid var(--ankan-panel-border);
 }
 
 .featuredGrid {
@@ -19,12 +19,12 @@
 .card {
   padding: 14px 16px;
   border-radius: 6px;
-  background: var(--kali-panel);
-  border: 1px solid var(--kali-panel-border);
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
 }
 
 .card:hover {
-  border-color: var(--kali-blue);
+  border-color: var(--ankan-blue);
 }
 
 .cardHead {
@@ -37,27 +37,27 @@
 .cardName {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
 }
 
 .cardPeriod {
   font-family: var(--font-mono);
   font-size: 0.7rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   flex-shrink: 0;
 }
 
 .cardTagline {
   font-family: var(--font-mono);
   font-size: 0.75rem;
-  color: var(--kali-green);
+  color: var(--ankan-green);
   margin: 2px 0 8px;
 }
 
 .cardDesc {
   font-size: 0.83rem;
   line-height: 1.55;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   margin-bottom: 10px;
 }
 
@@ -78,7 +78,7 @@
   align-items: center;
   gap: 5px;
   font-size: 0.78rem;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
 }
 
 .link:hover {
@@ -105,13 +105,13 @@
 }
 
 .secondaryName {
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
   font-weight: 600;
   flex-shrink: 0;
 }
 
 .secondaryTagline {
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   flex: 1;
   min-width: 0;
   overflow: hidden;

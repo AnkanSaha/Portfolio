@@ -9,8 +9,8 @@
   min-width: 200px;
   padding: 6px;
   border-radius: 6px;
-  background: var(--kali-panel);
-  border: 1px solid var(--kali-panel-border);
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
   box-shadow: var(--shadow-menu);
   z-index: var(--z-menu);
 }
@@ -23,17 +23,17 @@
   padding: 8px 10px;
   border-radius: 4px;
   font-size: 0.82rem;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   text-align: left;
 }
 
 .item:hover {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
   color: #ffffff;
 }
 
 .sep {
   height: 1px;
   margin: 5px 4px;
-  background: var(--kali-panel-border);
+  background: var(--ankan-panel-border);
 }

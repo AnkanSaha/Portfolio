@@ -1,5 +1,5 @@
 export const SHUTDOWN_LOG: string[] = [
-  "Stopping Kali Linux Display Manager...",
+  "Stopping Ankan OS Display Manager...",
   "Stopping Network Manager...",
   "Stopping Bluetooth service...",
   "Unmounting /boot/efi...",

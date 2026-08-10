@@ -9,14 +9,11 @@ export default function WindowLayer() {
   const windows = useAppSelector((s) => s.windows.windows);
   const zOrder = useAppSelector((s) => s.windows.zOrder);
   const focusedId = useAppSelector((s) => s.windows.focusedId);
-  const activeWorkspace = useAppSelector((s) => s.system.activeWorkspace);
-
-  const visible = zOrder.filter((id) => windows[id]?.workspace === activeWorkspace);
 
   return (
     <div className={styles.layer}>
       <AnimatePresence>
-        {visible.map((id, index) => {
+        {zOrder.map((id, index) => {
           const win = windows[id];
           if (!win || win.minimized) return null;
           const app = APP_REGISTRY[win.appId];

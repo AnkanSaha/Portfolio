@@ -10,6 +10,15 @@ import styles from "./BootScreen.module.css";
 const SESSION_KEY = "os:booted";
 type Stage = "gate" | "grub" | "log" | "splash";
 
+const LOG_CONTAINER_VARIANTS = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.07 } },
+};
+const LOG_LINE_VARIANTS = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+};
+
 export default function BootScreen() {
   const dispatch = useAppDispatch();
   const [stage, setStage] = useState<Stage>("gate");
@@ -55,12 +64,21 @@ export default function BootScreen() {
   }, []);
 
   useEffect(() => {
-    if (stage !== "grub") return;
-    const timers: ReturnType<typeof setTimeout>[] = [];
-    timers.push(setTimeout(() => setStage("log"), BOOT_STAGE_MS.grub));
-    timers.push(setTimeout(() => setStage("splash"), BOOT_STAGE_MS.grub + BOOT_STAGE_MS.log));
-    timers.push(setTimeout(finish, BOOT_STAGE_MS.grub + BOOT_STAGE_MS.log + BOOT_STAGE_MS.splash));
-    return () => timers.forEach(clearTimeout);
+    // One timer per stage, each armed only while its own stage is active —
+    // advancing past "grub" must not cancel the timer that later advances
+    // past "log", since that timer belongs to a later run of this effect.
+    if (stage === "grub") {
+      const t = setTimeout(() => setStage("log"), BOOT_STAGE_MS.grub);
+      return () => clearTimeout(t);
+    }
+    if (stage === "log") {
+      const t = setTimeout(() => setStage("splash"), BOOT_STAGE_MS.log);
+      return () => clearTimeout(t);
+    }
+    if (stage === "splash") {
+      const t = setTimeout(finish, BOOT_STAGE_MS.splash);
+      return () => clearTimeout(t);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stage]);
 
@@ -89,8 +107,8 @@ export default function BootScreen() {
       <AnimatePresence mode="wait">
         {stage === "gate" && (
           <motion.div key="gate" className={styles.gate} exit={{ opacity: 0 }}>
-            <img src="/os/kali-dragon.svg" alt="" className={styles.gateDragon} />
-            <div className={styles.gateText}>Press any key to boot Kali GNU/Linux</div>
+            <img src="/os/dragon.svg" alt="" className={styles.gateDragon} />
+            <div className={styles.gateText}>Press any key to boot Ankan OS</div>
           </motion.div>
         )}
 
@@ -106,11 +124,18 @@ export default function BootScreen() {
         )}
 
         {stage === "log" && (
-          <motion.div key="log" className={styles.log} exit={{ opacity: 0 }}>
+          <motion.div
+            key="log"
+            className={styles.log}
+            variants={LOG_CONTAINER_VARIANTS}
+            initial="hidden"
+            animate="visible"
+            exit={{ opacity: 0 }}
+          >
             {BOOT_LOG.map((line) => (
-              <div key={line} className={styles.logLine}>
+              <motion.div key={line} className={styles.logLine} variants={LOG_LINE_VARIANTS}>
                 <span className={styles.ok}>[ OK ]</span> {line}
-              </div>
+              </motion.div>
             ))}
           </motion.div>
         )}
@@ -123,11 +148,11 @@ export default function BootScreen() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
           >
-            <img src="/os/kali-dragon.svg" alt="" className={styles.dragon} />
+            <img src="/os/dragon.svg" alt="" className={styles.dragon} />
             <div className={styles.progressTrack}>
               <div className={styles.progressFill} style={{ width: `${progress}%` }} />
             </div>
-            <div className={styles.splashLabel}>Starting Kali Linux</div>
+            <div className={styles.splashLabel}>Starting Ankan OS</div>
           </motion.div>
         )}
       </AnimatePresence>
