@@ -1,0 +1,66 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-shutdown);
+  background: #000000;
+  color: #e6e6e6;
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  cursor: url("/os/cursors/default.svg") 4 2, auto;
+}
+
+.log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8%;
+  gap: 3px;
+}
+
+.logLine {
+  font-size: 0.78rem;
+  color: #9a9da8;
+}
+
+.stopping {
+  color: var(--kali-yellow, #fea44c);
+  font-weight: 700;
+}
+
+.halted {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.haltedText {
+  font-size: 0.95rem;
+  color: #9a9da8;
+}
+
+.powerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  border: 1px solid #3a3d48;
+  color: #e6e6e6;
+  font-size: 1.4rem;
+}
+
+.powerBtn:hover {
+  border-color: var(--kali-blue, #367bf0);
+  color: var(--kali-blue-bright, #277fff);
+}
+
+.powerHint {
+  font-size: 0.7rem;
+  color: #5a5d68;
+}

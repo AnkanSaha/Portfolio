@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <defs>
+    <linearGradient id="dragonBody" x1="10%" y1="90%" x2="90%" y2="5%">
+      <stop offset="0%" stop-color="#277FFF"/>
+      <stop offset="100%" stop-color="#49AEE6"/>
+    </linearGradient>
+  </defs>
+
+  <!-- coiled serpent-dragon silhouette: tail bottom-left, head top-right -->
+  <path
+    d="M 16,87
+       C 8,70 14,52 32,46
+       C 48,41 44,27 60,20
+       C 66,17 72,15 78,13
+       L 71,21
+       C 64,24 56,29 47,36
+       C 35,44 24,56 19,72
+       C 17,77 16,82 16,87 Z"
+    fill="url(#dragonBody)"
+  />
+
+  <!-- snout -->
+  <path d="M 78,13 L 90,6 L 79,17 Z" fill="#277FFF"/>
+
+  <!-- horns -->
+  <path d="M 66,16 L 63,6 L 71,13 Z" fill="#1F2229"/>
+  <path d="M 75,14 L 76,4 L 81,12 Z" fill="#1F2229"/>
+
+  <!-- eye -->
+  <circle cx="70" cy="18" r="2.2" fill="#1F2229"/>
+
+  <!-- dorsal spikes -->
+  <path d="M 33,46 L 26,38 L 38,42 Z" fill="#1F2229"/>
+  <path d="M 46,34 L 40,25 L 52,30 Z" fill="#1F2229"/>
+  <path d="M 58,23 L 54,14 L 65,19 Z" fill="#1F2229"/>
+
+  <!-- tail tip highlight -->
+  <path d="M 16,87 C 14,82 15,76 17,71 C 15,77 15,82 16,87 Z" fill="#1F2229" opacity="0.35"/>
+</svg>

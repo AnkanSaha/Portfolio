@@ -1,0 +1,12 @@
+.grid {
+  position: fixed;
+  top: calc(var(--panel-height) + 16px);
+  left: 16px;
+  bottom: 16px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 4px;
+  z-index: 1;
+}

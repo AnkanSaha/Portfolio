@@ -1,0 +1,49 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 0.85rem;
+  color: var(--kali-fg-muted);
+}
+
+.username {
+  color: var(--kali-fg-bright);
+  font-family: var(--font-mono);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.tile {
+  padding: 16px;
+  border-radius: 6px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+}
+
+.value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--kali-blue-bright);
+  font-family: var(--font-mono);
+}
+
+.label {
+  font-size: 0.75rem;
+  color: var(--kali-fg-muted);
+  margin-top: 4px;
+}
+
+.state {
+  padding: 24px;
+  color: var(--kali-fg-muted);
+  font-size: 0.85rem;
+}
+
+.error {
+  color: var(--kali-red-bright, #ec0101);
+}

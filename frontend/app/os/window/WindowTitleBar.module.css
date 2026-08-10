@@ -1,0 +1,33 @@
+.titlebar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: var(--titlebar-height);
+  flex-shrink: 0;
+  padding: 0 8px 0 12px;
+  background: var(--kali-panel);
+  border-bottom: 1px solid var(--kali-panel-border);
+  border-radius: var(--window-radius) var(--window-radius) 0 0;
+  user-select: none;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.title {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.82rem;
+  color: var(--kali-fg-muted);
+}
+
+.focused .title {
+  color: var(--kali-fg-bright);
+}

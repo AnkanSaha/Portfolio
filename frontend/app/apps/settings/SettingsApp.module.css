@@ -1,0 +1,160 @@
+.panelTitle {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--kali-fg-bright);
+  margin-bottom: 20px;
+}
+
+.section {
+  margin-bottom: 26px;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kali-blue-bright);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--kali-panel-border);
+}
+
+.swatchRow {
+  display: flex;
+  gap: 10px;
+}
+
+.swatch {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+
+.swatchActive {
+  border-color: var(--kali-fg-bright);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.row:last-child {
+  margin-bottom: 0;
+}
+
+.rowLabel {
+  color: var(--kali-fg);
+  flex-shrink: 0;
+}
+
+.rowValue {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--kali-fg-muted);
+  width: 40px;
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.slider {
+  flex: 1;
+  accent-color: var(--kali-blue);
+}
+
+.switch {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--kali-panel-border);
+  flex-shrink: 0;
+}
+
+.switchOn {
+  background: var(--kali-blue);
+}
+
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.15s var(--ease-xfwm);
+}
+
+.knobOn {
+  transform: translateX(18px);
+}
+
+.segmented {
+  display: flex;
+  gap: 4px;
+  padding: 3px;
+  border-radius: 6px;
+  background: var(--kali-panel);
+}
+
+.segment {
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: var(--kali-fg-muted);
+}
+
+.segment:hover {
+  color: var(--kali-fg);
+}
+
+.segmentActive {
+  background: var(--kali-blue);
+  color: #ffffff;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  font-size: 0.82rem;
+}
+
+.infoLabel {
+  color: var(--kali-fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.infoValue {
+  color: var(--kali-fg);
+  font-family: var(--font-mono);
+}
+
+.resetBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 5px;
+  border: 1px solid var(--kali-red);
+  color: var(--kali-red-bright, #ec0101);
+  font-size: 0.82rem;
+}
+
+.resetBtn:hover {
+  background: rgba(212, 25, 25, 0.12);
+}
+
+.resetHint {
+  margin-top: 10px;
+  font-size: 0.76rem;
+  color: var(--kali-fg-muted);
+}

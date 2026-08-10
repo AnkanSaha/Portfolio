@@ -1,65 +1,64 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Cantarell, Noto_Sans_Mono } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
 import { StoreProvider } from "./store/provider";
-import Navbar from "./components/layout/Navbar/Navbar";
-import Footer from "./components/layout/Footer/Footer";
+import { portfolioData } from "./data/portfolioData";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cantarell = Cantarell({
+  variable: "--font-cantarell",
+  weight: ["400", "700"],
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const notoSansMono = Noto_Sans_Mono({
+  variable: "--font-noto-mono",
   subsets: ["latin"],
 });
+
+const SITE_URL = "https://ankan.in";
+const title = `${portfolioData.name} | ${portfolioData.title}`;
+const description = `${portfolioData.subtitle}. A portfolio built as a working Kali Linux desktop.`;
 
 export const metadata: Metadata = {
-  title: {
-    default: "Ankan Saha | Full Stack Developer",
-    template: "%s | Ankan Saha",
-  },
-  description:
-    "Full Stack Developer & Backend Engineering Specialist. Building scalable infrastructure, microservices, and open-source tools.",
+  title,
+  description,
   keywords: [
-    "Ankan Saha", "Full Stack Developer", "Backend Engineer",
-    "Node.js", "TypeScript", "Cloudflare Workers", "Ankan Saha",
+    portfolioData.name,
+    "Full Stack Developer",
+    "Backend Engineer",
+    "Node.js",
+    "TypeScript",
+    "Cloudflare Workers",
+    "Kali Linux Portfolio",
   ],
-  authors: [{ name: "Ankan Saha", url: "https://ankan.in" }],
+  authors: [{ name: portfolioData.name, url: SITE_URL }],
+  metadataBase: new URL(SITE_URL),
   openGraph: {
     type: "website",
-    url: "https://ankan.in",
-    siteName: "Ankan Saha",
-    title: "Ankan Saha | Full Stack Developer",
-    description:
-      "Full Stack Developer & Backend Engineering Specialist. Building scalable infrastructure for 10M+ users.",
+    url: SITE_URL,
+    siteName: portfolioData.name,
+    title,
+    description,
   },
   twitter: {
     card: "summary_large_image",
     creator: "@theankansaha",
-    title: "Ankan Saha | Full Stack Developer",
-    description:
-      "Full Stack Developer & Backend Engineering Specialist. Building scalable infrastructure for 10M+ users.",
+    title,
+    description,
   },
-  metadataBase: new URL("https://ankan.in"),
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Ankan Saha",
-  url: "https://ankan.in",
-  sameAs: [
-    "https://github.com/AnkanSaha",
-    "https://linkedin.com/in/theankansaha",
-    "https://twitter.com/theankansaha",
-  ],
-  jobTitle: "Full Stack Developer",
-  description: "Backend Engineering Specialist | System Design & Infrastructure Optimization Expert",
-  email: "connect@ankan.in",
-  knowsAbout: ["Node.js", "TypeScript", "Golang", "Docker", "Cloudflare Workers", "Microservices"],
+  name: portfolioData.name,
+  url: SITE_URL,
+  sameAs: [portfolioData.social.github, portfolioData.social.linkedin, portfolioData.social.twitter],
+  jobTitle: portfolioData.title,
+  description: portfolioData.subtitle,
+  email: portfolioData.alternateEmail,
+  knowsAbout: portfolioData.skillCategories.flatMap((c) => c.skills),
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -71,12 +70,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <StoreProvider>
-          <Navbar />
-          <main style={{ paddingTop: "60px" }}>{children}</main>
-          <Footer />
-        </StoreProvider>
+      <body className={`${cantarell.variable} ${notoSansMono.variable}`}>
+        <StoreProvider>{children}</StoreProvider>
         <Analytics />
       </body>
     </html>

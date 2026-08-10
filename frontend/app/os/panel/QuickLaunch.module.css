@@ -1,0 +1,21 @@
+.launch {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 4px;
+  color: var(--kali-fg);
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--kali-blue-bright);
+}

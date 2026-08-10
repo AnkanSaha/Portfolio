@@ -36,6 +36,8 @@ export interface Project {
   period: string;
   github: string;
   npm?: string;
+  live?: string;
+  featured: boolean;
 }
 
 export interface SkillCategory {
@@ -55,7 +57,6 @@ export interface PortfolioData {
   summary: string;
   social: SocialLinks;
   skillCategories: SkillCategory[];
-  skills: Record<string, string[]>;
   experience: Experience[];
   education: Education;
   projects: Project[];
@@ -73,7 +74,7 @@ export const portfolioData: PortfolioData = {
   location: "Kolkata, India",
   currentCompany: "Open to Opportunities",
   summary:
-    "Backend-focused Engineer specializing in JavaScript, TypeScript, and Node.js. Successfully reduced infrastructure costs by $3K/month through architectural migration to Cloudflare Workers. Maintained and migrated infrastructure for production systems serving 10M+ users. Built and shipped an embedded NoSQL database engine to NPM with 2,000+ downloads.",
+    "Backend engineer with 2 years of production experience in Node.js and TypeScript. At an OTT platform with 10M+ users, I moved the frontend onto Cloudflare Workers and cut compute cost by $3,000 a month. On my own time I write developer tools: a NoSQL database on NPM, a DNS server, and a load balancer you set up by chatting with an agent.",
 
   social: {
     github: "https://github.com/AnkanSaha",
@@ -87,120 +88,127 @@ export const portfolioData: PortfolioData = {
 
   skillCategories: [
     {
-      name: "Languages & Frameworks",
-      skills: ["JavaScript", "TypeScript", "Node.js", "Express.js", "Fastify", "NestJS", "Golang"],
+      name: "AI & Agents",
+      skills: ["Agentic AI", "AI Agents", "LangChain.js", "LLM Function Calling (Tool Calling)", "Model Context Protocol (MCP)"],
     },
     {
-      name: "Frontend Ecosystem",
-      skills: ["React.js", "Next.js", "Redux Toolkit", "Zustand", "TailwindCSS", "GraphQL"],
+      name: "Cloud & DevOps",
+      skills: ["AWS (ECS, Fargate, ECR, S3)", "Docker", "Kubernetes (K3s)", "Cloudflare Workers", "Linux", "Nginx", "Git", "GitHub Actions", "CI/CD"],
     },
     {
-      name: "Databases & Cloud",
-      skills: [
-        "MongoDB", "SQL", "Redis", "Redis Streams", "RabbitMQ",
-        "Docker", "AWS Lambda", "Cloudflare Workers", "Nginx", "Git", "CI/CD", "Linux",
-      ],
+      name: "Backend & APIs",
+      skills: ["Node.js", "Express.js", "NestJS", "Fastify", "REST APIs", "Microservices", "Event-Driven Architecture", "WebSockets", "Server-Sent Events", "Authentication (OAuth)"],
     },
     {
-      name: "AI & Integration",
-      skills: ["Gemini API", "OpenAI API", "Google AI File API"],
+      name: "Databases & Messaging",
+      skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "RabbitMQ", "Caching"],
     },
     {
-      name: "System Design",
-      skills: [
-        "Microservices", "Modular Monolith", "Event-driven Architecture",
-        "RESTful APIs", "WebSockets",
-      ],
+      name: "Languages & Frontend",
+      skills: ["TypeScript", "JavaScript", "SQL", "Golang", "React.js", "Next.js"],
     },
   ],
-
-  // Legacy flat skills map kept for backwards compatibility
-  get skills() {
-    return Object.fromEntries(this.skillCategories.map((c) => [c.name, c.skills]));
-  },
 
   experience: [
     {
       title: "Full Stack Developer",
-      company: "Hoichoi Technologies",
+      company: "Hoichoi Technologies Pvt. Ltd.",
       companyDesc: "Bengal's Leading OTT Streaming Platform",
       period: "Jul 2025 - Mar 2026",
       location: "Kolkata, India",
       description:
-        "Engineered website migration to Cloudflare Workers for a platform serving 10M+ users, reducing monthly infrastructure costs by $3,000. Maintained REST APIs powering core platform features and built an FFmpeg API Wrapper abstracting video processing into a clean REST interface.",
+        "Cut compute cost by $3,000 a month on a platform serving 10M+ users, by migrating the Next.js frontend off Vercel onto Cloudflare Workers using OpenNext. Integrated cancellation and retention flows into the Go subscription service behind the same platform.",
       bullets: [
-        "Engineered website migration to Cloudflare Workers for a platform serving 10M+ users, implementing deployment automation that reduced monthly infrastructure costs by $3,000",
-        "Designed and maintained REST APIs powering core platform features including video delivery, user authentication, and subscription flows across the backend codebase",
-        "Built an FFmpeg API Wrapper in Node.js/TypeScript abstracting video processing operations into a clean REST interface, enabling non-technical team members to trigger transcoding jobs without CLI access",
+        "Cut compute cost by $3,000 a month on a platform serving 10M+ users, by migrating the Next.js frontend off Vercel onto Cloudflare Workers using OpenNext",
+        "Integrated Churnkey cancellation and retention flows into the Go subscription service behind the same platform",
+        "Handled day-to-day backend and server issues across the platform, from API bugs to deployment and production incidents",
       ],
-      technologies: ["Cloudflare Workers", "Node.js", "TypeScript", "FFmpeg", "CI/CD", "REST APIs"],
+      technologies: ["Cloudflare Workers", "Next.js", "OpenNext", "Node.js", "TypeScript", "Golang", "CI/CD"],
     },
     {
       title: "Software Engineer",
       company: "Openweb Solutions",
-      companyDesc: "Previously Pitangent Analytics",
+      companyDesc: "Previously Pitangent Analytics (Pitangent Group)",
       period: "Sep 2024 - Jul 2025",
       location: "Kolkata, India",
       description:
-        "Built backend infrastructure for an AI-powered CCTV SaaS platform. Designed an RTSP video stream pipeline handling 40+ concurrent camera feeds for real-time threat detection. Rearchitected video ingestion from buffered batch processing to direct streaming, enabling real-time AI inference.",
+        "Built the Node.js backend and React dashboard for an AI CCTV product, ingesting user-configured RTSP camera streams, pulling frames for an external threat-detection model, and rendering live feeds with detection alerts. Set up the deploy path from CI to AWS Fargate.",
       bullets: [
-        "Built backend infrastructure for an AI-powered CCTV SaaS platform; designed an RTSP video stream pipeline handling 40+ concurrent camera feeds for real-time threat detection",
-        "Rearchitected video ingestion from a buffered batch processing model to a direct streaming pipeline, eliminating accumulated frame delay and enabling real-time AI inference on live RTSP feeds",
-        "Developed an internal management tool (React & Node.js) that automated contract generation and client onboarding workflows",
+        "Built the Node.js backend and React dashboard for an AI CCTV product: ingested user-configured RTSP camera streams, pulled frames out for an external threat-detection model, and rendered live feeds with detection alerts",
+        "Set up the deploy path, with Docker builds pushed to ECR and rolled out from CI to ECS on AWS Fargate with autoscaling",
       ],
-      technologies: ["Node.js", "RTSP Protocol", "Real-time Processing", "React.js", "AI Integration", "Microservices"],
+      technologies: ["Node.js", "React.js", "RTSP Protocol", "Docker", "AWS ECS", "AWS Fargate", "AWS ECR"],
     },
     {
       title: "Junior Software Developer",
-      company: "Excellis IT",
-      period: "Apr 2024 - Sep 2024",
+      company: "Excellis IT Pvt. Ltd.",
+      period: "Apr 2024 - Aug 2024",
       location: "Kolkata, India",
       description:
-        "Developed the backend for a Smart Lock IoT system using Node.js/MQTT, supporting 200+ live devices with real-time remote control capabilities. Improved device connectivity stability by rewriting WebSocket handling with exponential backoff reconnection.",
+        "Wrote the Node.js and MQTT backend for a smart lock system running 200+ live devices, adding exponential backoff reconnection to the WebSocket layer after locks kept dropping off the dashboard. Added path-based change detection to the GitHub Actions pipeline.",
       bullets: [
-        "Developed the backend for a Smart Lock IoT system using Node.js/MQTT, supporting 200+ live devices with real-time remote control capabilities",
-        "Improved device connectivity stability by rewriting WebSocket handling and implementing an exponential backoff reconnection strategy",
+        "Wrote the Node.js and MQTT backend for a smart lock system running 200+ live devices, adding exponential backoff reconnection to the WebSocket layer after locks kept dropping off the dashboard",
+        "Added path-based change detection to the GitHub Actions pipeline so only changed services got tested and deployed",
       ],
-      technologies: ["Node.js", "MQTT", "WebSocket", "IoT", "AES-256 Encryption"],
+      technologies: ["Node.js", "MQTT", "WebSocket", "IoT", "GitHub Actions"],
     },
   ],
 
   education: {
-    degree: "Bachelor of Arts – Art Studies",
+    degree: "Bachelor of Arts",
     university: "University of Kalyani",
-    period: "Oct 2021 - Oct 2024",
-    location: "Kolkata, India",
+    period: "Sep 2021 - Sep 2024",
+    location: "Nadia, West Bengal, India",
     description:
       "Completed Bachelor of Arts degree while simultaneously pursuing intensive self-directed learning in software development, system design, and distributed architectures.",
   },
 
   projects: [
     {
+      name: "EdgeBalancer",
+      tagline: "AI-Configured Load Balancer on Cloudflare Workers",
+      period: "Apr 2026 - May 2026",
+      description:
+        "A load balancer that runs on Cloudflare Workers, live from a dashboard in under 90 seconds, with 7 routing strategies, health checks and per-origin traffic weighting. Runs on K3s with Redis holding shared state.",
+      bullets: [
+        "A load balancer that runs on Cloudflare Workers, live from a dashboard in under 90 seconds, with 7 routing strategies, health checks and per-origin traffic weighting; runs on K3s with Redis holding shared state",
+        "A LangChain.js agent sets one up from a single chat message and streams progress live over SSE; if a deploy fails, it searches the web and reads docs to explain why, instead of returning a stack trace",
+        "Loading tool definitions only when the agent needs them, instead of all of them up front, cut tokens per run by about 66% (1,612 against 4,788); Redis fails over to a backup LLM provider on quota exhaustion and blocks duplicate deploys",
+      ],
+      technologies: ["TypeScript", "LangChain.js", "Cloudflare Workers", "Redis", "K3s"],
+      github: "https://github.com/nexoral/EdgeBalancer",
+      featured: true,
+    },
+    {
       name: "NexoralDNS",
       tagline: "High-Performance Self-Hosted DNS Server",
-      period: "Oct 2025 - Present",
+      period: "Oct 2025 - Jun 2026",
       description:
-        "Engineered a self-hosted DNS server from scratch implementing standard DNS protocol with custom UDP packet parsing, Redis caching, and Change Streams. Achieved 8,050+ QPS with 9-worker cluster and 0.00% packet loss under 500 concurrent clients.",
+        "Self-hosted DNS: block ads network-wide, point any domain where you want, and keep the query data instead of handing it to your ISP. Next.js console for blocklists and live queries, plus an MCP server to manage it in plain English.",
       bullets: [
-        "Engineered a self-hosted DNS server from scratch implementing standard DNS protocol with custom UDP packet parsing, Redis caching, and Change Streams",
-        "Achieved 8,050+ QPS with 9-worker cluster and 0.00% packet loss under 500 concurrent clients in load testing",
+        "Self-hosted DNS: block ads network-wide, point any domain where you want, and keep the query data instead of handing it to your ISP; Next.js console for blocklists and live queries, plus an MCP server to manage it in plain English",
+        "Built in TypeScript first to get the behaviour right, then rewrote the query engine in Go once it was settled: 8,050 queries per second on a 9-node cluster became 12,746 on one 6-core laptop, at 3.8ms latency and no dropped queries (dnsperf)",
+        "Redis caching answers 98% of lookups from memory; RabbitMQ logs after the reply is sent, so logging never delays an answer",
       ],
-      technologies: ["Node.js", "UDP", "Redis", "MongoDB", "DNS Protocol"],
+      technologies: ["Golang", "TypeScript", "Fastify", "Next.js", "Redis", "UDP", "DNS Protocol"],
       github: "https://github.com/nexoral/NexoralDNS",
+      featured: true,
     },
     {
       name: "AxioDB",
       tagline: "Embedded NoSQL Database Engine",
       period: "Oct 2024 - Aug 2025",
       description:
-        "Built AxioDB, an embedded NoSQL database for Node.js/Electron apps with custom hash indexing and binary serialization. Released on NPM with 2,000+ downloads.",
+        "Embedded NoSQL database for Node and Electron, for the gap between SQLite (schema up front) and a JSON file (no queries, no crash safety). Runs inside your process via NPM, ACID transactions and hash indexing.",
       bullets: [
-        "Built an embedded NoSQL database for Node.js/Electron apps with custom hash indexing and binary serialization",
-        "Released on NPM with 2,000+ downloads",
+        "Embedded NoSQL database for Node and Electron, for the gap between SQLite (schema up front) and a JSON file (no queries, no crash safety); runs inside your process via NPM, ACID transactions and hash indexing",
+        "Ships three ways: embedded in your process via NPM, or as a Docker image that several apps share over the AxioDB Cloud client with the same query API, optionally exposing an MCP server for AI agents. Both include a web dashboard with authentication and roles",
+        "19,574 downloads in the last 12 months, 4,947 in the last 30",
       ],
-      technologies: ["TypeScript", "Node.js", "Binary Serialization", "Hash Indexing", "AES-256"],
+      technologies: ["TypeScript", "Node.js", "Docker", "Binary Serialization", "Hash Indexing"],
       github: "https://github.com/nexoral/AxioDB",
       npm: "https://www.npmjs.com/package/axiodb",
+      featured: true,
     },
     {
       name: "ContainDB",
@@ -214,6 +222,7 @@ export const portfolioData: PortfolioData = {
       ],
       technologies: ["Golang", "Docker", "CLI", "MongoDB", "PostgreSQL", "Redis"],
       github: "https://github.com/nexoral/ContainDB",
+      featured: false,
     },
     {
       name: "xpack",
@@ -227,6 +236,7 @@ export const portfolioData: PortfolioData = {
       ],
       technologies: ["Golang", "Linux", "CLI", "Package Management"],
       github: "https://github.com/nexoral/xpack",
+      featured: false,
     },
     {
       name: "react-caches",
@@ -240,6 +250,7 @@ export const portfolioData: PortfolioData = {
       technologies: ["TypeScript", "React", "Local Storage", "Hooks"],
       github: "https://github.com/nexoral/react-caches",
       npm: "https://www.npmjs.com/package/react-caches",
+      featured: false,
     },
     {
       name: "outers",
@@ -253,14 +264,16 @@ export const portfolioData: PortfolioData = {
       technologies: ["TypeScript", "Node.js", "Encryption", "CLI"],
       github: "https://github.com/nexoral/outers",
       npm: "https://www.npmjs.com/package/outers",
+      featured: false,
     },
   ],
 
   achievements: [
     "$3K/month Infrastructure Cost Savings at Hoichoi",
-    "2,000+ NPM Downloads (AxioDB)",
+    "19,574 NPM Downloads in 12 Months (AxioDB)",
     "10M+ Users Served",
-    "8,050+ DNS QPS (NexoralDNS)",
+    "12,746 QPS on a Single Node (NexoralDNS)",
+    "~66% Token Reduction via Lazy Tool Loading (EdgeBalancer)",
     "GitHub Pro",
     "Pull Shark x4",
     "Pair Extraordinaire",

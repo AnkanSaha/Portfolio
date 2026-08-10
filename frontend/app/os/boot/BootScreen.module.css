@@ -1,0 +1,131 @@
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-boot);
+  background: #000000;
+  color: #e6e6e6;
+  font-family: var(--font-mono);
+  display: flex;
+  flex-direction: column;
+  cursor: url("/os/cursors/default.svg") 4 2, auto;
+}
+
+.hint {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-size: 0.72rem;
+  color: #4a4d58;
+}
+
+/* Gate */
+.gate {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.gateDragon {
+  width: 56px;
+  height: 56px;
+  opacity: 0.9;
+}
+
+.gateText {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  text-shadow: 0 0 18px rgba(54, 123, 240, 0.55);
+  letter-spacing: 0.02em;
+}
+
+.gateText::after {
+  content: "_";
+  margin-left: 3px;
+  color: #367bf0;
+  animation: blink 1s step-end infinite;
+}
+
+/* GRUB */
+.grub {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10%;
+}
+
+.grubTitle {
+  color: #ffffff;
+  font-size: 0.85rem;
+  margin-bottom: 18px;
+}
+
+.grubEntry {
+  padding: 3px 10px;
+  font-size: 0.82rem;
+  color: #cfcfcf;
+}
+
+.grubActive {
+  background: #367bf0;
+  color: #ffffff;
+}
+
+/* Log */
+.log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 8%;
+  gap: 3px;
+}
+
+.logLine {
+  font-size: 0.78rem;
+  color: #9a9da8;
+}
+
+.ok {
+  color: #5ebdab;
+  font-weight: 700;
+}
+
+/* Splash */
+.splash {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.dragon {
+  width: 72px;
+  height: 72px;
+}
+
+.progressTrack {
+  width: 220px;
+  height: 3px;
+  border-radius: 2px;
+  background: #23252e;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #367bf0, #49aee6);
+}
+
+.splashLabel {
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #5a5d68;
+}

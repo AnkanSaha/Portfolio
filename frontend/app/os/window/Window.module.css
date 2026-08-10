@@ -1,0 +1,22 @@
+.frame {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  border-radius: var(--window-radius);
+  overflow: hidden;
+  background: rgba(var(--kali-bg-rgb), var(--window-opacity));
+  backdrop-filter: blur(calc((1 - var(--window-opacity)) * 20px));
+  box-shadow: var(--shadow-window);
+  border: 1px solid var(--kali-panel-border);
+}
+
+.focused {
+  border-color: var(--kali-blue);
+}
+
+.content {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+}

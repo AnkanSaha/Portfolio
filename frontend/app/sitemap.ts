@@ -16,13 +16,7 @@ const staticRoutes: Array<{
   path: string;
   changeFrequency: NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>;
   priority: number;
-}> = [
-  { path: '', changeFrequency: 'weekly', priority: 1.0 },
-  { path: '/about', changeFrequency: 'monthly', priority: 0.9 },
-  { path: '/projects', changeFrequency: 'weekly', priority: 0.95 },
-  { path: '/skills', changeFrequency: 'monthly', priority: 0.85 },
-  { path: '/contact', changeFrequency: 'yearly', priority: 0.8 },
-];
+}> = [{ path: '', changeFrequency: 'weekly', priority: 1.0 }];
 
 // Hashnode serves a plain <urlset> (not a sitemap index), so a regex scan is
 // enough — pulled out as a pure function so it can be exercised without a fetch.

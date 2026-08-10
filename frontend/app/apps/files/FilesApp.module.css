@@ -1,0 +1,75 @@
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+  overflow-x: auto;
+}
+
+.crumb {
+  padding: 3px 6px;
+  border-radius: 4px;
+  color: var(--kali-fg-muted);
+  white-space: nowrap;
+}
+
+.crumb:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--kali-fg-bright);
+}
+
+.crumbActive {
+  color: var(--kali-blue-bright);
+}
+
+.sep {
+  color: var(--kali-fg-dim);
+}
+
+.grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(84px, 1fr));
+  gap: 4px;
+  align-content: start;
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 6px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.item:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.itemIcon {
+  font-size: 1.8rem;
+  color: var(--kali-blue-bright);
+}
+
+.itemIconFile {
+  color: var(--kali-fg-muted);
+}
+
+.itemName {
+  font-size: 0.72rem;
+  color: var(--kali-fg);
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.empty {
+  padding: 24px;
+  color: var(--kali-fg-muted);
+  font-size: 0.82rem;
+}

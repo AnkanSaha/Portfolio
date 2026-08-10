@@ -1,0 +1,120 @@
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kali-blue-bright);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--kali-panel-border);
+}
+
+.featuredGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 26px;
+}
+
+.card {
+  padding: 14px 16px;
+  border-radius: 6px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+}
+
+.card:hover {
+  border-color: var(--kali-blue);
+}
+
+.cardHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.cardName {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--kali-fg-bright);
+}
+
+.cardPeriod {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--kali-fg-muted);
+  flex-shrink: 0;
+}
+
+.cardTagline {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--kali-green);
+  margin: 2px 0 8px;
+}
+
+.cardDesc {
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--kali-fg);
+  margin-bottom: 10px;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.links {
+  display: flex;
+  gap: 14px;
+}
+
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.78rem;
+  color: var(--kali-blue-bright);
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.secondaryList {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.secondaryRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 0.83rem;
+}
+
+.secondaryRow:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.secondaryName {
+  color: var(--kali-fg-bright);
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.secondaryTagline {
+  color: var(--kali-fg-muted);
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

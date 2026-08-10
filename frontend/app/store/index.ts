@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import githubReducer from "./slices/githubSlice";
-import uiReducer from "./slices/uiSlice";
+import windowsReducer from "./slices/windowsSlice";
+import systemReducer from "./slices/systemSlice";
 
 export const store = configureStore({
   reducer: {
     github: githubReducer,
-    ui: uiReducer,
+    windows: windowsReducer,
+    system: systemReducer,
   },
 });
 
