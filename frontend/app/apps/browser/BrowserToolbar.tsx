@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { FiArrowLeft, FiArrowRight, FiRefreshCw, FiHome, FiExternalLink } from "react-icons/fi";
-import { isStartPage, isSearchQuery, displayUrl } from "./browserUtils";
+import { isStartPage, displayUrl } from "./browserUtils";
 import styles from "./BrowserToolbar.module.css";
 
 interface BrowserToolbarProps {
@@ -61,7 +61,7 @@ export default function BrowserToolbar({
         />
       </form>
 
-      {!isStartPage(url) && !isSearchQuery(url) && (
+      {!isStartPage(url) && (
         <a className={styles.externalLink} href={url} target="_blank" rel="noopener noreferrer">
           <FiExternalLink /> Open
         </a>

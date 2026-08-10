@@ -4,16 +4,7 @@ import { AppShell } from "../../os/ui";
 import BrowserTabStrip from "./BrowserTabStrip";
 import BrowserToolbar from "./BrowserToolbar";
 import BrowserStartPage from "./BrowserStartPage";
-import BrowserSearchResults from "./BrowserSearchResults";
-import {
-  START_PAGE,
-  resolveInput,
-  isStartPage,
-  isSearchQuery,
-  searchQueryFrom,
-  proxiedSrc,
-  realUrlFromProxiedLocation,
-} from "./browserUtils";
+import { START_PAGE, resolveInput, isStartPage, proxiedSrc, realUrlFromProxiedLocation } from "./browserUtils";
 import styles from "./BrowserApp.module.css";
 
 interface Tab {
@@ -118,8 +109,6 @@ export default function BrowserApp() {
     >
       {isStartPage(currentUrl) ? (
         <BrowserStartPage onNavigate={navigate} />
-      ) : isSearchQuery(currentUrl) ? (
-        <BrowserSearchResults query={searchQueryFrom(currentUrl)} onNavigate={navigate} />
       ) : (
         <iframe
           key={`${activeTab.id}-${activeTab.reloadNonce}`}

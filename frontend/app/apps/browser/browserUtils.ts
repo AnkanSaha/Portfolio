@@ -1,6 +1,5 @@
 export const START_PAGE = "kali://new-tab";
 export const PROXY_PATH = "/api/proxy";
-const SEARCH_PREFIX = "kali-search:";
 
 /** URL the iframe actually loads — routed through our own server-side proxy
  * so the target's X-Frame-Options never reaches the browser. */
@@ -24,43 +23,44 @@ export function realUrlFromProxiedLocation(href: string): string | null {
 
 const DOMAIN_LIKE = /^[a-z0-9-]+(\.[a-z0-9-]+)+(:\d+)?(\/.*)?$/i;
 
-/** Resolve address-bar input into a navigable URL. Real URLs pass through
- * as-is; anything else is treated as a search query. Every major search
- * engine (Google, Bing, DuckDuckGo — verified against its response headers)
- * sends X-Frame-Options/frame-ancestors that block iframing entirely, so a
- * search query resolves to an internal sentinel instead of a URL — the
- * browser renders a real "open search results" page for it rather than
- * pretending an embed that can't work. */
+/** Resolve address-bar input into a navigable URL, exactly like a real
+ * browser: URLs pass through as-is, anything else becomes a search engine
+ * URL. Since navigation always goes through our own proxy (which strips the
+ * target's X-Frame-Options), a real search results page — not a canned
+ * list — loads for any query. DuckDuckGo's plain-HTML endpoint is used
+ * because it's simple server-rendered markup that survives proxying far
+ * better than a JS-heavy results page would. */
 export function resolveInput(raw: string): string {
   const trimmed = raw.trim();
   if (!trimmed || trimmed === START_PAGE) return START_PAGE;
-  if (trimmed.startsWith(SEARCH_PREFIX)) return trimmed;
   if (/^https?:\/\//i.test(trimmed)) return trimmed;
   if (DOMAIN_LIKE.test(trimmed) && !trimmed.includes(" ")) return `https://${trimmed}`;
-  return `${SEARCH_PREFIX}${encodeURIComponent(trimmed)}`;
+  return `https://html.duckduckgo.com/html/?q=${encodeURIComponent(trimmed)}`;
 }
 
 export function isStartPage(url: string): boolean {
   return url === START_PAGE;
 }
 
-export function isSearchQuery(url: string): boolean {
-  return url.startsWith(SEARCH_PREFIX);
-}
-
-export function searchQueryFrom(url: string): string {
-  return decodeURIComponent(url.slice(SEARCH_PREFIX.length));
+function searchQueryOf(url: string): string | null {
+  try {
+    const parsed = new URL(url);
+    if (parsed.hostname !== "html.duckduckgo.com") return null;
+    return parsed.searchParams.get("q");
+  } catch {
+    return null;
+  }
 }
 
 export function displayUrl(url: string): string {
   if (isStartPage(url)) return "";
-  if (isSearchQuery(url)) return searchQueryFrom(url);
-  return url;
+  return searchQueryOf(url) ?? url;
 }
 
 export function tabLabel(url: string): string {
   if (isStartPage(url)) return "New Tab";
-  if (isSearchQuery(url)) return `Search: ${searchQueryFrom(url)}`;
+  const query = searchQueryOf(url);
+  if (query) return `Search: ${query}`;
   try {
     return new URL(url).hostname.replace(/^www\./, "");
   } catch {
