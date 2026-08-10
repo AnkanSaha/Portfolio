@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 
 const HISTORY_LEN = 60;
+const POLL_MS = 2000;
 
 interface BatteryManager extends EventTarget {
   charging: boolean;
@@ -28,11 +29,18 @@ const initialStats: BatteryStats = {
   history: [],
 };
 
+const EVENTS = ["levelchange", "chargingchange", "chargingtimechange", "dischargingtimechange"] as const;
+
 /**
  * Real navigator.getBattery() — level, charging state, and time estimates
  * straight from the device. Only Chromium exposes this (Firefox and Safari
  * dropped it over fingerprinting concerns), so stats.supported stays false
  * everywhere else rather than faking a percentage.
+ *
+ * The Battery Status API fires charge-time and discharge-time updates as
+ * their own events, separate from chargingchange — missing those meant the
+ * "time to full"/"time remaining" fields only ever caught up on the next
+ * poll tick instead of updating the instant the browser recomputed them.
  */
 export function useBattery(): BatteryStats {
   const [stats, setStats] = useState<BatteryStats>(initialStats);
@@ -44,14 +52,15 @@ export function useBattery(): BatteryStats {
     let battery: BatteryManager | null = null;
     let cancelled = false;
 
-    function read(b: BatteryManager) {
-      const pct = Math.round(b.level * 100);
+    function read() {
+      if (!battery) return;
+      const pct = Math.round(battery.level * 100);
       setStats((s) => ({
         supported: true,
-        charging: b.charging,
+        charging: battery!.charging,
         level: pct,
-        chargingTime: b.chargingTime,
-        dischargingTime: b.dischargingTime,
+        chargingTime: battery!.chargingTime,
+        dischargingTime: battery!.dischargingTime,
         history: s.history.length >= HISTORY_LEN ? [...s.history.slice(1), pct] : [...s.history, pct],
       }));
     }
@@ -59,18 +68,16 @@ export function useBattery(): BatteryStats {
     getBattery.call(navigator).then((b) => {
       if (cancelled) return;
       battery = b;
-      read(b);
-      b.addEventListener("levelchange", () => read(b));
-      b.addEventListener("chargingchange", () => read(b));
+      read();
+      for (const evt of EVENTS) b.addEventListener(evt, read);
     });
 
-    const id = setInterval(() => {
-      if (battery) read(battery);
-    }, 5000);
+    const id = setInterval(read, POLL_MS);
 
     return () => {
       cancelled = true;
       clearInterval(id);
+      if (battery) for (const evt of EVENTS) battery.removeEventListener(evt, read);
     };
   }, []);
 

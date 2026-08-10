@@ -12,6 +12,7 @@
   background: var(--ankan-panel);
   border: 1px solid var(--ankan-panel-border);
   box-shadow: var(--shadow-menu);
+  user-select: none;
   z-index: var(--z-menu);
 }
 

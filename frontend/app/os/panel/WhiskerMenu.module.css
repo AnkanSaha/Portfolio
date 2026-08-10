@@ -18,6 +18,7 @@
   box-shadow: var(--shadow-menu);
   z-index: var(--z-menu);
   overflow: hidden;
+  user-select: none;
 }
 
 .searchWrap {
@@ -32,6 +33,7 @@
   border: 1px solid var(--ankan-panel-border);
   color: var(--ankan-fg);
   font-size: 0.82rem;
+  user-select: text;
 }
 
 .search:focus {

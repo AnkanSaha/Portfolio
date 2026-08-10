@@ -62,12 +62,6 @@
   color: var(--ankan-fg-muted);
 }
 
-.na {
-  color: var(--ankan-fg-dim);
-  font-style: italic;
-  font-size: 0.76rem;
-}
-
 .footnote {
   font-size: 0.68rem;
   color: var(--ankan-fg-dim);

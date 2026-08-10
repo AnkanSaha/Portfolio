@@ -7,3 +7,4 @@ export { default as ScrollArea } from "./ScrollArea";
 export { default as Sparkline } from "./Sparkline";
 export { default as Switch } from "./Switch";
 export { default as OfflineScreen } from "./OfflineScreen";
+export { default as BatteryIcon } from "./BatteryIcon";

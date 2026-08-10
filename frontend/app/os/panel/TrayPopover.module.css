@@ -32,4 +32,5 @@
   z-index: var(--z-menu);
   font-size: 0.82rem;
   color: var(--ankan-fg);
+  user-select: none;
 }
