@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { AppShell, ScrollArea } from "../../os/ui";
+import { AppShell, ScrollArea, Sparkline } from "../../os/ui";
 import { useAppSelector } from "../../store/hooks";
 import { useCpuLoad, useMemStats, useNetStats, useNetThroughput } from "./useSystemStats";
 import styles from "./MonitorApp.module.css";
@@ -21,19 +21,6 @@ function formatUptime(ms: number) {
 
 function formatClock(date: Date) {
   return date.toTimeString().slice(0, 8);
-}
-
-function Sparkline({ history, max = 100 }: { history: number[]; max?: number }) {
-  if (history.length < 2) return <svg className={styles.spark} viewBox="0 0 100 32" preserveAspectRatio="none" />;
-  const step = 100 / (history.length - 1);
-  const linePoints = history.map((v, i) => `${i * step},${32 - (Math.min(v, max) / max) * 32}`).join(" ");
-  const areaPoints = `0,32 ${linePoints} 100,32`;
-  return (
-    <svg className={styles.spark} viewBox="0 0 100 32" preserveAspectRatio="none">
-      <polyline points={areaPoints} className={styles.sparkFill} />
-      <polyline points={linePoints} className={styles.sparkLine} />
-    </svg>
-  );
 }
 
 function MeterBar({ pct }: { pct: number }) {
@@ -79,7 +66,7 @@ export default function MonitorApp() {
 
           <div className={`${styles.box} ${styles.boxCpu}`}>
             <div className={styles.boxTitle}>cpu</div>
-            <Sparkline history={cpu.history} />
+            <Sparkline history={cpu.history} className={styles.spark} />
             <div className={styles.coreGrid}>
               {Array.from({ length: cores }, (_, i) => (
                 <div key={i} className={styles.coreCell}>
@@ -119,7 +106,7 @@ export default function MonitorApp() {
 
             <div className={`${styles.box} ${styles.boxNet}`}>
               <div className={styles.boxTitle}>net</div>
-              <Sparkline history={netFlow.history} max={Math.max(8, ...netFlow.history)} />
+              <Sparkline history={netFlow.history} max={Math.max(8, ...netFlow.history)} className={styles.spark} />
               <div className={styles.netRows}>
                 <div>
                   <span className={styles.netLabel}>down</span>

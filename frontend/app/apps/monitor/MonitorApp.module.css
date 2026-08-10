@@ -68,29 +68,11 @@
 }
 
 .spark {
-  display: block;
-  width: 100%;
-  height: 40px;
   color: var(--ankan-blue-bright);
 }
 
-.boxMem .spark {
-  color: var(--ankan-green-bright);
-}
 .boxNet .spark {
   color: var(--ankan-cyan-bright);
-}
-
-.sparkFill {
-  fill: currentColor;
-  stroke: none;
-  opacity: 0.16;
-}
-
-.sparkLine {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.5;
 }
 
 .boxFoot {

@@ -4,3 +4,6 @@ export { default as Sidebar } from "./Sidebar";
 export { default as ListRow } from "./ListRow";
 export { default as Badge } from "./Badge";
 export { default as ScrollArea } from "./ScrollArea";
+export { default as Sparkline } from "./Sparkline";
+export { default as Switch } from "./Switch";
+export { default as OfflineScreen } from "./OfflineScreen";

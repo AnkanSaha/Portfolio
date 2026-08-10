@@ -16,6 +16,8 @@ import {
   FiPercent,
   FiActivity,
   FiBookOpen,
+  FiBatteryCharging,
+  FiCalendar,
 } from "react-icons/fi";
 import type { AppComponentProps } from "./types";
 
@@ -33,6 +35,8 @@ import NexoralApp from "./nexoral/NexoralApp";
 import CalculatorApp from "./calculator/CalculatorApp";
 import MonitorApp from "./monitor/MonitorApp";
 import BlogApp from "./blog/BlogApp";
+import BatteryApp from "./battery/BatteryApp";
+import CalendarApp from "./calendar/CalendarApp";
 
 const TerminalApp = dynamic(() => import("./terminal/TerminalApp"), { ssr: false });
 
@@ -182,6 +186,24 @@ export const APP_REGISTRY: Record<string, AppDefinition> = {
     category: "utility",
     desktopIcon: true,
   },
+  battery: {
+    id: "battery",
+    title: "Battery",
+    icon: FiBatteryCharging,
+    component: BatteryApp,
+    defaultSize: { w: 420, h: 560 },
+    category: "system",
+    desktopIcon: false,
+  },
+  calendar: {
+    id: "calendar",
+    title: "Calendar",
+    icon: FiCalendar,
+    component: CalendarApp,
+    defaultSize: { w: 380, h: 560 },
+    category: "system",
+    desktopIcon: false,
+  },
 };
 
 export const APP_ORDER = [
@@ -200,4 +222,6 @@ export const APP_ORDER = [
   "settings",
   "github",
   "nexoral",
+  "battery",
+  "calendar",
 ];

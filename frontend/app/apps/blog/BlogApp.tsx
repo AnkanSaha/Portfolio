@@ -1,13 +1,15 @@
 "use client";
 import { useState } from "react";
 import { FiExternalLink, FiRefreshCw } from "react-icons/fi";
-import { AppShell, Toolbar, ToolbarSpacer } from "../../os/ui";
+import { AppShell, Toolbar, ToolbarSpacer, OfflineScreen } from "../../os/ui";
+import { useAppSelector } from "../../store/hooks";
 import styles from "./BlogApp.module.css";
 
 const BLOG_URL = "https://blog.ankan.in/";
 
 export default function BlogApp() {
   const [reloadNonce, setReloadNonce] = useState(0);
+  const wifiEnabled = useAppSelector((s) => s.system.wifiEnabled);
 
   return (
     <AppShell
@@ -24,7 +26,11 @@ export default function BlogApp() {
         </Toolbar>
       }
     >
-      <iframe key={reloadNonce} className={styles.frame} src={BLOG_URL} title="Ankan Saha — Blog" />
+      {wifiEnabled ? (
+        <iframe key={reloadNonce} className={styles.frame} src={BLOG_URL} title="Ankan Saha — Blog" />
+      ) : (
+        <OfflineScreen />
+      )}
     </AppShell>
   );
 }

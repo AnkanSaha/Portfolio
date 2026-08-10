@@ -1,8 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useOpenApp } from "../window/useOpenApp";
 
 export default function Clock() {
   const [now, setNow] = useState<Date | null>(null);
+  const openApp = useOpenApp();
 
   useEffect(() => {
     setNow(new Date());
@@ -16,8 +18,17 @@ export default function Clock() {
   const date = now.toLocaleDateString([], { weekday: "short", day: "numeric", month: "short" });
 
   return (
-    <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.78rem", color: "var(--ankan-fg)" }}>
+    <button
+      type="button"
+      onClick={() => openApp("calendar")}
+      style={{
+        fontFamily: "var(--font-mono)",
+        fontSize: "0.78rem",
+        color: "var(--ankan-fg)",
+        padding: "0 4px",
+      }}
+    >
       {date} {time}
-    </span>
+    </button>
   );
 }

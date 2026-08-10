@@ -6,6 +6,13 @@
   font-size: 0.95rem;
 }
 
-.offline {
-  color: var(--ankan-red-bright, #ec0101);
+.batteryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ankan-fg-muted);
+}
+
+.batteryBtn:hover {
+  color: var(--ankan-fg-bright);
 }
