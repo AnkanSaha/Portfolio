@@ -1,0 +1,36 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  min-width: 0;
+  overflow-x: auto;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 160px;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.78rem;
+  color: var(--kali-fg-muted);
+  border: 1px solid transparent;
+  flex-shrink: 0;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.active {
+  background: rgba(54, 123, 240, 0.2);
+  border-color: var(--kali-blue);
+  color: var(--kali-fg-bright);
+}
+
+.label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

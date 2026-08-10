@@ -1,0 +1,24 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  line-height: 1.6;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--kali-panel-border);
+  color: var(--kali-fg-muted);
+}
+
+.accent {
+  background: rgba(54, 123, 240, 0.14);
+  border-color: rgba(54, 123, 240, 0.35);
+  color: var(--kali-blue-bright);
+}
+
+.green {
+  background: rgba(94, 189, 171, 0.14);
+  border-color: rgba(94, 189, 171, 0.35);
+  color: var(--kali-green);
+}

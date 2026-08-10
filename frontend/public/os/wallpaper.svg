@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d0f14"/>
+      <stop offset="50%" stop-color="#181b24"/>
+      <stop offset="100%" stop-color="#23252e"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="85%" r="65%">
+      <stop offset="0%" stop-color="#367bf0" stop-opacity="0.32"/>
+      <stop offset="45%" stop-color="#367bf0" stop-opacity="0.1"/>
+      <stop offset="100%" stop-color="#367bf0" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="12%" cy="10%" r="45%">
+      <stop offset="0%" stop-color="#49aee6" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#49aee6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="dragonBodyWp" x1="10%" y1="90%" x2="90%" y2="5%">
+      <stop offset="0%" stop-color="#277FFF"/>
+      <stop offset="100%" stop-color="#49AEE6"/>
+    </linearGradient>
+    <pattern id="facets" width="120" height="120" patternUnits="userSpaceOnUse">
+      <path d="M0 60 L60 0 L120 60 L60 120 Z" fill="none" stroke="#ffffff" stroke-opacity="0.02" stroke-width="1"/>
+    </pattern>
+    <g id="dragonMark">
+      <path
+        d="M 16,87
+           C 8,70 14,52 32,46
+           C 48,41 44,27 60,20
+           C 66,17 72,15 78,13
+           L 71,21
+           C 64,24 56,29 47,36
+           C 35,44 24,56 19,72
+           C 17,77 16,82 16,87 Z"
+        fill="url(#dragonBodyWp)"
+      />
+      <path d="M 78,13 L 90,6 L 79,17 Z" fill="#277FFF"/>
+      <path d="M 66,16 L 63,6 L 71,13 Z" fill="#0d0f14"/>
+      <path d="M 75,14 L 76,4 L 81,12 Z" fill="#0d0f14"/>
+      <circle cx="70" cy="18" r="2.2" fill="#0d0f14"/>
+      <path d="M 33,46 L 26,38 L 38,42 Z" fill="#0d0f14"/>
+      <path d="M 46,34 L 40,25 L 52,30 Z" fill="#0d0f14"/>
+      <path d="M 58,23 L 54,14 L 65,19 Z" fill="#0d0f14"/>
+    </g>
+  </defs>
+
+  <rect width="1920" height="1080" fill="url(#bg)"/>
+  <rect width="1920" height="1080" fill="url(#facets)"/>
+  <rect width="1920" height="1080" fill="url(#glow2)"/>
+  <rect width="1920" height="1080" fill="url(#glow)"/>
+
+  <use href="#dragonMark" transform="translate(1360,480) scale(5.2)" opacity="0.9"/>
+
+  <line x1="0" y1="0" x2="1920" y2="1080" stroke="#367bf0" stroke-opacity="0.025" stroke-width="2"/>
+</svg>

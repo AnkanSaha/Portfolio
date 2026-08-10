@@ -1,0 +1,123 @@
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 100%;
+  color: var(--kali-fg);
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--kali-red-bright, #ec0101);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+}
+
+.menu {
+  position: fixed;
+  top: calc(var(--panel-height) + 6px);
+  right: 6px;
+  width: 170px;
+  padding: 6px;
+  border-radius: 8px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  box-shadow: var(--shadow-menu);
+  z-index: var(--z-menu);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  color: var(--kali-fg);
+}
+
+.item:hover {
+  background: var(--kali-blue);
+  color: #ffffff;
+}
+
+.confirmOverlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-shutdown);
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dialog {
+  width: 320px;
+  padding: 20px;
+  border-radius: 8px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  box-shadow: var(--shadow-window);
+  text-align: center;
+}
+
+.dialogIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 14px;
+  border-radius: 50%;
+  background: rgba(212, 25, 25, 0.15);
+  color: var(--kali-red-bright, #ec0101);
+  font-size: 1.4rem;
+}
+
+.dialogTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--kali-fg-bright);
+  margin-bottom: 6px;
+}
+
+.dialogText {
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+  margin-bottom: 18px;
+}
+
+.dialogActions {
+  display: flex;
+  gap: 10px;
+}
+
+.dialogBtn {
+  flex: 1;
+  padding: 8px;
+  border-radius: 5px;
+  font-size: 0.82rem;
+  border: 1px solid var(--kali-panel-border);
+  color: var(--kali-fg);
+}
+
+.dialogBtn:hover {
+  border-color: var(--kali-fg-muted);
+}
+
+.confirmBtn {
+  background: var(--kali-red);
+  border-color: var(--kali-red);
+  color: #ffffff;
+}
+
+.confirmBtn:hover {
+  background: var(--kali-red-bright);
+  border-color: var(--kali-red-bright);
+}

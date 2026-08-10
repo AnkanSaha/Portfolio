@@ -1,0 +1,38 @@
+.icon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: var(--icon-box-size);
+  padding: 10px 6px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.icon:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.selected {
+  background: rgba(54, 123, 240, 0.28);
+}
+
+.glyph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--icon-glyph-size);
+  height: var(--icon-glyph-size);
+  border-radius: 8px;
+  background: rgba(31, 34, 41, 0.7);
+  color: var(--kali-blue-bright);
+  font-size: 1.3rem;
+}
+
+.label {
+  font-size: var(--icon-font-size);
+  color: #ffffff;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8);
+  word-break: break-word;
+  line-height: 1.3;
+}

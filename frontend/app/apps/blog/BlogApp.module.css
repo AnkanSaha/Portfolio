@@ -1,0 +1,27 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid var(--kali-panel-border);
+}
+
+.link:hover {
+  border-color: var(--kali-blue);
+  color: var(--kali-blue-bright);
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+}
+
+.frame {
+  flex: 1;
+  border: none;
+  background: #ffffff;
+}

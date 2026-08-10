@@ -1,0 +1,39 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+}
+
+.menu {
+  position: fixed;
+  min-width: 200px;
+  padding: 6px;
+  border-radius: 6px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  box-shadow: var(--shadow-menu);
+  z-index: var(--z-menu);
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font-size: 0.82rem;
+  color: var(--kali-fg);
+  text-align: left;
+}
+
+.item:hover {
+  background: var(--kali-blue);
+  color: #ffffff;
+}
+
+.sep {
+  height: 1px;
+  margin: 5px 4px;
+  background: var(--kali-panel-border);
+}

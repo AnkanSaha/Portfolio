@@ -1,0 +1,70 @@
+.page {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  padding: 24px;
+  background: var(--kali-bg);
+  overflow-y: auto;
+}
+
+.dragon {
+  width: 48px;
+  height: 48px;
+}
+
+.searchForm {
+  width: 100%;
+  max-width: 480px;
+}
+
+.searchInput {
+  width: 100%;
+  padding: 12px 18px;
+  border-radius: 24px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  color: var(--kali-fg);
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--kali-blue);
+}
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  width: 100%;
+  max-width: 480px;
+}
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 8px;
+  border-radius: 8px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+}
+
+.tile:hover {
+  border-color: var(--kali-blue);
+}
+
+.tileIcon {
+  font-size: 1.3rem;
+  color: var(--kali-blue-bright);
+}
+
+.tileLabel {
+  font-size: 0.74rem;
+  color: var(--kali-fg-muted);
+}

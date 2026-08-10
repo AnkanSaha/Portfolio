@@ -1,0 +1,81 @@
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.entry {
+  position: relative;
+  padding: 0 0 26px 24px;
+  border-left: 2px solid var(--kali-panel-border);
+}
+
+.entry:last-child {
+  border-left-color: transparent;
+  padding-bottom: 0;
+}
+
+.dot {
+  position: absolute;
+  left: -7px;
+  top: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--kali-blue);
+  border: 2px solid var(--kali-bg);
+  box-shadow: 0 0 0 2px var(--kali-blue);
+}
+
+.roleTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--kali-fg-bright);
+}
+
+.company {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--kali-green);
+  margin-top: 2px;
+}
+
+.companyDesc {
+  color: var(--kali-fg-muted);
+  font-weight: 400;
+}
+
+.meta {
+  font-size: 0.75rem;
+  color: var(--kali-fg-muted);
+  margin: 4px 0 10px;
+}
+
+.bullets {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.bullets li {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--kali-fg);
+  padding-left: 16px;
+  position: relative;
+}
+
+.bullets li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--kali-blue-bright);
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

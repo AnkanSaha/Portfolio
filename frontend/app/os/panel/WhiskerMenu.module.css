@@ -1,0 +1,119 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-menu);
+}
+
+.menu {
+  position: fixed;
+  top: calc(var(--panel-height) + 6px);
+  left: 6px;
+  width: 340px;
+  max-height: 480px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  box-shadow: var(--shadow-menu);
+  z-index: var(--z-menu);
+  overflow: hidden;
+}
+
+.searchWrap {
+  padding: 10px;
+}
+
+.search {
+  width: 100%;
+  padding: 7px 10px;
+  border-radius: 5px;
+  background: var(--kali-bg);
+  border: 1px solid var(--kali-panel-border);
+  color: var(--kali-fg);
+  font-size: 0.82rem;
+}
+
+.search:focus {
+  outline: none;
+  border-color: var(--kali-blue);
+}
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.appRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 10px;
+  border-radius: 5px;
+  font-size: 0.83rem;
+  color: var(--kali-fg);
+}
+
+.appRow:hover {
+  background: var(--kali-blue);
+  color: #ffffff;
+}
+
+.appIcon {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+  color: var(--kali-blue-bright);
+}
+
+.appRow:hover .appIcon {
+  color: #ffffff;
+}
+
+.empty {
+  padding: 20px;
+  text-align: center;
+  color: var(--kali-fg-muted);
+  font-size: 0.8rem;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-top: 1px solid var(--kali-panel-border);
+}
+
+.userTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--kali-fg-muted);
+}
+
+.footerActions {
+  display: flex;
+  gap: 4px;
+}
+
+.footerBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  color: var(--kali-fg-muted);
+}
+
+.footerBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--kali-fg-bright);
+}

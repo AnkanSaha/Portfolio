@@ -1,0 +1,81 @@
+.section {
+  margin-bottom: 22px;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kali-blue-bright);
+  margin-bottom: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--kali-panel-border);
+}
+
+.meterRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.meterLabel {
+  width: 120px;
+  flex-shrink: 0;
+  font-size: 0.78rem;
+  color: var(--kali-fg-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meterTrack {
+  flex: 1;
+  height: 8px;
+  border-radius: 4px;
+  background: var(--kali-panel);
+  overflow: hidden;
+}
+
+.meterFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--kali-blue), var(--kali-cyan));
+  transition: width 0.5s ease;
+}
+
+.meterValue {
+  width: 40px;
+  flex-shrink: 0;
+  text-align: right;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--kali-fg);
+}
+
+.gaugeGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.gauge {
+  padding: 14px;
+  border-radius: 6px;
+  background: var(--kali-panel);
+  border: 1px solid var(--kali-panel-border);
+  text-align: center;
+}
+
+.gaugeValue {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--kali-blue-bright);
+}
+
+.gaugeLabel {
+  font-size: 0.74rem;
+  color: var(--kali-fg-muted);
+  margin-top: 4px;
+}

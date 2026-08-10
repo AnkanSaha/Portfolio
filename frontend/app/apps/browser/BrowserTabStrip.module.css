@@ -1,0 +1,71 @@
+.strip {
+  display: flex;
+  align-items: center;
+  height: 34px;
+  flex-shrink: 0;
+  background: var(--kali-panel);
+  padding: 4px 4px 0;
+  gap: 2px;
+  overflow-x: auto;
+}
+
+.tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  max-width: 160px;
+  height: 100%;
+  padding: 0 8px 0 12px;
+  border-radius: 6px 6px 0 0;
+  font-size: 0.76rem;
+  color: var(--kali-fg-muted);
+  flex-shrink: 0;
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tabActive {
+  background: var(--kali-bg);
+  color: var(--kali-fg);
+}
+
+.tabLabel {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  text-align: left;
+}
+
+.closeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.closeBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.newTabBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 5px;
+  color: var(--kali-fg-muted);
+  flex-shrink: 0;
+}
+
+.newTabBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--kali-fg);
+}

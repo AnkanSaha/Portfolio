@@ -1,0 +1,49 @@
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: var(--kali-fg);
+  text-align: left;
+}
+
+.row:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.active {
+  background: var(--kali-blue);
+  color: #ffffff;
+}
+
+.active:hover {
+  background: var(--kali-blue);
+}
+
+.icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+}
+
+.label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  flex-shrink: 0;
+  font-size: 0.75rem;
+  color: var(--kali-fg-muted);
+}
+
+.active .meta {
+  color: rgba(255, 255, 255, 0.8);
+}

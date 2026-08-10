@@ -1,12 +1,11 @@
 "use client";
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import type { AppDispatch, RootState } from "../store";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { fetchGitHubData } from "../store/slices/githubSlice";
 
 export function useGitHubData() {
-  const dispatch = useDispatch<AppDispatch>();
-  const { data, status, error } = useSelector((s: RootState) => s.github);
+  const dispatch = useAppDispatch();
+  const { data, status, error } = useAppSelector((s) => s.github);
 
   useEffect(() => {
     if (status === "idle") {

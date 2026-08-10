@@ -1,0 +1,22 @@
+.tabs {
+  display: flex;
+  gap: 4px;
+  padding: 0 10px 8px;
+}
+
+.tab {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.74rem;
+  text-transform: capitalize;
+  color: var(--kali-fg-muted);
+}
+
+.tab:hover {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.active {
+  background: var(--kali-blue);
+  color: #ffffff;
+}

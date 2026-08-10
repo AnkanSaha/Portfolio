@@ -1,0 +1,99 @@
+.header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--kali-blue), var(--kali-cyan));
+  color: #ffffff;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+.name {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--kali-fg-bright);
+}
+
+.title {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--kali-green);
+}
+
+.subtitle {
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+  margin-top: 2px;
+}
+
+.section {
+  margin-bottom: 22px;
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--kali-blue-bright);
+  margin-bottom: 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--kali-panel-border);
+}
+
+.summary {
+  font-size: 0.88rem;
+  line-height: 1.65;
+  color: var(--kali-fg);
+}
+
+.factGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 20px;
+  font-size: 0.82rem;
+}
+
+.factLabel {
+  color: var(--kali-fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.factValue {
+  color: var(--kali-fg);
+}
+
+.eduCard {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.eduDegree {
+  color: var(--kali-fg-bright);
+  font-weight: 700;
+}
+
+.eduMeta {
+  color: var(--kali-fg-muted);
+  font-size: 0.78rem;
+  margin: 2px 0 8px;
+}
+
+.badgeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}

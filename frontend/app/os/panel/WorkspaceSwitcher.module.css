@@ -1,0 +1,23 @@
+.switcher {
+  display: flex;
+  gap: 3px;
+}
+
+.cell {
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  border: 1px solid var(--kali-panel-border);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--kali-fg-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.active {
+  background: var(--kali-blue);
+  border-color: var(--kali-blue);
+  color: #ffffff;
+}

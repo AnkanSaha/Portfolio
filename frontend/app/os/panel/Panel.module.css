@@ -1,0 +1,48 @@
+.autoHideWrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--panel-height);
+  z-index: var(--z-panel);
+  overflow: hidden;
+  transition: height 0.16s var(--ease-xfwm);
+}
+
+.collapsed {
+  height: 6px;
+}
+
+.panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--panel-height);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 8px;
+  background: var(--kali-panel);
+  box-shadow: var(--shadow-panel);
+  font-family: var(--font-ui);
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: var(--kali-panel-border);
+  flex-shrink: 0;
+}
+
+.spacer {
+  flex: 1;
+  min-width: 8px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}

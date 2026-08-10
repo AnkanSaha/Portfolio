@@ -1,0 +1,43 @@
+.filename {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  color: var(--kali-fg-muted);
+}
+
+.body {
+  flex: 1;
+  display: flex;
+  overflow: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.gutter {
+  flex-shrink: 0;
+  padding: 16px 12px 16px 16px;
+  text-align: right;
+  color: var(--kali-fg-dim);
+  background: var(--kali-panel);
+  user-select: none;
+}
+
+.gutter div {
+  min-height: 1.6em;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 16px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  color: var(--kali-fg);
+}
+
+.empty {
+  padding: 24px;
+  color: var(--kali-fg-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+}

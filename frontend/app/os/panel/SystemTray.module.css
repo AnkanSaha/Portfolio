@@ -1,0 +1,11 @@
+.tray {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--kali-fg-muted);
+  font-size: 0.95rem;
+}
+
+.offline {
+  color: var(--kali-red-bright, #ec0101);
+}

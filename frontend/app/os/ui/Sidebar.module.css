@@ -1,0 +1,8 @@
+.sidebar {
+  width: var(--sidebar-width, 180px);
+  flex-shrink: 0;
+  overflow-y: auto;
+  background: var(--kali-panel);
+  border-right: 1px solid var(--kali-panel-border);
+  padding: 8px 6px;
+}

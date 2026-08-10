@@ -1,0 +1,9 @@
+.wallpaper {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-desktop);
+  background-image: url("/os/wallpaper.svg");
+  background-size: cover;
+  background-position: center;
+  transition: filter 0.3s ease;
+}
