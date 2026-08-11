@@ -28,6 +28,15 @@
   flex-shrink: 0;
 }
 
+.earthFallback {
+  flex-shrink: 0;
+  width: 620px;
+  height: 620px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #4a7fb5 0%, #1e3a5f 45%, #0a1626 100%);
+  box-shadow: 0 0 60px rgba(79, 168, 255, 0.25);
+}
+
 .title {
   font-family: var(--font-ui);
   font-weight: 700;
