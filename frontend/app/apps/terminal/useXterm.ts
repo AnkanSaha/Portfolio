@@ -7,11 +7,13 @@ import { promptLines } from "./shell/prompt";
 import { C } from "./shell/ansi";
 import { useAppDispatch } from "../../store/hooks";
 import { setPhase } from "../../store/slices/systemSlice";
+import { closeWindow } from "../../store/slices/windowsSlice";
 import { useOpenApp } from "../../os/window/useOpenApp";
 import type { ShellContext } from "./shell/types";
+import { createPyScope, isReplExit, replPrompt, runNodeLine, runPythonLine, type ReplKind } from "./shell/repl";
 
 const BANNER = [
-  C.cyan(" Ankan Saha — Kali Linux Portfolio Edition"),
+  C.cyan(" Ankan Saha — Ankan OS"),
   C.muted(" ────────────────────────────────────────"),
   ` ${C.green("▸")} Type ${C.yellow("help")} to see all commands`,
   ` ${C.green("▸")} Type ${C.yellow("about")} to get started`,
@@ -54,10 +56,16 @@ export function useXterm(containerRef: RefObject<HTMLDivElement | null>, options
 
       let cwd: string[] = [];
       const history: string[] = [];
+      let replMode: ReplKind | null = null;
+      let pyScope = createPyScope();
 
       function writePrompt(leadingBlank: boolean) {
-        const { top, bottom } = promptLines(cwd);
         if (leadingBlank) term!.writeln("");
+        if (replMode) {
+          term!.write(replPrompt(replMode));
+          return;
+        }
+        const { top, bottom } = promptLines(cwd);
         term!.writeln(top);
         term!.write(bottom);
       }
@@ -69,6 +77,11 @@ export function useXterm(containerRef: RefObject<HTMLDivElement | null>, options
           setCwd: (next) => { cwd = next; },
           openApp: (id, params, title) => openAppRef.current(id, params, title),
           triggerShutdown: () => dispatch(setPhase("shuttingDown")),
+          closeTerminal: () => dispatch(closeWindow("terminal")),
+          enterRepl: (kind) => {
+            replMode = kind;
+            if (kind === "python") pyScope = createPyScope();
+          },
           clearScreen: () => term!.clear(),
           listCommands,
         };
@@ -92,6 +105,19 @@ export function useXterm(containerRef: RefObject<HTMLDivElement | null>, options
           inputBuffer = "";
           historyIndex = -1;
           term!.writeln("");
+
+          if (replMode) {
+            if (isReplExit(cmd)) {
+              replMode = null;
+            } else if (cmd) {
+              history.unshift(cmd);
+              if (history.length > 50) history.pop();
+              const lines = replMode === "node" ? runNodeLine(cmd) : runPythonLine(cmd, pyScope);
+              for (const line of lines) term!.writeln(line);
+            }
+            writePrompt(true);
+            return;
+          }
 
           if (cmd) {
             history.unshift(cmd);
@@ -140,6 +166,7 @@ export function useXterm(containerRef: RefObject<HTMLDivElement | null>, options
 
         if (code === 9) {
           domEvent.preventDefault();
+          if (replMode) return;
           const matches = completableCommandNames().filter((c) => c.startsWith(inputBuffer.toLowerCase()));
           if (matches.length === 1) {
             const completion = matches[0].slice(inputBuffer.length);

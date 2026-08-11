@@ -2,8 +2,38 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-desktop);
+}
+
+.background {
+  position: absolute;
+  inset: 0;
   background-image: url("/os/wallpaper.svg");
   background-size: cover;
   background-position: center;
   transition: filter 0.3s ease;
+}
+
+.compose {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 34vw;
+  gap: 60px;
+  pointer-events: none;
+}
+
+.earthCanvas {
+  flex-shrink: 0;
+}
+
+.title {
+  font-family: var(--font-ui);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  letter-spacing: 0.06em;
+  color: #f4f6f9;
+  text-shadow: 0 0 28px rgba(244, 246, 249, 0.35);
+  white-space: nowrap;
 }

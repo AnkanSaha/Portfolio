@@ -20,9 +20,9 @@ export const systemCommands: CommandTable = {
       C.cyan("    ▜█████████▛"),
       C.blue("      ▜███▛"),
       "",
-      `${C.cyan("ankan")}${C.muted("@")}${C.cyan("kali")}`,
+      `${C.cyan("ankan")}${C.muted("@")}${C.cyan("ankanos")}`,
       C.muted("─────────────────────"),
-      `${C.green("OS")}          ${C.white("Kali Linux Portfolio Edition")}`,
+      `${C.green("OS")}          ${C.white("Ankan OS")}`,
       `${C.green("Host")}        ${C.white("ankan.in")}`,
       `${C.green("Uptime")}      ${C.white(uptimeSince("2024-04-01"))}`,
       `${C.green("Shell")}       ${C.white("zsh 5.9")}`,
@@ -37,7 +37,7 @@ export const systemCommands: CommandTable = {
 
   uname: {
     description: "Print system information",
-    run: () => [C.white("Linux kali 6.9.0-kali-amd64 x86_64 GNU/Linux")],
+    run: () => [C.white("Linux ankanos 6.9.0-ankanos-amd64 x86_64 GNU/Linux")],
   },
 
   date: {

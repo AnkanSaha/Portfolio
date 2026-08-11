@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { FiDroplet, FiTerminal, FiMonitor, FiEye, FiInfo, FiRotateCcw } from "react-icons/fi";
-import { AppShell, Sidebar, ListRow, ScrollArea } from "../../os/ui";
+import { AppShell, Sidebar, ListRow, ScrollArea, Switch } from "../../os/ui";
 import { useSetting } from "../../hooks/useSetting";
 import { WALLPAPER_VARIANTS, type WallpaperVariant } from "../../os/desktop/wallpaperVariants";
 import { ICON_SIZE_PRESETS, type IconSize } from "../../os/theme/iconSizePresets";
@@ -17,19 +17,6 @@ const CATEGORIES = [
 ] as const;
 
 type Category = (typeof CATEGORIES)[number]["id"];
-
-function Switch({ on, onToggle }: { on: boolean; onToggle: () => void }) {
-  return (
-    <button
-      type="button"
-      className={`${styles.switch} ${on ? styles.switchOn : ""}`}
-      onClick={onToggle}
-      aria-pressed={on}
-    >
-      <span className={`${styles.knob} ${on ? styles.knobOn : ""}`} />
-    </button>
-  );
-}
 
 export default function SettingsApp() {
   const [category, setCategory] = useState<Category>("appearance");
@@ -190,7 +177,7 @@ export default function SettingsApp() {
               <div className={styles.infoGrid}>
                 <div>
                   <div className={styles.infoLabel}>OS</div>
-                  <div className={styles.infoValue}>Kali Linux Portfolio Edition</div>
+                  <div className={styles.infoValue}>Ankan OS</div>
                 </div>
                 <div>
                   <div className={styles.infoLabel}>Host</div>

@@ -9,7 +9,7 @@
   border-radius: 4px;
   font-size: 0.74rem;
   text-transform: capitalize;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .tab:hover {
@@ -17,6 +17,6 @@
 }
 
 .active {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
   color: #ffffff;
 }

@@ -70,7 +70,7 @@ export default function WhiskerMenu({ onClose }: { onClose: () => void }) {
 
         <div className={styles.footer}>
           <span className={styles.userTag}>
-            <FiUser /> ankan@kali
+            <FiUser /> ankan@ankanos
           </span>
           <div className={styles.footerActions}>
             <button type="button" className={styles.footerBtn} title="Settings" onClick={() => launch("settings")}>

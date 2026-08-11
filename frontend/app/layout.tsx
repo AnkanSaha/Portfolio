@@ -17,8 +17,8 @@ const notoSansMono = Noto_Sans_Mono({
 });
 
 const SITE_URL = "https://ankan.in";
-const title = `${portfolioData.name} | ${portfolioData.title}`;
-const description = `${portfolioData.subtitle}. A portfolio built as a working Kali Linux desktop.`;
+const title = `${portfolioData.name} — ${portfolioData.title} | Ankan OS`;
+const description = `${portfolioData.subtitle}. A portfolio built as a working Ankan OS desktop.`;
 
 export const metadata: Metadata = {
   title,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "Node.js",
     "TypeScript",
     "Cloudflare Workers",
-    "Kali Linux Portfolio",
+    "Ankan OS",
   ],
   authors: [{ name: portfolioData.name, url: SITE_URL }],
   metadataBase: new URL(SITE_URL),

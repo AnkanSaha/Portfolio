@@ -1,0 +1,96 @@
+.calendar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--font-mono);
+  color: var(--ankan-fg);
+}
+
+.clock {
+  text-align: center;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--ankan-panel);
+  border: 1px solid var(--ankan-panel-border);
+}
+
+.date {
+  font-size: 0.9rem;
+  color: var(--ankan-fg-muted);
+  letter-spacing: 0.04em;
+}
+
+.time {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--ankan-blue-bright);
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+
+.sub {
+  font-size: 1.1rem;
+  color: var(--ankan-fg-muted);
+}
+
+.sub2 {
+  font-size: 0.85rem;
+  color: var(--ankan-fg-dim);
+}
+
+.monthBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 5px;
+  color: var(--ankan-fg-muted);
+}
+
+.navBtn:hover {
+  background: var(--ankan-panel);
+  color: var(--ankan-fg-bright);
+}
+
+.monthLabel {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ankan-fg-bright);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+}
+
+.weekday {
+  text-align: center;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  color: var(--ankan-fg-dim);
+  padding-bottom: 6px;
+}
+
+.cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  border-radius: 6px;
+  font-size: 0.82rem;
+  color: var(--ankan-fg);
+}
+
+.today {
+  background: var(--ankan-blue);
+  color: #ffffff;
+  font-weight: 700;
+}

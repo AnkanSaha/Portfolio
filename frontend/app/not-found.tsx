@@ -5,7 +5,7 @@ export default function NotFound() {
   return (
     <div className={styles.screen}>
       <div className={styles.line}>
-        <span className={styles.ok}>[ OK ]</span> Started Kali Linux Display Manager.
+        <span className={styles.ok}>[ OK ]</span> Started Ankan OS Display Manager.
       </div>
       <div className={styles.line}>
         <span className={styles.fail}>[FAIL]</span> Failed to mount requested route.

@@ -2,7 +2,7 @@ import { APP_REGISTRY } from "../../apps/registry";
 import { useOpenApp } from "../window/useOpenApp";
 import styles from "./QuickLaunch.module.css";
 
-const PINNED = ["terminal", "browser", "files", "resume"];
+const PINNED = ["terminal", "about", "projects", "resume", "contact", "github", "files"];
 
 export default function QuickLaunch() {
   const openApp = useOpenApp();

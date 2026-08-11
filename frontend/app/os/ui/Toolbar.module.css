@@ -5,8 +5,8 @@
   height: 40px;
   flex-shrink: 0;
   padding: 0 12px;
-  background: var(--kali-panel);
-  border-bottom: 1px solid var(--kali-panel-border);
+  background: var(--ankan-panel);
+  border-bottom: 1px solid var(--ankan-panel-border);
 }
 
 .spacer {

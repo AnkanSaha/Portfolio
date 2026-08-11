@@ -8,15 +8,13 @@ export default function TaskbarButtons() {
   const windows = useAppSelector((s) => s.windows.windows);
   const zOrder = useAppSelector((s) => s.windows.zOrder);
   const focusedId = useAppSelector((s) => s.windows.focusedId);
-  const activeWorkspace = useAppSelector((s) => s.system.activeWorkspace);
   const dispatch = useAppDispatch();
 
-  const visible = zOrder.filter((id) => windows[id]?.workspace === activeWorkspace);
-  if (visible.length === 0) return null;
+  if (zOrder.length === 0) return null;
 
   return (
     <div className={styles.bar}>
-      {visible.map((id) => {
+      {zOrder.map((id) => {
         const win = windows[id];
         if (!win) return null;
         const app = APP_REGISTRY[win.appId];

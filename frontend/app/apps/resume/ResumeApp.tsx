@@ -9,7 +9,7 @@ export default function ResumeApp() {
     <AppShell
       toolbar={
         <Toolbar>
-          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--kali-fg-muted)" }}>
+          <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.8rem", color: "var(--ankan-fg-muted)" }}>
             resume.pdf
           </span>
           <ToolbarSpacer />

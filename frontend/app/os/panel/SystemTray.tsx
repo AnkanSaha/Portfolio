@@ -1,30 +1,25 @@
 "use client";
-import { useEffect, useState } from "react";
-import { FiWifi, FiWifiOff, FiVolume2, FiBatteryCharging } from "react-icons/fi";
+import { FiBattery } from "react-icons/fi";
+import { BatteryIcon } from "../ui";
+import { useOpenApp } from "../window/useOpenApp";
+import { useBattery } from "../../apps/battery/useBattery";
+import WifiPopover from "./WifiPopover";
+import SoundPopover from "./SoundPopover";
 import styles from "./SystemTray.module.css";
 
 export default function SystemTray() {
-  const [online, setOnline] = useState(true);
+  const openApp = useOpenApp();
+  const battery = useBattery();
 
-  useEffect(() => {
-    setOnline(navigator.onLine);
-    const goOnline = () => setOnline(true);
-    const goOffline = () => setOnline(false);
-    window.addEventListener("online", goOnline);
-    window.addEventListener("offline", goOffline);
-    return () => {
-      window.removeEventListener("online", goOnline);
-      window.removeEventListener("offline", goOffline);
-    };
-  }, []);
+  const label = battery.supported ? `${battery.level}% — ${battery.charging ? "Charging" : "On battery"}` : "Battery";
 
   return (
     <div className={styles.tray}>
-      <span title={online ? "Online" : "Offline"} className={online ? "" : styles.offline}>
-        {online ? <FiWifi /> : <FiWifiOff />}
-      </span>
-      <FiVolume2 />
-      <FiBatteryCharging />
+      <WifiPopover />
+      <SoundPopover />
+      <button type="button" className={styles.batteryBtn} title={label} onClick={() => openApp("battery")}>
+        {battery.supported ? <BatteryIcon level={battery.level} charging={battery.charging} /> : <FiBattery />}
+      </button>
     </div>
   );
 }

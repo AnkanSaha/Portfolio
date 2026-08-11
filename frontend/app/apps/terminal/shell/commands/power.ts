@@ -19,10 +19,18 @@ const reboot: CommandTable[string] = {
   },
 };
 
+const exitCmd: CommandTable[string] = {
+  description: "Close the terminal window",
+  run: (_args, ctx) => {
+    ctx.closeTerminal();
+    return [];
+  },
+};
+
 export const powerCommands: CommandTable = {
   shutdown: poweroff,
   poweroff,
   halt: poweroff,
   reboot,
-  exit: reboot,
+  exit: exitCmd,
 };

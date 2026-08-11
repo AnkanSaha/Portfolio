@@ -1,0 +1,39 @@
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.title {
+  font-weight: 700;
+  color: var(--ankan-fg-bright);
+}
+
+.subtitle {
+  font-size: 0.74rem;
+  color: var(--ankan-fg-muted);
+  margin-top: 2px;
+}
+
+.hint {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--ankan-panel-border);
+  font-size: 0.7rem;
+  line-height: 1.5;
+  color: var(--ankan-fg-dim);
+}
+
+.sliderRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  color: var(--ankan-fg-muted);
+}
+
+.slider {
+  flex: 1;
+  accent-color: var(--ankan-blue);
+}

@@ -1,7 +1,7 @@
 .panelTitle {
   font-size: 1.05rem;
   font-weight: 700;
-  color: var(--kali-fg-bright);
+  color: var(--ankan-fg-bright);
   margin-bottom: 20px;
 }
 
@@ -14,10 +14,10 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
   margin-bottom: 12px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--kali-panel-border);
+  border-bottom: 1px solid var(--ankan-panel-border);
 }
 
 .swatchRow {
@@ -33,7 +33,7 @@
 }
 
 .swatchActive {
-  border-color: var(--kali-fg-bright);
+  border-color: var(--ankan-fg-bright);
 }
 
 .row {
@@ -50,14 +50,14 @@
 }
 
 .rowLabel {
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   flex-shrink: 0;
 }
 
 .rowValue {
   font-family: var(--font-mono);
   font-size: 0.78rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   width: 40px;
   text-align: right;
   flex-shrink: 0;
@@ -65,35 +65,7 @@
 
 .slider {
   flex: 1;
-  accent-color: var(--kali-blue);
-}
-
-.switch {
-  position: relative;
-  width: 38px;
-  height: 20px;
-  border-radius: 10px;
-  background: var(--kali-panel-border);
-  flex-shrink: 0;
-}
-
-.switchOn {
-  background: var(--kali-blue);
-}
-
-.knob {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: #ffffff;
-  transition: transform 0.15s var(--ease-xfwm);
-}
-
-.knobOn {
-  transform: translateX(18px);
+  accent-color: var(--ankan-blue);
 }
 
 .segmented {
@@ -101,22 +73,22 @@
   gap: 4px;
   padding: 3px;
   border-radius: 6px;
-  background: var(--kali-panel);
+  background: var(--ankan-panel);
 }
 
 .segment {
   padding: 5px 12px;
   border-radius: 4px;
   font-size: 0.78rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .segment:hover {
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
 }
 
 .segmentActive {
-  background: var(--kali-blue);
+  background: var(--ankan-blue);
   color: #ffffff;
 }
 
@@ -128,13 +100,13 @@
 }
 
 .infoLabel {
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-family: var(--font-mono);
   font-size: 0.72rem;
 }
 
 .infoValue {
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
   font-family: var(--font-mono);
 }
 
@@ -144,8 +116,8 @@
   gap: 8px;
   padding: 8px 14px;
   border-radius: 5px;
-  border: 1px solid var(--kali-red);
-  color: var(--kali-red-bright, #ec0101);
+  border: 1px solid var(--ankan-red);
+  color: var(--ankan-red-bright, #ec0101);
   font-size: 0.82rem;
 }
 
@@ -156,5 +128,5 @@
 .resetHint {
   margin-top: 10px;
   font-size: 0.76rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }

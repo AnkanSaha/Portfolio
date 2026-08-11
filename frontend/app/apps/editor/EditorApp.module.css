@@ -1,7 +1,7 @@
 .filename {
   font-family: var(--font-mono);
   font-size: 0.8rem;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
 }
 
 .body {
@@ -17,8 +17,8 @@
   flex-shrink: 0;
   padding: 16px 12px 16px 16px;
   text-align: right;
-  color: var(--kali-fg-dim);
-  background: var(--kali-panel);
+  color: var(--ankan-fg-dim);
+  background: var(--ankan-panel);
   user-select: none;
 }
 
@@ -32,12 +32,12 @@
   padding: 16px;
   white-space: pre-wrap;
   word-break: break-word;
-  color: var(--kali-fg);
+  color: var(--ankan-fg);
 }
 
 .empty {
   padding: 24px;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-family: var(--font-mono);
   font-size: 0.85rem;
 }

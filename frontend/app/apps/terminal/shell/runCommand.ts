@@ -7,6 +7,7 @@ import { funCommands } from "./commands/fun";
 import { appCommands } from "./commands/apps";
 import { monitorCommands } from "./commands/monitor";
 import { sysinfoCommands } from "./commands/sysinfo";
+import { replCommands } from "./commands/repl";
 import type { CommandTable, ShellContext } from "./types";
 
 const ALL_COMMANDS: CommandTable = {
@@ -18,10 +19,12 @@ const ALL_COMMANDS: CommandTable = {
   ...appCommands,
   ...monitorCommands,
   ...sysinfoCommands,
+  ...replCommands,
 };
 
 const MULTIWORD_ALIASES: Record<string, string> = {
   "init 0": "poweroff",
+  "init 6": "reboot",
   "apt install skills": "aptinstallskills",
 };
 
@@ -34,6 +37,7 @@ const DISPLAY_LIST: { name: string; description: string }[] = [
   ...Object.entries(appCommands).map(([name, e]) => ({ name, description: e.description })),
   ...Object.entries(monitorCommands).map(([name, e]) => ({ name, description: e.description })),
   ...Object.entries(sysinfoCommands).map(([name, e]) => ({ name, description: e.description })),
+  ...Object.entries(replCommands).map(([name, e]) => ({ name, description: e.description })),
   { name: "sudo", description: funCommands.sudo.description },
   { name: "apt install skills", description: funCommands.aptinstallskills.description },
   { name: "hack", description: funCommands.hack.description },

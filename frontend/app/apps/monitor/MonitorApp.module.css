@@ -1,81 +1,223 @@
-.section {
-  margin-bottom: 22px;
-}
-
-.sectionTitle {
+.monitor {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--kali-blue-bright);
-  margin-bottom: 12px;
-  padding-bottom: 6px;
-  border-bottom: 1px solid var(--kali-panel-border);
+  font-size: 0.76rem;
+  color: var(--ankan-fg);
 }
 
-.meterRow {
+.topBar {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 16px;
+  color: var(--ankan-fg-muted);
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--ankan-panel-border);
+  text-transform: lowercase;
 }
 
-.meterLabel {
-  width: 120px;
-  flex-shrink: 0;
-  font-size: 0.78rem;
-  color: var(--kali-fg-muted);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
+.topBarHost {
+  color: var(--ankan-blue-bright);
+  font-weight: 700;
+}
+
+.topBarClock {
+  margin-left: auto;
+  color: var(--ankan-fg);
+  font-variant-numeric: tabular-nums;
+}
+
+.box {
+  position: relative;
+  border: 1px solid var(--ankan-panel-border);
+  border-radius: 6px;
+  background: var(--ankan-panel);
+  padding: 10px 12px 12px;
+  min-width: 0;
+  margin-bottom: 12px;
+}
+
+.boxCpu {
+  border-color: color-mix(in srgb, var(--ankan-blue-bright) 45%, var(--ankan-panel-border));
+}
+.boxMem {
+  border-color: color-mix(in srgb, var(--ankan-green-bright) 45%, var(--ankan-panel-border));
+}
+.boxNet {
+  border-color: color-mix(in srgb, var(--ankan-cyan-bright) 45%, var(--ankan-panel-border));
+}
+.boxProc {
+  border-color: color-mix(in srgb, var(--ankan-magenta-bright) 45%, var(--ankan-panel-border));
+}
+
+.boxTitle {
+  font-size: 0.7rem;
+  text-transform: lowercase;
+  letter-spacing: 0.06em;
+  color: var(--ankan-blue-bright);
+  margin-bottom: 8px;
+}
+
+.boxMem .boxTitle {
+  color: var(--ankan-green-bright);
+}
+.boxNet .boxTitle {
+  color: var(--ankan-cyan-bright);
+}
+.boxProc .boxTitle {
+  color: var(--ankan-magenta-bright);
+}
+
+.spark {
+  color: var(--ankan-blue-bright);
+}
+
+.boxNet .spark {
+  color: var(--ankan-cyan-bright);
+}
+
+.boxFoot {
+  margin-top: 8px;
+  font-size: 0.66rem;
+  color: var(--ankan-fg-dim);
+}
+
+.unsupported {
+  font-size: 0.7rem;
+  color: var(--ankan-fg-dim);
+  font-style: italic;
+}
+
+.low {
+  color: var(--ankan-green-bright);
+}
+.mid {
+  color: var(--ankan-yellow-bright);
+}
+.high {
+  color: var(--ankan-red-bright);
 }
 
 .meterTrack {
   flex: 1;
-  height: 8px;
-  border-radius: 4px;
-  background: var(--kali-panel);
+  height: 6px;
+  min-width: 24px;
+  border-radius: 3px;
+  background: var(--ankan-bg-elevated);
   overflow: hidden;
 }
 
 .meterFill {
   height: 100%;
-  background: linear-gradient(90deg, var(--kali-blue), var(--kali-cyan));
-  transition: width 0.5s ease;
+  border-radius: 3px;
+  background: currentColor;
+  transition: width 0.3s ease;
 }
 
-.meterValue {
-  width: 40px;
+.coreGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 4px 12px;
+  margin-top: 10px;
+}
+
+.coreCell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+}
+
+.coreIdx {
+  color: var(--ankan-fg-dim);
+  width: 14px;
   flex-shrink: 0;
   text-align: right;
-  font-family: var(--font-mono);
-  font-size: 0.76rem;
-  color: var(--kali-fg);
 }
 
-.gaugeGrid {
+.corePct {
+  width: 30px;
+  flex-shrink: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.midRow {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
+  margin-bottom: 12px;
 }
 
-.gauge {
-  padding: 14px;
-  border-radius: 6px;
-  background: var(--kali-panel);
-  border: 1px solid var(--kali-panel-border);
-  text-align: center;
+.midRow .box {
+  margin-bottom: 0;
 }
 
-.gaugeValue {
-  font-family: var(--font-mono);
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--kali-blue-bright);
+.memRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+  font-size: 0.72rem;
 }
 
-.gaugeLabel {
+.memLabel {
+  width: 40px;
+  flex-shrink: 0;
+  color: var(--ankan-fg-muted);
+}
+
+.netRows {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 0.72rem;
+  margin-top: 8px;
+}
+
+.netLabel {
+  display: inline-block;
+  width: 50px;
+  color: var(--ankan-fg-muted);
+}
+
+.procHead,
+.procRow {
+  display: grid;
+  grid-template-columns: 70px 1fr 90px 80px;
+  gap: 8px;
+  padding: 4px 0;
+}
+
+.procHead {
+  color: var(--ankan-fg-muted);
+  font-size: 0.68rem;
+  text-transform: lowercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--ankan-panel-border);
+  margin-bottom: 4px;
+}
+
+.procRow {
   font-size: 0.74rem;
-  color: var(--kali-fg-muted);
-  margin-top: 4px;
+  border-bottom: 1px solid transparent;
+}
+
+.procRow:not(:last-child) {
+  border-bottom-color: var(--ankan-panel-border);
+}
+
+.procActive {
+  color: var(--ankan-fg-bright);
+  background: color-mix(in srgb, var(--ankan-magenta-bright) 16%, transparent);
+  border-radius: 3px;
+}
+
+.procPid {
+  color: var(--ankan-fg-dim);
+}
+
+.procName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

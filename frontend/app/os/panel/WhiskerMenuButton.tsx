@@ -14,7 +14,7 @@ export default function WhiskerMenuButton() {
         className={`${styles.btn} ${open ? styles.active : ""}`}
         onClick={() => setOpen((o) => !o)}
       >
-        <img src="/os/kali-dragon.svg" alt="" className={styles.dragon} />
+        <img src="/os/dragon.svg" alt="" className={styles.dragon} />
         Applications
       </button>
       <AnimatePresence>{open && <WhiskerMenu onClose={() => setOpen(false)} />}</AnimatePresence>

@@ -1,0 +1,17 @@
+.spark {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+.fill {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.16;
+}
+
+.line {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+}

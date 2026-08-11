@@ -2,10 +2,17 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--kali-fg-muted);
+  color: var(--ankan-fg-muted);
   font-size: 0.95rem;
 }
 
-.offline {
-  color: var(--kali-red-bright, #ec0101);
+.batteryBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ankan-fg-muted);
+}
+
+.batteryBtn:hover {
+  color: var(--ankan-fg-bright);
 }

@@ -7,10 +7,10 @@
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: var(--kali-blue-bright);
+  color: var(--ankan-blue-bright);
   margin-bottom: 10px;
   padding-bottom: 6px;
-  border-bottom: 1px solid var(--kali-panel-border);
+  border-bottom: 1px solid var(--ankan-panel-border);
 }
 
 .badgeRow {

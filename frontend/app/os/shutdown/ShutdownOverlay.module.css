@@ -25,7 +25,7 @@
 }
 
 .stopping {
-  color: var(--kali-yellow, #fea44c);
+  color: var(--ankan-yellow, #fea44c);
   font-weight: 700;
 }
 
@@ -56,8 +56,8 @@
 }
 
 .powerBtn:hover {
-  border-color: var(--kali-blue, #367bf0);
-  color: var(--kali-blue-bright, #277fff);
+  border-color: var(--ankan-blue, #367bf0);
+  color: var(--ankan-blue-bright, #277fff);
 }
 
 .powerHint {

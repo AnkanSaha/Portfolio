@@ -1,0 +1,29 @@
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 40px;
+  text-align: center;
+  color: var(--ankan-fg-muted);
+}
+
+.icon {
+  font-size: 2.2rem;
+  color: var(--ankan-red-bright, #ec0101);
+  margin-bottom: 6px;
+}
+
+.title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ankan-fg-bright);
+}
+
+.text {
+  font-size: 0.8rem;
+  max-width: 320px;
+  line-height: 1.5;
+}

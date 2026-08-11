@@ -1,0 +1,27 @@
+.switch {
+  position: relative;
+  width: 38px;
+  height: 20px;
+  border-radius: 10px;
+  background: var(--ankan-panel-border);
+  flex-shrink: 0;
+}
+
+.switchOn {
+  background: var(--ankan-blue);
+}
+
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #ffffff;
+  transition: transform 0.15s var(--ease-xfwm);
+}
+
+.knobOn {
+  transform: translateX(18px);
+}

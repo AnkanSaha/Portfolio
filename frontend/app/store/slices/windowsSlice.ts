@@ -16,7 +16,7 @@ export interface WindowState extends WindowGeometry {
   maximized: boolean;
   prevGeometry: WindowGeometry | null;
   params?: Record<string, unknown>;
-  workspace: number;
+  openedAt: number;
 }
 
 interface WindowsState {
@@ -57,16 +57,14 @@ const windowsSlice = createSlice({
         size: { w: number; h: number };
         position?: { x: number; y: number };
         params?: Record<string, unknown>;
-        workspace: number;
       }>
     ) {
-      const { appId, title, size, position, params, workspace } = action.payload;
+      const { appId, title, size, position, params } = action.payload;
       const existing = state.windows[appId];
 
       if (existing) {
         existing.minimized = false;
         existing.title = title;
-        existing.workspace = workspace;
         if (params) existing.params = params;
         state.zOrder = state.zOrder.filter((id) => id !== appId);
         state.zOrder.push(appId);
@@ -89,16 +87,10 @@ const windowsSlice = createSlice({
         maximized: false,
         prevGeometry: null,
         params,
-        workspace,
+        openedAt: Date.now(),
       };
       state.zOrder.push(appId);
       state.focusedId = appId;
-    },
-
-    moveWindowToWorkspace(state, action: PayloadAction<{ id: string; workspace: number }>) {
-      const win = state.windows[action.payload.id];
-      if (!win) return;
-      win.workspace = action.payload.workspace;
     },
 
     closeWindow(state, action: PayloadAction<string>) {
@@ -183,7 +175,6 @@ export const {
   toggleTaskbarWindow,
   toggleMaximize,
   moveResizeWindow,
-  moveWindowToWorkspace,
   closeAllWindows,
 } = windowsSlice.actions;
 
