@@ -1,120 +1,138 @@
-# Terminal Portfolio - Frontend
+# Ankan OS — Frontend
 
-The frontend application for the terminal-based portfolio, built with Next.js 15 and xterm.js.
+The Next.js app behind [ankan.in](https://ankan.in): a portfolio built as a working desktop OS simulation — boot sequence, window manager, taskbar, and a set of real apps — rather than a themed single page.
 
-## Overview
+See the [root README](../README.md) for the full feature tour. This one covers the frontend specifically: scripts, dependencies, structure, and how to extend it.
 
-This Next.js application provides an interactive terminal experience where visitors can explore the portfolio using Linux-like commands. The entire interface is a terminal emulator powered by xterm.js.
-
-## Features
-
-- 🖥️ Full terminal emulation with xterm.js
-- ⌨️ Tab autocomplete for commands
-- 📜 Command history with arrow key navigation
-- 🎨 Beautiful dark theme with syntax highlighting
-- 📱 Responsive design for all screen sizes
-- ⚡ Deployed on Cloudflare Workers for edge performance
-
-## Available Scripts
+## Scripts
 
 ```bash
-# Development server with Turbopack
-npm run dev
-
-# Production build
-npm run build
-
-# Build for Cloudflare Workers
-npm run build:cf
-
-# Start production server
-npm run start
-
-# Deploy to Cloudflare Workers
-npm run deploy:cf
-
-# Lint code
-npm run lint
+npm run dev        # Dev server (Turbopack)
+npm run build       # Production build
+npm run build:cf     # Build for Cloudflare Workers (OpenNext)
+npm run start        # Start production server
+npm run lint          # ESLint
+npm run login:cf       # Cloudflare login
+npm run deploy:cf       # Deploy to Cloudflare Workers
 ```
 
 ## Dependencies
 
 ### Core
-- **next**: 15.3.4 - React framework
-- **react**: 19.0.0 - UI library
-- **@xterm/xterm**: 6.0.0 - Terminal emulator
-- **@xterm/addon-fit**: Auto-resize terminal
-- **@xterm/addon-web-links**: Clickable links
-
-### Styling
-- **tailwindcss**: 4.0 - Utility-first CSS
+- **next** 15.3.4 — App Router
+- **react** / **react-dom** 19
+- **@reduxjs/toolkit** + **react-redux** — window manager, system state, GitHub data cache
+- **@xterm/xterm** + FitAddon + WebLinksAddon — the real terminal
+- **motion** (Framer Motion) — window/menu/boot-sequence animation
+- **react-globe.gl** + **three** — the rotating 3D Earth wallpaper
+- **react-icons** — Feather icon set throughout the UI
+- **react-rnd** — window drag/resize
 
 ### Deployment
-- **@opennextjs/cloudflare**: Cloudflare Workers adapter
-- **wrangler**: Cloudflare CLI
+- **@opennextjs/cloudflare** + **wrangler** — Cloudflare Workers adapter
+
+### Styling
+Plain CSS Modules + CSS custom properties. No Tailwind, no CSS-in-JS. Design tokens (colors, z-index scale, spacing) live in `app/globals.css`.
 
 ## Environment Variables
 
-No environment variables required for basic functionality.
+Everything works with zero configuration. Optionally:
+
+| Variable | Purpose |
+|---|---|
+| `GITHUB_TOKEN` | GitHub personal access token, used server-side (`app/lib/github.ts`) to raise the GitHub API rate limit for the GitHub Profile / Nexoral apps. Without it, those apps still work against the unauthenticated API (60 req/hr/IP), and results are cached both server-side (in-memory, 1hr) and client-side (`localStorage`, 12hr). |
 
 ## Project Structure
 
 ```
 frontend/
 ├── app/
-│   ├── components/
-│   │   └── Terminal/
-│   │       └── TerminalPortfolio.tsx  # Main terminal component (900+ lines)
-│   ├── globals.css                     # Global styles & scrollbar hiding
-│   ├── layout.tsx                      # Root layout with Analytics
-│   ├── page.tsx                        # Home page
-│   ├── not-found.tsx                   # 404 page
-│   ├── robots.ts                       # SEO robots.txt
-│   └── sitemap.ts                      # SEO sitemap.xml
-├── public/
-│   ├── patterns/                       # Background patterns
-│   └── social/                         # Social media icons
-├── next.config.ts                      # Next.js configuration
-├── tsconfig.json                       # TypeScript config
-├── postcss.config.mjs                  # PostCSS config
-├── eslint.config.mjs                   # ESLint config
-├── wrangler.toml                       # Cloudflare Workers config
+│   ├── os/                       # The OS shell — not app content
+│   │   ├── boot/                 # BootScreen: GRUB menu, log lines, splash
+│   │   ├── shutdown/              # ShutdownOverlay: mirrors the boot sequence
+│   │   ├── desktop/                # Wallpaper (incl. 3D Earth), desktop icons,
+│   │   │                            right-click menu
+│   │   ├── window/                  # WindowLayer, WindowTitleBar, drag/resize,
+│   │   │                            useOpenApp (the only way apps get opened)
+│   │   ├── panel/                    # Taskbar: WhiskerMenu (start menu),
+│   │   │                            QuickLaunch, TaskbarButtons, SystemTray
+│   │   │                            (Wi-Fi/Sound popovers, battery, clock),
+│   │   │                            PowerMenu
+│   │   ├── theme/                    # Accent color, icon size presets,
+│   │   │                            auto-fullscreen
+│   │   ├── gate/                      # MobileGate — this OS simulation is
+│   │   │                            desktop-class only
+│   │   └── ui/                        # Shared primitives: AppShell, Toolbar,
+│   │                                 Switch, Sparkline, BatteryIcon,
+│   │                                 OfflineScreen, ScrollArea, ListRow...
+│   ├── apps/                     # One folder per app — each exports a
+│   │   │                        default component registered in registry.tsx
+│   │   ├── terminal/
+│   │   │   └── shell/             # The actual shell: runCommand.ts dispatches
+│   │   │                        to command tables in commands/*.ts, plus
+│   │   │                        repl.ts (node/python REPLs) and
+│   │   │                        filesystem.ts (path resolution for cd/ls —
+│   │   │                        the filesystem data itself lives in
+│   │   │                        data/fileSystem.ts, shared with Files/Editor)
+│   │   ├── github/                # Shared GitHubProfileCard, used by both
+│   │   │   └── ...               # the GitHub Profile app and Nexoral
+│   │   ├── nexoral/
+│   │   ├── monitor/               # useSystemStats.ts — real rAF-timed CPU,
+│   │   │                        real JS heap, real Resource Timing net stats
+│   │   ├── battery/                # useBattery.ts — navigator.getBattery()
+│   │   ├── calendar/, blog/, about/, projects/, skills/, experience/,
+│   │   └── contact/, files/, editor/, resume/, settings/, calculator/
+│   ├── apps/registry.tsx         # THE source of truth for what apps exist:
+│   │                             id, title, icon, component, default window
+│   │                             size, category, desktop visibility
+│   ├── store/
+│   │   ├── slices/systemSlice.ts     # boot phase, wifiEnabled, soundEnabled,
+│   │   │                            volume
+│   │   ├── slices/windowsSlice.ts    # open windows, z-order, geometry
+│   │   └── slices/githubSlice.ts     # cached GitHub API responses, keyed by
+│   │                                login (used by both github/ and nexoral/)
+│   ├── data/portfolioData.ts    # ALL portfolio content — the only file you
+│   │                            need to edit to update your own info
+│   ├── data/fileSystem.ts        # The simulated filesystem tree, shared by
+│   │                            Files, Editor, and the terminal's fs commands
+│   ├── hooks/                    # useSetting/useLocalStorage (persisted
+│   │                             settings), useGitHubData
+│   ├── lib/github.ts             # Server-side GitHub API fetch + in-memory
+│   │                             cache, shared by the /api/github route
+│   └── api/github/route.ts       # The only API route in the app
+├── public/os/
+│   ├── wallpaper.svg              # Abstract background (theme-tintable via
+│   │                             hue-rotate — the Earth photo deliberately
+│   │                             is not, so it's never recolored)
+│   ├── earth-texture.jpg           # Real NASA Blue Marble texture (public
+│   │                             domain), used by the 3D globe
+│   ├── dragon.svg                  # The OS mark, used in boot/whisker/gate
+│   └── cursors/                    # Custom cursor SVGs
+├── next.config.ts
+├── wrangler.toml                 # Cloudflare Workers config
 └── package.json
 ```
 
-## Terminal Commands
+## Adding a new app
 
-### Portfolio
-- `about` - About me
-- `skills` - Technical skills
-- `experience` - Work history
-- `projects` - Portfolio projects
-- `education` - Educational background
-- `achievements` - Awards & badges
-- `contact` - Contact info
-- `social` - Social links
-
-### Linux-like
-- `ls`, `ll`, `ls -a` - List files
-- `pwd` - Current directory
-- `cat` - Read files
-- `whoami` - Current user
-- `neofetch` - System info
-- `history` - Command history
-- And many more!
+1. Create `app/apps/<name>/<Name>App.tsx` (+ `.module.css` if it needs styles). Use `AppShell`/`ScrollArea`/`Toolbar` from `app/os/ui` for consistent chrome.
+2. Register it in `app/apps/registry.tsx`: add an entry to `APP_REGISTRY` (id, title, icon, component, default size, category, `desktopIcon`) and to `APP_ORDER`.
+3. That's it — the taskbar start menu, search, and window system all read from the registry; nothing else needs wiring.
 
 ## Deployment
 
 ### Cloudflare Workers
 
-1. Login: `npm run login:cf`
-2. Build: `npm run build:cf`
-3. Deploy: `npm run deploy:cf`
+```bash
+npm run login:cf
+npm run build:cf
+npm run deploy:cf
+```
 
-### Other Platforms
+### Vercel / other platforms
 
-Standard Next.js deployment works on Vercel, Netlify, etc.
+Standard Next.js deployment — `npm run build && npm run start`.
 
 ## License
 
-MIT License - see [LICENSE](../LICENSE) for details.
+MIT — see [LICENSE](../LICENSE).

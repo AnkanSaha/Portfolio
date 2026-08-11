@@ -1,234 +1,176 @@
-# Terminal Portfolio
+# Ankan OS
 
-A unique, interactive terminal-based portfolio website built with Next.js and xterm.js. Experience my portfolio through a fully functional Linux-like terminal interface.
+A portfolio that boots like a desktop operating system. Not a themed landing page — a working single-page OS simulation with a boot sequence, a window manager, a taskbar, a start menu, and a set of real apps, all built on Next.js.
 
-![Terminal Portfolio](https://img.shields.io/badge/Portfolio-Terminal--Based-00ff00?style=for-the-badge&logo=gnubash&logoColor=white)
 ![Next.js](https://img.shields.io/badge/Next.js-15.3.4-black?style=for-the-badge&logo=next.js)
+![React](https://img.shields.io/badge/React-19-blue?style=for-the-badge&logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)
-![xterm.js](https://img.shields.io/badge/xterm.js-6.0-green?style=for-the-badge)
+![Cloudflare Workers](https://img.shields.io/badge/Deployed_on-Cloudflare_Workers-f38020?style=for-the-badge&logo=cloudflare)
 
-## 🖥️ Live Demo
+## Live Demo
 
 Visit: [ankan.in](https://ankan.in)
 
-## ✨ Features
+## What it actually is
 
-### Interactive Terminal Experience
-- **Authentic Terminal Feel**: Full xterm.js integration with smooth scrolling, cursor blinking, and proper key handling
-- **Tab Autocomplete**: Press `Tab` to autocomplete commands or see available options
-- **Command History**: Use `↑` and `↓` arrow keys to navigate through command history
-- **Keyboard Shortcuts**: `Ctrl+L` to clear screen, `Ctrl+C` to cancel
+Loading the site plays a boot sequence (GRUB-style menu, systemd-style log lines, splash screen), then drops you onto a desktop: wallpaper, desktop icons, a top panel with a start menu, quick-launch, running-window buttons, and a system tray. Every "app" is a real window — draggable, resizable, minimizable, closable — backed by a Redux store that tracks window state, not a single scrolling page.
 
-### Portfolio Commands
-| Command | Description |
-|---------|-------------|
-| `about` | Display information about me |
-| `skills` | List technical skills and expertise |
-| `experience` | Show work experience |
-| `projects` | Display portfolio projects |
-| `education` | Show educational background |
-| `achievements` | List achievements and badges |
-| `contact` | Display contact information |
-| `social` | Show social media links |
-| `github` | Open GitHub profile |
-| `linkedin` | Open LinkedIn profile |
+Closing/shutting down runs its own log sequence and can hand off into a real reboot. Refreshing mid-session remembers you already booted (via `sessionStorage`) and skips straight to the desktop.
 
-### Linux-Like Commands
-| Command | Description |
-|---------|-------------|
-| `ls` | List directory contents |
-| `ll` / `ls -la` | Detailed file listing |
-| `pwd` | Print working directory |
-| `cd <dir>` | Change directory |
-| `cat <file>` | Display file contents |
-| `echo <text>` | Print text to terminal |
-| `whoami` | Display current user |
-| `hostname` | Show system hostname |
-| `date` | Display current date/time |
-| `uptime` | Show system uptime |
-| `uname -a` | System information |
-| `neofetch` | Display system info with ASCII art |
-| `history` | Show command history |
-| `top` / `htop` | Display running processes |
-| `ps` | Process status |
-| `df` | Disk space usage |
-| `free` | Memory usage |
-| `id` | User identity |
-| `ping` | Network connectivity test |
+## Features
 
-### System Commands
-| Command | Description |
-|---------|-------------|
-| `help` | Show all available commands |
-| `clear` | Clear terminal screen |
-| `exit` | Exit terminal session |
+- **Boot / shutdown sequence** — GRUB menu, staged systemd-style log lines that reveal one at a time, splash screen with a progress bar; shutdown mirrors it in reverse. Skippable with any key. Respects `prefers-reduced-motion`.
+- **Window manager** — drag, resize, minimize, maximize, focus/z-order, all apps open as real windows (`app/os/window`).
+- **Taskbar** — start menu with search/filtering by category, pinned quick-launch icons, live running-window buttons, and a system tray.
+- **System tray** — Wi-Fi and Sound are real toggleable popovers, not static icons. Turning Wi-Fi off is a simulated offline mode: apps that fetch live data (GitHub, Nexoral, Blog) show an actual "You're Offline" screen instead of silently succeeding. Battery opens a real app window backed by the browser's Battery Status API (Chromium only — shows an honest "unavailable" state elsewhere rather than faking a percentage). The clock opens a Calendar app with a real month grid and a live sub-millisecond clock.
+- **Real 3D Earth wallpaper** — an actual rotating 3D globe (`react-globe.gl` / three.js) with a real NASA Blue Marble texture, not a flat animated image.
+- **Desktop icons** — right-click context menu, selectable, configurable size/visibility from Settings.
+- **Settings app** — wallpaper accent variants, terminal opacity/font size, reduced-motion, desktop icon visibility/size, and more, all persisted to `localStorage`.
+- **A real terminal** — see below.
 
-### Easter Eggs 🥚
-Try running: `sudo`, `rm -rf`, `vim`, `nano`, `curl`, and more!
+## Apps
 
-## 🚀 Tech Stack
+| App | What it does |
+|---|---|
+| Terminal | A real shell — see [Terminal](#terminal) below |
+| About Me | Bio, summary, education, languages, achievements |
+| Experience | Work history |
+| Projects | Open-source & production projects |
+| Skills | Technical skill categories |
+| Contact | Contact info and a working contact form |
+| Files | A simulated filesystem browser |
+| Text Editor | Opens files from the Files app |
+| Resume | Formatted resume, viewable/printable |
+| GitHub Profile | Live GitHub profile — real avatar, bio, stats, and full public repo list with descriptions, pulled from the GitHub API (not an iframe — GitHub blocks that) |
+| Nexoral (GitHub Org) | Same treatment for the [Nexoral](https://github.com/nexoral) organization |
+| Blog | Embeds [blog.ankan.in](https://blog.ankan.in) |
+| System Monitor | A real btop-style resource monitor — CPU load from actual `requestAnimationFrame` frame timing, JS heap usage, real network throughput via the Resource Timing API. Never fabricates a number it can't measure; says so when a metric isn't available in-browser |
+| Calculator | Basic calculator |
+| Battery | Live battery level, charging state, and time estimates via `navigator.getBattery()` |
+| Calendar | Month-grid calendar + live clock |
+| Settings | System preferences |
 
-- **Framework**: [Next.js 15.3.4](https://nextjs.org/) with App Router
-- **Terminal**: [xterm.js 6.0](https://xtermjs.org/) with FitAddon and WebLinksAddon
-- **Language**: TypeScript 5.0
-- **Styling**: Tailwind CSS 4.0
-- **Deployment**: Cloudflare Workers via OpenNext
+## Terminal
+
+A shell built from scratch on top of `xterm.js`, with tab completion, history (↑/↓), `Ctrl+C`/`Ctrl+L`. Real commands, not a canned command list:
+
+- **Filesystem**: `ls`, `cd`, `pwd`, `cat`, `file`, `tree`
+- **Portfolio**: `about`, `experience`, `skills`, `projects`, `contact`, `resume`, `github`, `linkedin`
+- **System**: `neofetch`, `uname`, `date`, `uptime`, `history`, `man`, `whoami`
+- **"Process" tools**: `ps`, `top`/`htop` (reflects real open windows), `free`, `df`, `ifconfig`/`ip`, `which`
+- **Power**: `poweroff` / `shutdown` / `halt` / `init 0`, `reboot` / `init 6`, `exit` (closes the terminal window, not the OS)
+- **REPLs**: `node` drops into a real JavaScript REPL (genuine `eval`, since the browser already is a JS runtime); `python` drops into a lightweight arithmetic + `print()` REPL (clearly labeled as not a real interpreter)
+- **Fun**: `sudo`, `hack`, `cowsay`, `matrix`, `calc`, `weather`, `banner`, `apt install skills`
+
+Run `help` inside the terminal for the full, current list — it's generated from the actual command table, so it never drifts from what's real.
+
+## Tech Stack
+
+- **Framework**: [Next.js 15](https://nextjs.org/) (App Router) + React 19 + TypeScript
+- **State**: Redux Toolkit — window manager, system state (boot phase, Wi-Fi/sound), GitHub data cache
+- **Terminal**: [xterm.js](https://xtermjs.org/) with FitAddon and WebLinksAddon
+- **Animation**: [Motion](https://motion.dev/) (Framer Motion) for window/menu transitions
+- **3D**: [react-globe.gl](https://github.com/vasturiano/react-globe.gl) / three.js for the rotating Earth
+- **Styling**: plain CSS Modules + CSS custom properties (no Tailwind) — design tokens in `app/globals.css`
+- **Icons**: react-icons (Feather set)
+- **Deployment**: Cloudflare Workers via [OpenNext](https://opennext.js.org/)
 - **Analytics**: Vercel Analytics
 
-## 📦 Project Structure
+## Project Structure
 
 ```
 Portfolio/
 ├── frontend/
 │   ├── app/
-│   │   ├── components/
-│   │   │   └── Terminal/
-│   │   │       └── TerminalPortfolio.tsx  # Main terminal component
-│   │   ├── globals.css                     # Global styles
-│   │   ├── layout.tsx                      # Root layout
-│   │   ├── page.tsx                        # Home page
-│   │   ├── not-found.tsx                   # 404 page
-│   │   ├── robots.ts                       # SEO robots
-│   │   └── sitemap.ts                      # SEO sitemap
-│   ├── public/
-│   │   ├── patterns/                       # Background patterns
-│   │   └── social/                         # Social icons
+│   │   ├── os/                  # The OS shell itself
+│   │   │   ├── boot/            # Boot sequence
+│   │   │   ├── shutdown/        # Shutdown sequence
+│   │   │   ├── desktop/         # Wallpaper, desktop icons, 3D Earth
+│   │   │   ├── window/          # Window manager (drag/resize/focus)
+│   │   │   ├── panel/           # Taskbar: start menu, tray, clock
+│   │   │   ├── theme/           # Accent color, icon size, fullscreen
+│   │   │   ├── gate/            # Mobile gate (desktop-class experience only)
+│   │   │   └── ui/              # Shared primitives (AppShell, Switch, Sparkline...)
+│   │   ├── apps/                # One folder per app (see table above)
+│   │   │   └── terminal/shell/  # The real shell: commands, REPLs, filesystem
+│   │   ├── store/                # Redux slices
+│   │   ├── data/portfolioData.ts # All portfolio content lives here
+│   │   ├── hooks/                 # useSetting, useLocalStorage, useGitHubData...
+│   │   ├── lib/                   # Server-side helpers (GitHub API + cache)
+│   │   └── api/                   # Next.js route handlers
+│   ├── public/os/                # Wallpaper, dragon mark, Earth texture, cursors
 │   ├── package.json
 │   ├── next.config.ts
-│   ├── tsconfig.json
-│   └── wrangler.toml                       # Cloudflare config
+│   └── wrangler.toml             # Cloudflare config
 ├── config/
-│   └── ankan.conf                          # Nginx configuration
+│   └── ankan.conf                # Nginx configuration
 ├── LICENSE
 └── README.md
 ```
 
-## 🛠️ Installation
+## Installation
 
 ### Prerequisites
 
 - Node.js 18.x or higher
-- npm, yarn, or pnpm
+- npm
 
 ### Quick Start
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/AnkanSaha/Portfolio.git
-   cd Portfolio/frontend
-   ```
+```bash
+git clone https://github.com/AnkanSaha/Portfolio.git
+cd Portfolio/frontend
+npm install
+npm run dev
+```
 
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
+Open [http://localhost:3000](http://localhost:3000).
 
-3. **Run development server**
-   ```bash
-   npm run dev
-   ```
+### Environment variables
 
-4. **Open in browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
+None are required to run it. Optionally:
 
-## 🚀 Deployment
+- `GITHUB_TOKEN` — a GitHub personal access token. Without it, the GitHub Profile/Nexoral apps still work (unauthenticated GitHub API), just at a lower rate limit (60 req/hr per IP vs. much higher authenticated).
+
+## Deployment
 
 ### Cloudflare Workers
 
 ```bash
-# Login to Cloudflare
 npm run login:cf
-
-# Build for Cloudflare
 npm run build:cf
-
-# Deploy
 npm run deploy:cf
 ```
 
-### Vercel / Other Platforms
+### Vercel / other platforms
 
 ```bash
 npm run build
 npm run start
 ```
 
-## 🎨 Customization
+## Customization
 
-### Update Portfolio Data
+All portfolio content (name, bio, experience, projects, skills, social links) lives in one place: `frontend/app/data/portfolioData.ts`. Edit that file — nothing else needs to change for content updates.
 
-Edit the `portfolioData` object in `frontend/app/components/Terminal/TerminalPortfolio.tsx`:
+App registration (which apps exist, their icons, default window size, desktop visibility) lives in `frontend/app/apps/registry.tsx`.
 
-```typescript
-const portfolioData = {
-  name: "Your Name",
-  title: "Your Title",
-  email: "your@email.com",
-  // ... add your information
-};
-```
+## License
 
-### Customize Terminal Theme
+MIT — see [LICENSE](LICENSE).
 
-Modify the theme in the Terminal initialization:
-
-```typescript
-theme: {
-  background: '#0a0e27',      // Terminal background
-  foreground: '#e0e0e0',      // Text color
-  cursor: '#00ff00',          // Cursor color
-  // ... customize colors
-}
-```
-
-### Add New Commands
-
-Add new commands to the `commands` object:
-
-```typescript
-const commands = {
-  mycommand: () => {
-    writeLine('\r\n\x1b[1;36mMy custom output\x1b[0m');
-  },
-  // ... more commands
-};
-```
-
-## 🎯 ANSI Color Codes Reference
-
-| Code | Color |
-|------|-------|
-| `\x1b[1;31m` | Bold Red |
-| `\x1b[1;32m` | Bold Green |
-| `\x1b[1;33m` | Bold Yellow |
-| `\x1b[1;34m` | Bold Blue |
-| `\x1b[1;35m` | Bold Magenta |
-| `\x1b[1;36m` | Bold Cyan |
-| `\x1b[1;37m` | Bold White |
-| `\x1b[90m` | Gray |
-| `\x1b[0m` | Reset |
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
+## Author
 
 **Ankan Saha**
-- Full Stack Developer at Hoichoi Technologies
+- Backend Engineer
 - GitHub: [@AnkanSaha](https://github.com/AnkanSaha)
 - LinkedIn: [theankansaha](https://linkedin.com/in/theankansaha)
-- Email: ankansahaofficial@gmail.com
+- Email: connect@ankan.in
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- [xterm.js](https://xtermjs.org/) - The terminal emulator that powers this project
-- [Next.js](https://nextjs.org/) - The React framework
-- [Tailwind CSS](https://tailwindcss.com/) - For styling
-- [OpenNext](https://open-next.js.org/) - For Cloudflare Workers deployment
-
----
-
-<p align="center">
-  Made with 💚 and lots of ☕ by Ankan Saha
-</p>
+- [xterm.js](https://xtermjs.org/) — the terminal emulator
+- [Next.js](https://nextjs.org/) — the framework
+- [react-globe.gl](https://github.com/vasturiano/react-globe.gl) — the 3D globe
+- NASA Visible Earth / Blue Marble — the Earth texture (public domain)
+- [OpenNext](https://opennext.js.org/) — Cloudflare Workers deployment
