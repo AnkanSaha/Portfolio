@@ -1,5 +1,5 @@
 "use client";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { GlobeMethods } from "react-globe.gl";
 import styles from "./Wallpaper.module.css";
@@ -10,12 +10,30 @@ const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
 
 const GLOBE_SIZE = 620;
 
+function hasWebGL() {
+  try {
+    const canvas = document.createElement("canvas");
+    return !!(canvas.getContext("webgl2") || canvas.getContext("webgl"));
+  } catch {
+    return false;
+  }
+}
+
 /** Real 3D globe via react-globe.gl (three.js under the hood): genuine
  * sphere geometry, lighting, and an atmosphere glow — not a hand-rolled
  * scene. Auto-rotates through its OrbitControls; interaction is disabled
- * since this is a background decoration, not a widget. */
+ * since this is a background decoration, not a widget.
+ *
+ * three.js throws synchronously if it can't create a WebGL context (GPU
+ * disabled/sandboxed browsers), which would otherwise crash the whole
+ * desktop — so we feature-detect first and fall back to a static disc. */
 export default function Earth3D() {
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
+  const [webglAvailable, setWebglAvailable] = useState(true);
+
+  useEffect(() => {
+    setWebglAvailable(hasWebGL());
+  }, []);
 
   const handleReady = useCallback(() => {
     const controls = globeRef.current?.controls();
@@ -26,6 +44,10 @@ export default function Earth3D() {
     controls.enablePan = false;
     controls.enableRotate = false;
   }, []);
+
+  if (!webglAvailable) {
+    return <div className={styles.earthFallback} />;
+  }
 
   return (
     <div className={styles.earthCanvas}>
