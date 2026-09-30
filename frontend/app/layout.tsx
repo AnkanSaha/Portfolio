@@ -50,9 +50,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: `${SITE_URL}/og.png`,
-        width: 1200,
-        height: 630,
+        url: "https://avatars.githubusercontent.com/u/93839804",
+        width: 640,
+        height: 640,
         alt: `${d.name} — ${d.title}`,
       },
     ],
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     creator: "@theankansaha",
     title,
     description,
-    images: [`${SITE_URL}/og.png`],
+    images: ["https://avatars.githubusercontent.com/u/93839804"],
   },
   robots: {
     index: true,
@@ -83,7 +83,7 @@ const personSchema = {
   "@type": "Person",
   name: d.name,
   url: SITE_URL,
-  image: `${SITE_URL}/photo.jpg`,
+  image: "https://avatars.githubusercontent.com/u/93839804",
   jobTitle: d.title,
   description: d.summary,
   email: d.alternateEmail,
@@ -134,6 +134,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        <meta name="theme-color" content="#faf9f7" />
+        <link rel="icon" href="https://github.com/AnkanSaha.png" sizes="any" />
+        <link rel="apple-touch-icon" href="https://github.com/AnkanSaha.png" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}

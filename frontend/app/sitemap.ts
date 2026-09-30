@@ -10,30 +10,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "monthly",
       priority: 1.0,
     },
-    {
-      url: "https://ankan.in/#projects",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: "https://ankan.in/#work",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: "https://ankan.in/#stack",
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: "https://ankan.in/#contact",
-      lastModified: new Date(),
-      changeFrequency: "yearly",
-      priority: 0.6,
-    },
   ];
 
   const blogPages: MetadataRoute.Sitemap = [];
