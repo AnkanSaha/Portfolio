@@ -11,10 +11,10 @@ export interface SocialLinks {
 export interface Experience {
   title: string;
   company: string;
+  companyUrl?: string;
   companyDesc?: string;
   period: string;
   location: string;
-  description: string;
   bullets: string[];
   technologies: string[];
 }
@@ -24,7 +24,6 @@ export interface Education {
   university: string;
   period: string;
   location: string;
-  description: string;
 }
 
 export interface Project {
@@ -37,6 +36,8 @@ export interface Project {
   github: string;
   npm?: string;
   live?: string;
+  docs?: string;
+  stars?: number;
   featured: boolean;
 }
 
@@ -45,17 +46,26 @@ export interface SkillCategory {
   skills: string[];
 }
 
+export interface GitHubStats {
+  followers: number;
+  following: number;
+  stars: number;
+  publicRepos: number;
+  achievements: string[];
+}
+
 export interface PortfolioData {
   name: string;
   title: string;
   subtitle: string;
   email: string;
   alternateEmail: string;
-  phone: string;
   location: string;
   currentCompany: string;
   summary: string;
+  openSourceSummary: string;
   social: SocialLinks;
+  github: GitHubStats;
   skillCategories: SkillCategory[];
   experience: Experience[];
   education: Education;
@@ -66,15 +76,16 @@ export interface PortfolioData {
 
 export const portfolioData: PortfolioData = {
   name: "Ankan Saha",
-  title: "Full Stack Developer",
-  subtitle: "Backend Engineering Specialist | System Design & Infrastructure Optimization Expert",
+  title: "Backend Engineer & Open Source Maintainer",
+  subtitle: "Node.js · TypeScript · Go · Cloudflare Workers",
   email: "ankansahaofficial@gmail.com",
   alternateEmail: "connect@ankan.in",
-  phone: "+91 7063355213",
   location: "Kolkata, India",
-  currentCompany: "Open to Opportunities",
+  currentCompany: "Open to SDE Roles",
   summary:
-    "Backend engineer with 2 years of production experience in Node.js and TypeScript. At an OTT platform with 10M+ users, I moved the frontend onto Cloudflare Workers and cut compute cost by $3,000 a month. On my own time I write developer tools: a NoSQL database on NPM, a DNS server, and a load balancer you set up by chatting with an agent.",
+    "Backend engineer with 2 years of production experience in Node.js and TypeScript. I build developer tools and infrastructure software that runs in production — from embedded databases to DNS servers to edge load balancers.",
+  openSourceSummary:
+    "I maintain Nexoral, an open-source organization building infrastructure tools for developers. AxioDB, my embedded NoSQL database, has 20K+ NPM downloads per year. NexoralDNS is a self-hosted DNS resolver benchmarked at 12,746 QPS. EdgeBalancer deploys load balancers to Cloudflare's 330+ edge locations in under 90 seconds.",
 
   social: {
     github: "https://github.com/AnkanSaha",
@@ -86,69 +97,87 @@ export const portfolioData: PortfolioData = {
     discord: "https://discord.gg/theankansaha",
   },
 
+  github: {
+    followers: 37,
+    following: 21,
+    stars: 42,
+    publicRepos: 15,
+    achievements: [
+      "Pull Shark x4",
+      "Pair Extraordinaire x2",
+      "Starstruck",
+      "YOLO",
+      "Quickdraw",
+      "GitHub Pro",
+      "Developer Program Member",
+    ],
+  },
+
   skillCategories: [
     {
       name: "AI & Agents",
-      skills: ["Agentic AI", "AI Agents", "LangChain.js", "LLM Function Calling (Tool Calling)", "Model Context Protocol (MCP)"],
+      skills: ["LangChain.js", "LLM Tool Calling", "Agentic Workflows", "Model Context Protocol (MCP)"],
     },
     {
       name: "Cloud & DevOps",
-      skills: ["AWS (ECS, Fargate, ECR, S3)", "Docker", "Kubernetes (K3s)", "Cloudflare Workers", "Linux", "Nginx", "Git", "GitHub Actions", "CI/CD"],
+      skills: ["AWS (ECS, Fargate, ECR, S3, SQS)", "Docker", "Kubernetes (K3s)", "Cloudflare Workers", "Linux", "Nginx", "Git", "GitHub Actions", "CI/CD"],
     },
     {
       name: "Backend & APIs",
-      skills: ["Node.js", "Express.js", "NestJS", "Fastify", "REST APIs", "Microservices", "Event-Driven Architecture", "WebSockets", "Server-Sent Events", "Authentication (OAuth)"],
+      skills: ["Node.js", "Express.js", "NestJS", "Fastify", "REST APIs", "GraphQL", "WebSockets", "Server-Sent Events", "OAuth", "Microservices"],
     },
     {
       name: "Databases & Messaging",
-      skills: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "RabbitMQ", "Caching"],
+      skills: ["PostgreSQL", "MongoDB", "Redis", "RabbitMQ", "SQLite"],
     },
     {
       name: "Languages & Frontend",
-      skills: ["TypeScript", "JavaScript", "SQL", "Golang", "React.js", "Next.js"],
+      skills: ["TypeScript", "JavaScript", "Go", "SQL", "React", "Next.js"],
+    },
+    {
+      name: "Testing & Observability",
+      skills: ["Jest", "Middleware.io", "DNS Benchmarking (dnsperf)"],
     },
   ],
 
   experience: [
     {
       title: "Full Stack Developer",
-      company: "Hoichoi Technologies Pvt. Ltd.",
-      companyDesc: "Bengal's Leading OTT Streaming Platform",
-      period: "Jul 2025 - Mar 2026",
+      company: "hoichoi",
+      companyUrl: "https://hoichoi.tv",
+      companyDesc: "Bengal's Leading OTT Streaming Platform · 10M+ Users · hoichoi.tv",
+      period: "Jul 2025 – Mar 2026",
       location: "Kolkata, India",
-      description:
-        "Cut compute cost by $3,000 a month on a platform serving 10M+ users, by migrating the Next.js frontend off Vercel onto Cloudflare Workers using OpenNext. Integrated cancellation and retention flows into the Go subscription service behind the same platform.",
       bullets: [
-        "Cut compute cost by $3,000 a month on a platform serving 10M+ users, by migrating the Next.js frontend off Vercel onto Cloudflare Workers using OpenNext",
-        "Integrated Churnkey cancellation and retention flows into the Go subscription service behind the same platform",
-        "Handled day-to-day backend and server issues across the platform, from API bugs to deployment and production incidents",
+        "Migrated the Next.js frontend from Vercel to Cloudflare Workers using OpenNext, cutting monthly compute costs by $3,000.",
+        "Built cancellation and retention flows in the Go subscription service, integrating Churnkey and exposing them through a NestJS GraphQL API.",
+        "Fixed a race condition where post-payment emails fired before MongoDB writes committed — implemented Change Data Capture so SQS events only fire after the write succeeds.",
       ],
-      technologies: ["Cloudflare Workers", "Next.js", "OpenNext", "Node.js", "TypeScript", "Golang", "CI/CD"],
+      technologies: ["Cloudflare Workers", "OpenNext", "NestJS", "GraphQL", "Golang", "MongoDB", "SQS", "CI/CD"],
     },
     {
       title: "Software Engineer",
-      company: "Openweb Solutions",
-      companyDesc: "Previously Pitangent Analytics (Pitangent Group)",
-      period: "Sep 2024 - Jul 2025",
+      company: "Pitangent Analytics (Pitangent Group)",
+      companyUrl: "https://pitangent.com",
+      companyDesc: "AI & Analytics Solutions · Kolkata",
+      period: "Sep 2024 – Jul 2025",
       location: "Kolkata, India",
-      description:
-        "Built the Node.js backend and React dashboard for an AI CCTV product, ingesting user-configured RTSP camera streams, pulling frames for an external threat-detection model, and rendering live feeds with detection alerts. Set up the deploy path from CI to AWS Fargate.",
       bullets: [
-        "Built the Node.js backend and React dashboard for an AI CCTV product: ingested user-configured RTSP camera streams, pulled frames out for an external threat-detection model, and rendered live feeds with detection alerts",
-        "Set up the deploy path, with Docker builds pushed to ECR and rolled out from CI to ECS on AWS Fargate with autoscaling",
+        "Built the backend and React dashboard for an AI CCTV product — ingesting RTSP camera streams, pulling frames for threat detection, and rendering live feeds with alerts.",
+        "Set up the deploy path: Docker builds pushed to ECR, rolled out from CI to ECS on AWS Fargate with autoscaling.",
       ],
       technologies: ["Node.js", "React.js", "RTSP Protocol", "Docker", "AWS ECS", "AWS Fargate", "AWS ECR"],
     },
     {
       title: "Junior Software Developer",
       company: "Excellis IT Pvt. Ltd.",
-      period: "Apr 2024 - Aug 2024",
+      companyUrl: "https://excellisit.com",
+      companyDesc: "IoT & Smart Devices · Kolkata",
+      period: "Apr 2024 – Aug 2024",
       location: "Kolkata, India",
-      description:
-        "Wrote the Node.js and MQTT backend for a smart lock system running 200+ live devices, adding exponential backoff reconnection to the WebSocket layer after locks kept dropping off the dashboard. Added path-based change detection to the GitHub Actions pipeline.",
       bullets: [
-        "Wrote the Node.js and MQTT backend for a smart lock system running 200+ live devices, adding exponential backoff reconnection to the WebSocket layer after locks kept dropping off the dashboard",
-        "Added path-based change detection to the GitHub Actions pipeline so only changed services got tested and deployed",
+        "Node.js and MQTT backend for a smart lock system with 200+ live devices. Added exponential backoff reconnection to fix dashboard dropouts.",
+        "Added path-based change detection to GitHub Actions CI so only changed services get tested and deployed.",
       ],
       technologies: ["Node.js", "MQTT", "WebSocket", "IoT", "GitHub Actions"],
     },
@@ -157,128 +186,123 @@ export const portfolioData: PortfolioData = {
   education: {
     degree: "Bachelor of Arts",
     university: "University of Kalyani",
-    period: "Sep 2021 - Sep 2024",
+    period: "2021 – 2024",
     location: "Nadia, West Bengal, India",
-    description:
-      "Completed Bachelor of Arts degree while simultaneously pursuing intensive self-directed learning in software development, system design, and distributed architectures.",
   },
 
   projects: [
     {
-      name: "EdgeBalancer",
-      tagline: "AI-Configured Load Balancer on Cloudflare Workers",
-      period: "Apr 2026 - May 2026",
+      name: "AxioDB",
+      tagline: "Zero-Dependency Embedded Database for Node.js",
+      period: "Oct 2024 – Present",
       description:
-        "A load balancer that runs on Cloudflare Workers, live from a dashboard in under 90 seconds, with 7 routing strategies, health checks and per-origin traffic weighting. Runs on K3s with Redis holding shared state.",
+        "An embedded NoSQL database that runs inside your Node.js or Electron process — no external daemon, no native bindings. MongoDB-compatible query API, ACID transactions with WAL, hash-indexed lookups, and multi-core processing via worker_threads.",
       bullets: [
-        "A load balancer that runs on Cloudflare Workers, live from a dashboard in under 90 seconds, with 7 routing strategies, health checks and per-origin traffic weighting; runs on K3s with Redis holding shared state",
-        "A LangChain.js agent sets one up from a single chat message and streams progress live over SSE; if a deploy fails, it searches the web and reads docs to explain why, instead of returning a stack trace",
-        "Loading tool definitions only when the agent needs them, instead of all of them up front, cut tokens per run by about 66% (1,612 against 4,788); Redis fails over to a backup LLM provider on quota exhaustion and blocks duplicate deploys",
+        "Pure TypeScript engine with zero native dependencies — runs directly inside the host process.",
+        "MongoDB-compatible query syntax, hash-indexed lookups, ACID transactions backed by a Write-Ahead Log (WAL).",
+        "Multi-core processing utilizing worker_threads for parallel dataset operations.",
+        "Ships with an interactive Go CLI, web control dashboard, Dockerized TCP server mode, and a 32-tool MCP server for AI agent interaction.",
+        "Verified with 10 automated test suites covering crash recovery under SIGKILL, TCP/TLS authentication, and data rollbacks.",
+        "20,000+ NPM downloads per year. Used across Electron desktop software and local-first tooling.",
       ],
-      technologies: ["TypeScript", "LangChain.js", "Cloudflare Workers", "Redis", "K3s"],
-      github: "https://github.com/nexoral/EdgeBalancer",
+      technologies: ["TypeScript", "Node.js", "Docker", "Go", "MCP", "Worker Threads", "WAL"],
+      github: "https://github.com/nexoral/AxioDB",
+      npm: "https://www.npmjs.com/package/axiodb",
+      stars: 33,
       featured: true,
     },
     {
       name: "NexoralDNS",
-      tagline: "High-Performance Self-Hosted DNS Server",
-      period: "Oct 2025 - Jun 2026",
+      tagline: "High-Throughput Self-Hosted DNS Resolver",
+      period: "Oct 2025 – Present",
       description:
-        "Self-hosted DNS: block ads network-wide, point any domain where you want, and keep the query data instead of handing it to your ISP. Next.js console for blocklists and live queries, plus an MCP server to manage it in plain English.",
+        "A self-hosted DNS control plane for local networks — network-wide ad blocking, custom domain routing, real-time query analytics, and an MCP server for AI-powered management. Supports UDP, TCP, and DNS-over-TLS.",
       bullets: [
-        "Self-hosted DNS: block ads network-wide, point any domain where you want, and keep the query data instead of handing it to your ISP; Next.js console for blocklists and live queries, plus an MCP server to manage it in plain English",
-        "Built in TypeScript first to get the behaviour right, then rewrote the query engine in Go once it was settled: 8,050 queries per second on a 9-node cluster became 12,746 on one 6-core laptop, at 3.8ms latency and no dropped queries (dnsperf)",
-        "Redis caching answers 98% of lookups from memory; RabbitMQ logs after the reply is sent, so logging never delays an answer",
+        "Prototyped in TypeScript (8,050 QPS), rewrote in Go — reached 12,746 QPS at 3.8ms latency with zero dropped packets under dnsperf on a consumer laptop.",
+        "7-layer query engine: Redis cache, block-list engine, upstream resolution. Redis serves 98% of lookups from cache.",
+        "Asynchronous audit logging via RabbitMQ — logging never delays a DNS response.",
+        "Next.js admin console with real-time query visualization. MCP server for managing DNS through AI clients.",
+        "DNS over TCP (RFC 7766) and DNS over TLS (RFC 7858) — zero configuration changes needed.",
       ],
-      technologies: ["Golang", "TypeScript", "Fastify", "Next.js", "Redis", "UDP", "DNS Protocol"],
+      technologies: ["Go", "TypeScript", "Fastify", "Next.js", "Redis", "RabbitMQ", "Docker", "MCP"],
       github: "https://github.com/nexoral/NexoralDNS",
+      live: "https://dns.nexoral.in",
+      docs: "https://dns.nexoral.in/docs/getting-started",
+      stars: 2,
       featured: true,
     },
     {
-      name: "AxioDB",
-      tagline: "Embedded NoSQL Database Engine",
-      period: "Oct 2024 - Aug 2025",
+      name: "EdgeBalancer",
+      tagline: "Edge Load Balancer & API Gateway Control Plane",
+      period: "Apr 2026 – Present",
       description:
-        "Embedded NoSQL database for Node and Electron, for the gap between SQLite (schema up front) and a JSON file (no queries, no crash safety). Runs inside your process via NPM, ACID transactions and hash indexing.",
+        "A SaaS control plane that deploys production load balancers and API gateways to Cloudflare Workers across 330+ edge locations in under 90 seconds. 7 routing strategies, active health checks, JWT validation, and an AI deployment assistant.",
       bullets: [
-        "Embedded NoSQL database for Node and Electron, for the gap between SQLite (schema up front) and a JSON file (no queries, no crash safety); runs inside your process via NPM, ACID transactions and hash indexing",
-        "Ships three ways: embedded in your process via NPM, or as a Docker image that several apps share over the AxioDB Cloud client with the same query API, optionally exposing an MCP server for AI agents. Both include a web dashboard with authentication and roles",
-        "19,574 downloads in the last 12 months, 4,947 in the last 30",
+        "Compiles and deploys load balancers directly onto Cloudflare Workers — reduces idle costs to zero with serverless edge execution.",
+        "7 routing strategies (weighted, failover, round-robin, etc.), active health checks, JWT validation, and canary releases.",
+        "LangChain.js chat agent configures the balancer from natural-language requests and streams deployment progress via SSE.",
+        "Dynamically scoped tool definitions reduced agent token consumption by 66% (4,788 → 1,612 tokens/run).",
+        "Redis prevents duplicate deployments across concurrent requests; backup LLM provider takes over on quota exhaustion.",
       ],
-      technologies: ["TypeScript", "Node.js", "Docker", "Binary Serialization", "Hash Indexing"],
-      github: "https://github.com/nexoral/AxioDB",
-      npm: "https://www.npmjs.com/package/axiodb",
+      technologies: ["TypeScript", "LangChain.js", "Cloudflare Workers", "Redis", "AWS Fargate", "MongoDB", "SSE"],
+      github: "https://github.com/nexoral/EdgeBalancer",
+      live: "https://edge.nexoral.in",
+      stars: 1,
       featured: true,
     },
     {
       name: "ContainDB",
       tagline: "One-Command Database Deployment CLI",
-      period: "May 2025 - Jul 2025",
+      period: "May 2025 – Jul 2025",
       description:
-        "CLI tool for one-command database deployment (MongoDB, Postgres, Redis, MySQL) packaged as a .deb installer, featuring automated backups and container health monitoring.",
+        "CLI tool for one-command deployment of MongoDB, Postgres, Redis, MySQL, and MariaDB — packaged as a .deb installer with automated backups and container health monitoring.",
       bullets: [
-        "Built a CLI tool for one-command database deployment (MongoDB, Postgres, Redis, MySQL) packaged as a .deb installer",
-        "Features automated backups and container health monitoring",
+        "One-command deployment of 5 database engines with Docker containers.",
+        "Automated backups, health monitoring, and PHPMyAdmin integration.",
       ],
-      technologies: ["Golang", "Docker", "CLI", "MongoDB", "PostgreSQL", "Redis"],
+      technologies: ["Go", "Docker", "CLI", "MongoDB", "PostgreSQL", "Redis", "MySQL"],
       github: "https://github.com/nexoral/ContainDB",
+      stars: 4,
       featured: false,
     },
     {
       name: "xpack",
       tagline: "Universal Linux Package Builder",
-      period: "Aug 2025 - Nov 2025",
+      period: "Aug 2025 – Nov 2025",
       description:
-        "Universal Linux package builder converting standalone binaries (Go, Rust) into native formats (.deb, .rpm, tar.gz), automating service file generation for CI/CD pipelines.",
+        "Universal Linux package builder that converts standalone binaries (Go, Rust) into native formats (.deb, .rpm, tar.gz) with automated systemd service file generation.",
       bullets: [
-        "Built a universal Linux package builder converting standalone binaries (Go, Rust) into native formats (.deb, .rpm, tar.gz)",
-        "Automates service file generation for CI/CD pipelines",
+        "Converts standalone binaries into .deb, .rpm, and tar.gz packages.",
+        "Automates systemd service file generation for CI/CD pipelines.",
       ],
-      technologies: ["Golang", "Linux", "CLI", "Package Management"],
+      technologies: ["Go", "Linux", "CLI", "Package Management"],
       github: "https://github.com/nexoral/xpack",
+      stars: 2,
       featured: false,
     },
     {
-      name: "react-caches",
-      tagline: "React Local Storage Management",
-      period: "2024",
+      name: "ReviewBuddy",
+      tagline: "GitHub Action for PR Reviews",
+      period: "2025",
       description:
-        "Lightweight TypeScript package for local storage management in React applications with a type-safe API.",
+        "A configurable GitHub Action that comments on Pull Requests in your preferred language and tone.",
       bullets: [
-        "Lightweight TypeScript package for local storage management in React applications with type-safe API",
+        "Configurable GitHub Action for automated PR review comments.",
       ],
-      technologies: ["TypeScript", "React", "Local Storage", "Hooks"],
-      github: "https://github.com/nexoral/react-caches",
-      npm: "https://www.npmjs.com/package/react-caches",
-      featured: false,
-    },
-    {
-      name: "outers",
-      tagline: "Node.js Utilities Package",
-      period: "2024",
-      description:
-        "Essential utilities for Node.js including AES-256 encryption, terminal text coloring, and string manipulation helpers.",
-      bullets: [
-        "Essential utilities for Node.js including AES-256 encryption, terminal text coloring, and string manipulation helpers",
-      ],
-      technologies: ["TypeScript", "Node.js", "Encryption", "CLI"],
-      github: "https://github.com/nexoral/outers",
-      npm: "https://www.npmjs.com/package/outers",
+      technologies: ["JavaScript", "GitHub Actions"],
+      github: "https://github.com/nexoral/ReviewBuddy",
+      stars: 2,
       featured: false,
     },
   ],
 
   achievements: [
-    "$3K/month Infrastructure Cost Savings at Hoichoi",
-    "19,574 NPM Downloads in 12 Months (AxioDB)",
-    "10M+ Users Served",
-    "12,746 QPS on a Single Node (NexoralDNS)",
-    "~66% Token Reduction via Lazy Tool Loading (EdgeBalancer)",
-    "GitHub Pro",
-    "Pull Shark x4",
-    "Pair Extraordinaire",
-    "YOLO Badge",
-    "Quickdraw Badge",
+    "Built and maintain 6 open-source projects under Nexoral",
+    "20K+ NPM downloads per year (AxioDB)",
+    "12,746 QPS DNS resolution on a consumer laptop (NexoralDNS)",
+    "Load balancer deployment to 330+ edge locations in under 90 seconds (EdgeBalancer)",
+    "~66% AI token reduction via lazy tool loading (EdgeBalancer)",
+    "$3K/month infrastructure cost savings at hoichoi (10M+ users)",
   ],
 
   languages: ["Bengali (Native)", "Hindi (Professional)", "English (Professional)"],

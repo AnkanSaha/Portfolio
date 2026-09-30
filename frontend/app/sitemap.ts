@@ -1,71 +1,62 @@
-import { MetadataRoute } from 'next';
-
-const baseUrl = 'https://ankan.in';
-const blogSitemapUrl = 'https://blog.ankan.in/sitemap.xml';
-const VALID_FREQUENCIES = new Set([
-  'always',
-  'hourly',
-  'daily',
-  'weekly',
-  'monthly',
-  'yearly',
-  'never',
-]);
-
-const staticRoutes: Array<{
-  path: string;
-  changeFrequency: NonNullable<MetadataRoute.Sitemap[number]['changeFrequency']>;
-  priority: number;
-}> = [{ path: '', changeFrequency: 'weekly', priority: 1.0 }];
-
-// Hashnode serves a plain <urlset> (not a sitemap index), so a regex scan is
-// enough — pulled out as a pure function so it can be exercised without a fetch.
-export function parseBlogSitemap(xml: string): MetadataRoute.Sitemap {
-  const entries: MetadataRoute.Sitemap = [];
-
-  for (const match of xml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
-    const block = match[1];
-    const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1];
-    if (!loc) continue;
-
-    const lastmod = block.match(/<lastmod>(.*?)<\/lastmod>/)?.[1];
-    const changefreq = block.match(/<changefreq>(.*?)<\/changefreq>/)?.[1];
-    const priority = block.match(/<priority>(.*?)<\/priority>/)?.[1];
-
-    entries.push({
-      url: loc,
-      lastModified: lastmod ? new Date(lastmod) : new Date(),
-      changeFrequency: VALID_FREQUENCIES.has(changefreq ?? '')
-        ? (changefreq as MetadataRoute.Sitemap[number]['changeFrequency'])
-        : 'daily',
-      priority: priority ? parseFloat(priority) : 0.7,
-    });
-  }
-
-  return entries;
-}
-
-async function getBlogSitemap(): Promise<MetadataRoute.Sitemap> {
-  try {
-    const res = await fetch(blogSitemapUrl, { cache: 'no-store' });
-    if (!res.ok) return [];
-    return parseBlogSitemap(await res.text());
-  } catch {
-    return [];
-  }
-}
+import type { MetadataRoute } from "next";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const currentDate = new Date();
+  const blogSitemapUrl = "https://blog.ankan.in/sitemap.xml";
 
-  const pages: MetadataRoute.Sitemap = staticRoutes.map((route) => ({
-    url: `${baseUrl}${route.path}`,
-    lastModified: currentDate,
-    changeFrequency: route.changeFrequency,
-    priority: route.priority,
-  }));
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: "https://ankan.in",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 1.0,
+    },
+    {
+      url: "https://ankan.in/#projects",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: "https://ankan.in/#work",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: "https://ankan.in/#stack",
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
+      url: "https://ankan.in/#contact",
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.6,
+    },
+  ];
 
-  const blogPages = await getBlogSitemap();
+  const blogPages: MetadataRoute.Sitemap = [];
+  try {
+    const res = await fetch(blogSitemapUrl, { next: { revalidate: 3600 } });
+    if (res.ok) {
+      const xml = await res.text();
+      for (const match of xml.matchAll(/<url>([\s\S]*?)<\/url>/g)) {
+        const block = match[1];
+        const loc = block.match(/<loc>(.*?)<\/loc>/)?.[1];
+        if (!loc) continue;
+        const lastmod = block.match(/<lastmod>(.*?)<\/lastmod>/)?.[1];
+        blogPages.push({
+          url: loc,
+          lastModified: lastmod ? new Date(lastmod) : new Date(),
+          changeFrequency: "weekly",
+          priority: 0.7,
+        });
+      }
+    }
+  } catch {
+    // blog sitemap unavailable
+  }
 
-  return [...pages, ...blogPages];
+  return [...staticRoutes, ...blogPages];
 }

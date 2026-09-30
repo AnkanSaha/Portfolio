@@ -1,8 +1,0 @@
-.sidebar {
-  width: var(--sidebar-width, 180px);
-  flex-shrink: 0;
-  overflow-y: auto;
-  background: var(--ankan-panel);
-  border-right: 1px solid var(--ankan-panel-border);
-  padding: 8px 6px;
-}

@@ -1,5 +1,5 @@
-import OS from "./os/OS";
+import Portfolio from "./portfolio/Portfolio";
 
 export default function Home() {
-  return <OS />;
+  return <Portfolio />;
 }

@@ -1,0 +1,21 @@
+# Ankan Saha
+> Backend Engineer & Open Source Maintainer. Building infrastructure tools with Node.js, TypeScript, Go, and Cloudflare Workers.
+
+## Open Source Projects
+- [AxioDB](https://github.com/nexoral/AxioDB): Zero-dependency embedded NoSQL database for Node.js. 20K+ NPM downloads/year. MongoDB-compatible queries, ACID transactions, MCP server.
+- [NexoralDNS](https://github.com/nexoral/NexoralDNS): Self-hosted DNS resolver with ad blocking and AI management. 12,746 QPS on a consumer laptop. UDP, TCP, DNS-over-TLS.
+- [EdgeBalancer](https://github.com/nexoral/EdgeBalancer): SaaS control plane for Cloudflare Worker load balancers. Deploys to 330+ edge locations in under 90 seconds. 7 routing strategies, AI assistant.
+- [ContainDB](https://github.com/nexoral/ContainDB): One-command database deployment CLI for MongoDB, Postgres, Redis, MySQL.
+- [xpack](https://github.com/nexoral/xpack): Universal Linux package builder (.deb, .rpm, tar.gz).
+- [ReviewBuddy](https://github.com/nexoral/ReviewBuddy): GitHub Action for automated PR review comments.
+
+## Live Products
+- [EdgeBalancer](https://edge.nexoral.in): Deploy load balancers on Cloudflare Workers
+- [NexoralDNS](https://dns.nexoral.in): Self-hosted DNS control plane
+
+## Contact
+- [Portfolio](https://ankan.in)
+- [Resume](https://resume.ankan.in)
+- [GitHub](https://github.com/AnkanSaha)
+- [LinkedIn](https://linkedin.com/in/theankansaha)
+- [Email](mailto:connect@ankan.in)
