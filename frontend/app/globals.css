@@ -1,62 +1,40 @@
 /* ============================================================
-   ANKAN OS DESIGN TOKENS
+   PORTFOLIO — ANKAN SAHA
+   Warm, editorial, handcrafted.
    ============================================================ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
 :root {
-  --ankan-bg: #23252e;
-  --ankan-bg-rgb: 35, 37, 46;
-  --ankan-bg-elevated: #2a2d38;
-  --ankan-panel: #1f2229;
-  --ankan-panel-border: rgba(255, 255, 255, 0.06);
+  --bg: #faf9f7;
+  --bg-warm: #f3f1ed;
+  --bg-card: #ffffff;
+  --border: #e8e5e0;
+  --border-light: #f0ede8;
 
-  --ankan-teal: #198388;
-  --ankan-red: #d41919;
-  --ankan-red-bright: #ec0101;
-  --ankan-green: #5ebdab;
-  --ankan-green-bright: #47d4b9;
-  --ankan-yellow: #fea44c;
-  --ankan-yellow-bright: #ff8a18;
-  --ankan-blue: #367bf0;
-  --ankan-blue-bright: #277fff;
-  --ankan-magenta: #9755b3;
-  --ankan-magenta-bright: #962ac3;
-  --ankan-cyan: #49aee6;
-  --ankan-cyan-bright: #05a1f7;
-  --ankan-fg: #e6e6e6;
-  --ankan-fg-bright: #ffffff;
-  --ankan-fg-muted: #8a8d98;
-  --ankan-fg-dim: #5a5d68;
+  --fg: #1a1a1a;
+  --fg-secondary: #555555;
+  --fg-muted: #888888;
+  --fg-faint: #b0b0b0;
 
-  --window-radius: 6px;
-  --panel-height: 30px;
-  --titlebar-height: 32px;
-  --window-opacity: 1;
-  --icon-box-size: 84px;
-  --icon-glyph-size: 40px;
-  --icon-font-size: 0.74rem;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --accent-light: #fff7ed;
+  --accent-subtle: rgba(194, 65, 12, 0.08);
 
-  --shadow-window: 0 12px 40px rgba(0, 0, 0, 0.55), 0 2px 8px rgba(0, 0, 0, 0.4);
-  --shadow-menu: 0 8px 28px rgba(0, 0, 0, 0.5);
-  --shadow-panel: 0 1px 0 rgba(0, 0, 0, 0.4);
+  --green: #16a34a;
+  --green-bg: rgba(22, 163, 74, 0.08);
 
-  --font-ui: var(--font-cantarell), "Cantarell", system-ui, sans-serif;
-  --font-mono: var(--font-noto-mono), "Noto Sans Mono", "Cascadia Code", monospace;
+  --font-sans: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Menlo', monospace;
 
-  --ease-xfwm: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --z-desktop: 0;
-  --z-window: 100;
-  --z-panel: 500;
-  --z-menu: 600;
-  --z-boot: 900;
-  --z-shutdown: 950;
-
-  --background: var(--ankan-bg);
-  --foreground: var(--ankan-fg);
+  --header-h: 56px;
+  --max-w: 1200px;
+  --section-gap: 120px;
 }
 
-/* ============================================================
-   BASE RESET
-   ============================================================ */
 *,
 *::before,
 *::after {
@@ -67,121 +45,36 @@
 
 html {
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--ankan-bg);
-  color: var(--ankan-fg);
-  font-family: var(--font-ui);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-  -webkit-tap-highlight-color: transparent;
-  cursor: url("/os/cursors/default.svg") 4 2, auto;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  overflow-x: hidden;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-button,
-input,
-textarea {
-  font-family: inherit;
-  color: inherit;
-}
-
-button {
-  cursor: url("/os/cursors/pointer.svg") 6 2, pointer;
-  background: none;
-  border: none;
-}
-
-a[href] {
-  cursor: url("/os/cursors/pointer.svg") 6 2, pointer;
-}
-
-input,
-textarea {
-  cursor: url("/os/cursors/text.svg") 8 12, text;
-}
-
-.cursor-move {
-  cursor: url("/os/cursors/move.svg") 12 12, move;
-}
-
-.cursor-wait {
-  cursor: url("/os/cursors/wait.svg") 10 12, wait;
-}
-
-.cursor-nwse {
-  cursor: nwse-resize;
-}
-.cursor-nesw {
-  cursor: nesw-resize;
-}
-.cursor-ns {
-  cursor: ns-resize;
-}
-.cursor-ew {
-  cursor: ew-resize;
-}
-
-/* ============================================================
-   SCROLLBAR
-   ============================================================ */
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.14);
-  border-radius: 4px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--ankan-blue);
-}
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; color: inherit; cursor: pointer; background: none; border: none; }
 
 ::selection {
-  background: rgba(54, 123, 240, 0.35);
-  color: #ffffff;
+  background: rgba(194, 65, 12, 0.15);
+  color: var(--fg);
 }
 
-/* ============================================================
-   XTERM OVERRIDES
-   ============================================================ */
-.xterm {
-  padding: 8px;
-  height: 100%;
-  cursor: url("/os/cursors/text.svg") 8 12, text;
-}
-.xterm-viewport {
-  overflow-y: auto !important;
-  overflow-x: hidden !important;
-  scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.14) transparent;
-}
-.xterm-screen {
-  height: 100% !important;
-}
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #d5d0c8; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b5b0a8; }
 
-/* ============================================================
-   KEYFRAMES
-   ============================================================ */
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes fadeIn {
@@ -189,28 +82,19 @@ textarea {
   to   { opacity: 1; }
 }
 
-@keyframes spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(-16px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-@keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0.5; }
-}
-
-.font-mono { font-family: var(--font-mono); }
-
-:root[data-underline-links="true"] a[href] {
-  text-decoration: underline;
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
+  *, *::before, *::after {
     animation-duration: 0.001ms !important;
-    animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
   }
 }
